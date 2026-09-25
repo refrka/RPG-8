@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cuq15pqo3flvx"]
+
+[ext_resource type="FontFile" uid="uid://d0juywjh5oxmt" path="res://resources/ReplaceTheSun.ttf" id="1_mwhd1"]
+
+[resource]
+default_font = ExtResource("1_mwhd1")
+default_font_size = 16

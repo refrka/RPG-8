@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ctjnd5u7m5haw"]
+
+[ext_resource type="Script" uid="uid://cpcb0dhgf4v5o" path="res://system/entity/character_node.gd" id="1_qxfxo"]
+[ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_h02iy"]
+[ext_resource type="Script" uid="uid://dscci57lqsjwx" path="res://system/component/movement_component.gd" id="3_apa6i"]
+
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine")]
+collision_mask = 0
+script = ExtResource("1_qxfxo")
+component_root = NodePath("ComponentRoot")
+state_machine = NodePath("StateMachine")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1758777883]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549181237]
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=9866386]
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1855537733]
+script = ExtResource("3_apa6i")
+metadata/_custom_type_script = "uid://dscci57lqsjwx"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root")]
+script = ExtResource("2_h02iy")
+body_root = NodePath("BodyRoot")
+combat_root = NodePath("CombatRoot")
+metadata/_custom_type_script = "uid://rgx5lh01enbs"
+
+[node name="BodyRoot" type="Node" parent="StateMachine" unique_id=614709305]
+
+[node name="CombatRoot" type="Node" parent="StateMachine" unique_id=569723837]

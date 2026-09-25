@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c343laqxge1v0"]
+
+[ext_resource type="Script" uid="uid://c6cdfwblghmu2" path="res://system/location/location.gd" id="1_fq6q8"]
+[ext_resource type="TileSet" uid="uid://dndiaavfg7eme" path="res://resources/default_tile_set.tres" id="2_6dy87"]
+
+[node name="Location" type="Node2D" unique_id=1031888081 node_paths=PackedStringArray("ysort_root", "feature_root")]
+script = ExtResource("1_fq6q8")
+ysort_root = NodePath("YSortRoot")
+feature_root = NodePath("FeatureRoot")
+metadata/_custom_type_script = "uid://c6cdfwblghmu2"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1121710665]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=1679150278]
+tile_set = ExtResource("2_6dy87")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=593593222]
+y_sort_enabled = true
+
+[node name="FeatureRoot" type="Node2D" parent="." unique_id=97854264]

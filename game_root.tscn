@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://mwnhdbjpn0pw"]
+
+[ext_resource type="Script" uid="uid://d2v1ei71qukpy" path="res://game_root.gd" id="1_xj5yv"]
+[ext_resource type="PackedScene" uid="uid://dw7ehg14xidmg" path="res://system/ui/game_menu.tscn" id="2_bxsma"]
+[ext_resource type="PackedScene" uid="uid://y5g450fgkcas" path="res://system/ui/main_menu.tscn" id="2_pjpa4"]
+
+[node name="GameRoot" type="Node" unique_id=91091552]
+script = ExtResource("1_xj5yv")
+
+[node name="LocationCanvas" type="CanvasLayer" parent="." unique_id=438543936]
+follow_viewport_enabled = true
+
+[node name="LocationRoot" type="Node2D" parent="LocationCanvas" unique_id=1339218736 groups=["location_root"]]
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=921132394]
+
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=535348346]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=582523827 instance=ExtResource("2_bxsma")]
+layout_mode = 1
+
+[node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
+
+[node name="MainMenu" parent="MenuCanvas" unique_id=1723796028 instance=ExtResource("2_pjpa4")]

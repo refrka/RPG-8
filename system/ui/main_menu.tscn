@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://y5g450fgkcas"]
+
+[ext_resource type="Script" uid="uid://dnjtyqmevjgn" path="res://system/ui/main_menu.gd" id="1_7d3sa"]
+
+[node name="MainMenu" type="Control" unique_id=1723796028 node_paths=PackedStringArray("start_button", "quit_button") groups=["main_menu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7d3sa")
+start_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton")
+quit_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton")
+metadata/_custom_type_script = "uid://dnjtyqmevjgn"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=73913757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1332059458]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=353162237]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1775871993]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1696182992]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "START"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=558603285]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "QUIT"
