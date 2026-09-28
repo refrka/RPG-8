@@ -1,0 +1,1 @@
+class_name BodyCombatOverrideState extends BodyState

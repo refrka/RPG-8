@@ -3,29 +3,68 @@
 [ext_resource type="Script" uid="uid://cpcb0dhgf4v5o" path="res://system/entity/character_node.gd" id="1_qxfxo"]
 [ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_h02iy"]
 [ext_resource type="Script" uid="uid://dscci57lqsjwx" path="res://system/component/movement_component.gd" id="3_apa6i"]
+[ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_uf26u"]
+[ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="3_wnsgr"]
+[ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
+[ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root")]
 collision_mask = 0
 script = ExtResource("1_qxfxo")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
+animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
+combat_root = NodePath("CanvasGroup/CombatRoot")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1758777883]
+[node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1227938032]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=126469266]
+
+[node name="CombatRoot" type="Node2D" parent="CanvasGroup" unique_id=1011823152]
+
+[node name="CombatSprite" type="Sprite2D" parent="CanvasGroup/CombatRoot" unique_id=1279357900]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549181237]
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=9866386]
 
-[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1855537733]
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1855537733 node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("3_apa6i")
+modifier_handler = NodePath("ModifierHandler")
 metadata/_custom_type_script = "uid://dscci57lqsjwx"
 
-[node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root")]
+[node name="ModifierHandler" type="Node" parent="ComponentRoot/MovementComponent" unique_id=308704185]
+script = ExtResource("3_wnsgr")
+metadata/_custom_type_script = "uid://bobpp4mvy8vl4"
+
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=780820933 node_paths=PackedStringArray("body_anim_player")]
+script = ExtResource("3_uf26u")
+body_anim_player = NodePath("../../BodyAnimationPlayer")
+metadata/_custom_type_script = "uid://c20ddxy082c6l"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root", "initial_body_state", "initial_combat_state")]
 script = ExtResource("2_h02iy")
 body_root = NodePath("BodyRoot")
 combat_root = NodePath("CombatRoot")
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
+initial_combat_state = NodePath("CombatRoot/CombatIdleState")
 metadata/_custom_type_script = "uid://rgx5lh01enbs"
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=614709305]
 
+[node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1429764182]
+script = ExtResource("6_x0k0y")
+metadata/_custom_type_script = "uid://ctwivvly8ar6t"
+
 [node name="CombatRoot" type="Node" parent="StateMachine" unique_id=569723837]
+
+[node name="CombatIdleState" type="Node" parent="StateMachine/CombatRoot" unique_id=1968663588]
+script = ExtResource("7_c0c35")
+metadata/_custom_type_script = "uid://c5eoul4lf6mdn"
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1131495921]
+
+[node name="CombatAnimationPlayer" type="AnimationPlayer" parent="." unique_id=487937974]

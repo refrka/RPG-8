@@ -3,40 +3,199 @@
 [ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_o3wy1"]
 [ext_resource type="Script" uid="uid://7m0wwjges8tm" path="res://system/player/player.gd" id="2_ho6qo"]
 [ext_resource type="Texture2D" uid="uid://bb3cgn7m5c6bk" path="res://system/player/player_sprite_sheet.png" id="3_ho6qo"]
+[ext_resource type="Resource" uid="uid://c6oewvdkbnw4o" path="res://system/player/player_def.tres" id="3_ukr2h"]
 [ext_resource type="Script" uid="uid://ddb5b7xq2nxr7" path="res://system/component/input_component.gd" id="4_6ripc"]
+[ext_resource type="Texture2D" uid="uid://6d5renbdu5qc" path="res://items/equipment/weapons/short_sword/short_sword_atttack_0.png" id="4_o7suc"]
+[ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="6_ssgc2"]
+[ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="7_ebooa"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ripc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho6qo"]
 atlas = ExtResource("3_ho6qo")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_o3wy1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uf26u"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6ripc")
+"texture": SubResource("AtlasTexture_ho6qo")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ho6qo"]
-radius = 5.0
-height = 20.0
+[sub_resource type="Animation" id="Animation_ukr2h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3rsp"]
+_data = {
+&"RESET": SubResource("Animation_ukr2h")
+}
+
+[sub_resource type="Animation" id="Animation_ebooa"]
+length = 0.14825426
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_o7suc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0409199, 0.06838928),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.10470967),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukr2h"]
+_data = {
+&"attack_0": SubResource("Animation_ebooa")
+}
 
 [node name="Player" unique_id=2016177718 instance=ExtResource("1_o3wy1")]
-collision_layer = 5
 script = ExtResource("2_ho6qo")
+entity_def = ExtResource("3_ukr2h")
 
-[node name="AnimatedSprite2D" parent="." index="0" unique_id=1758777883]
-position = Vector2(0, -24)
-sprite_frames = SubResource("SpriteFrames_o3wy1")
+[node name="CenterMarker" parent="." index="0" unique_id=1440807016]
+position = Vector2(0, -14)
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=549181237]
-position = Vector2(0, -5)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_ho6qo")
+[node name="AnimatedSprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=126469266]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_uf26u")
+offset = Vector2(0, -10)
 
-[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="1" unique_id=1531721108]
+[node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
+y_sort_enabled = true
+position = Vector2(0, -14)
+
+[node name="CombatSprite" parent="CanvasGroup/CombatRoot" index="0" unique_id=1279357900]
+position = Vector2(8, 0)
+hframes = 3
+frame = 1
+
+[node name="AnimationComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="1" unique_id=780820933 node_paths=PackedStringArray("combat_anim_player")]
+combat_anim_player = NodePath("../../CombatAnimationPlayer")
+
+[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="2" unique_id=456831376]
 script = ExtResource("4_6ripc")
 metadata/_custom_type_script = "uid://ddb5b7xq2nxr7"
+
+[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="3" unique_id=1332381332]
+script = ExtResource("6_ssgc2")
+metadata/_custom_type_script = "uid://prruy5b51dk5"
+
+[node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(569723837) index="0" unique_id=701708743]
+script = ExtResource("7_ebooa")
+metadata/_custom_type_script = "uid://cqwio6bxg7hj"
+
+[node name="CombatAnimationPlayer" parent="." index="6" unique_id=487937974]
+libraries/ = SubResource("AnimationLibrary_h3rsp")
+libraries/short_sword = SubResource("AnimationLibrary_ukr2h")

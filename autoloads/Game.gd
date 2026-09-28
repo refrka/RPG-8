@@ -35,6 +35,8 @@ func start() -> void:
 
 	get_player()
 
+	player.show()
+
 	var location = Scenes.load_location(active_save_data["location_id"])
 
 	location.spawn_player(active_save_data["spawn_id"])
@@ -109,6 +111,8 @@ func hold_player() -> void:
 	if player.get_parent() == self:
 
 		return
+
+	player.hide()
 
 	player.reparent(self)
 

@@ -7,6 +7,8 @@ signal attack_pressed
 
 signal attack_released
 
+signal dodge_pressed
+
 
 var input_dir: Vector2
 
@@ -57,6 +59,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("attack"):
 
 		attack_released.emit()
+
+	if event.is_action_pressed("dodge"):
+
+		dodge_pressed.emit()
 
 
 

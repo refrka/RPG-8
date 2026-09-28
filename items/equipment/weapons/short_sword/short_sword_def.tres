@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponDef" format=3 uid="uid://vmiqppfcbknh"]
+
+[ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="1_jhqxb"]
+[ext_resource type="Script" uid="uid://ce5et63pssfhr" path="res://system/item/weapon_def.gd" id="1_tsjtf"]
+[ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="2_k6dh1"]
+
+[sub_resource type="Resource" id="Resource_w87oj"]
+script = ExtResource("1_jhqxb")
+metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
+
+[sub_resource type="Resource" id="Resource_fdbda"]
+script = ExtResource("2_k6dh1")
+attack_set = Array[ExtResource("1_jhqxb")]([SubResource("Resource_w87oj")])
+metadata/_custom_type_script = "uid://burdq3rfoe5k3"
+
+[resource]
+script = ExtResource("1_tsjtf")
+attack_config = SubResource("Resource_fdbda")
+item_id = &"short_sword"
+max_stack = 1
+metadata/_custom_type_script = "uid://ce5et63pssfhr"

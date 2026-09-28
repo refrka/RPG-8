@@ -7,6 +7,7 @@ signal move_started
 signal move_ended
 
 
+@export var modifier_handler: ModifierHandler
 
 
 var current_velocity:= Vector2.ZERO
@@ -62,6 +63,16 @@ func _clear() -> void:
 
 
 
+func add_speed_modifier() -> void:
+
+	pass
+
+
+
+func add_velocity_modifier() -> void:
+
+	pass
+
 
 
 
@@ -84,10 +95,9 @@ func get_move_dir() -> Vector2:
 
 func get_move_speed() -> float:
 
-	return 300.0
+	var modifier_total = modifier_handler.get_float_total()
 
-
-
+	return 300.0 + modifier_total
 
 
 
@@ -117,11 +127,15 @@ func _physics_process(delta: float) -> void:
 
 	if dir == Vector2.ZERO:
 
-		move_velocity = move_velocity.move_toward(Vector2.ZERO, 2000.0 * delta)
+		move_velocity = move_velocity.move_toward(Vector2.ZERO, 9000.0 * delta)
 
 	else:
 
-		move_velocity = move_velocity.move_toward(dir * get_move_speed(), 2000.0 * delta)
+		move_velocity = move_velocity.move_toward(dir * get_move_speed(), 9000.0 * delta)
+
+	var modifier_velocity = modifier_handler.get_vector_total()
+
+	move_velocity += modifier_velocity
 
 	entity.velocity = move_velocity
 

@@ -4,11 +4,21 @@ class_name EntityNode extends PhysicsBody2D
 
 
 
+@export var entity_def: EntityDef
+
+@export var inventory: Inventory
+
+
 @export_group("Node Exports")
 
 @export var component_root: Node
 
 @export var state_machine: StateMachine
+
+@export var animated_body_sprite: AnimatedSprite2D
+
+@export var combat_root: Node2D
+
 
 
 
@@ -30,6 +40,14 @@ func _initialize() -> bool:
 		return false
 
 	initialized = true
+
+	if entity_def.initial_inventory:
+
+		inventory = entity_def.initial_inventory.duplicate(true)
+
+	if inventory:
+
+		inventory._initialize()
 
 	for component in component_root.get_children():
 
@@ -104,3 +122,11 @@ func get_component(component_script: Script) -> Component:
 			return component
 
 	return null
+
+
+
+
+
+func get_mouse_dir() -> Vector2:
+
+	return global_position.direction_to(get_global_mouse_position())

@@ -31,4 +31,8 @@ func _on_resume_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 
+	UI.remove_overlay(self)
+
+	hide()
+
 	Game.exit()
