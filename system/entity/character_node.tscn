@@ -1,20 +1,63 @@
 [gd_scene format=3 uid="uid://ctjnd5u7m5haw"]
 
 [ext_resource type="Script" uid="uid://cpcb0dhgf4v5o" path="res://system/entity/character_node.gd" id="1_qxfxo"]
+[ext_resource type="PackedScene" uid="uid://ctchxalk0p3w6" path="res://system/damage/hitbox.tscn" id="2_fnjhg"]
 [ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_h02iy"]
 [ext_resource type="Script" uid="uid://dscci57lqsjwx" path="res://system/component/movement_component.gd" id="3_apa6i"]
 [ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_uf26u"]
+[ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="3_upeui"]
 [ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="3_wnsgr"]
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
+[ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root")]
+[sub_resource type="Animation" id="Animation_fnjhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_upeui"]
+resource_name = "flash"
+length = 0.25090358
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.057313073, 0.11908139, 0.181749, 0.24128532),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrt4h"]
+_data = {
+&"RESET": SubResource("Animation_fnjhg"),
+&"flash": SubResource("Animation_upeui")
+}
+
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root", "hitbox", "hurtbox", "pick_up_area")]
 collision_mask = 0
 script = ExtResource("1_qxfxo")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
 combat_root = NodePath("CanvasGroup/CombatRoot")
+hitbox = NodePath("CanvasGroup/CombatRoot/Hitbox")
+hurtbox = NodePath("Hurtbox")
+pick_up_area = NodePath("PickUpArea")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -27,7 +70,11 @@ y_sort_enabled = true
 
 [node name="CombatSprite" type="Sprite2D" parent="CanvasGroup/CombatRoot" unique_id=1279357900]
 
+[node name="Hitbox" parent="CanvasGroup/CombatRoot" unique_id=2082418591 instance=ExtResource("2_fnjhg")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549181237]
+
+[node name="Hurtbox" parent="." unique_id=809095005 instance=ExtResource("3_upeui")]
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=9866386]
 
@@ -44,6 +91,9 @@ metadata/_custom_type_script = "uid://bobpp4mvy8vl4"
 script = ExtResource("3_uf26u")
 body_anim_player = NodePath("../../BodyAnimationPlayer")
 metadata/_custom_type_script = "uid://c20ddxy082c6l"
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=916333699]
+script = ExtResource("7_upeui")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root", "initial_body_state", "initial_combat_state")]
 script = ExtResource("2_h02iy")
@@ -66,5 +116,15 @@ script = ExtResource("7_c0c35")
 metadata/_custom_type_script = "uid://c5eoul4lf6mdn"
 
 [node name="BodyAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1131495921]
+libraries/ = SubResource("AnimationLibrary_hrt4h")
 
 [node name="CombatAnimationPlayer" type="AnimationPlayer" parent="." unique_id=487937974]
+
+[node name="PickUpArea" type="Area2D" parent="." unique_id=599380275]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" unique_id=2080321684]
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

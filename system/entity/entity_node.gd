@@ -17,7 +17,15 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var animated_body_sprite: AnimatedSprite2D
 
+@export var body_sprite: Sprite2D
+
 @export var combat_root: Node2D
+
+@export var hitbox: Hitbox
+
+@export var hurtbox: Hurtbox
+
+@export var pick_up_area: Area2D
 
 
 
@@ -41,6 +49,14 @@ func _initialize() -> bool:
 
 	initialized = true
 
+	if hitbox:
+
+		hitbox._initialize(self)
+
+	if hurtbox:
+		
+		hurtbox._initialize(self)
+
 	if entity_def.initial_inventory:
 
 		inventory = entity_def.initial_inventory.duplicate(true)
@@ -49,11 +65,15 @@ func _initialize() -> bool:
 
 		inventory._initialize()
 
-	for component in component_root.get_children():
+	if component_root:
 
-		component._initialize(self)
+		for component in component_root.get_children():
 
-	state_machine._initialize(self)
+			component._initialize(self)
+
+	if state_machine:
+
+		state_machine._initialize(self)
 
 	return true
 
@@ -67,11 +87,23 @@ func _activate() -> void:
 
 	active = true
 
-	for component in component_root.get_children():
+	if hitbox:
 
-		component._activate()
+		hitbox._activate()
 
-	state_machine._activate()
+	if hurtbox:
+
+		hurtbox._activate()
+
+	if component_root:
+
+		for component in component_root.get_children():
+
+			component._activate()
+
+	if state_machine:
+
+		state_machine._activate()
 
 
 
@@ -80,11 +112,23 @@ func _deactivate() -> void:
 
 	active = false
 
-	for component in component_root.get_children():
+	if hitbox:
 
-		component._deactivate()
+		hitbox._deactivate()
 
-	state_machine._deactivate()
+	if hurtbox:
+
+		hurtbox._deactivate()
+
+	if component_root:
+
+		for component in component_root.get_children():
+
+			component._deactivate()
+
+	if state_machine:
+
+		state_machine._deactivate()
 
 	_disconnect_signals()
 
@@ -94,21 +138,29 @@ func _deactivate() -> void:
 
 func _connect_signals() -> void:
 
-	pass
+	if pick_up_area:
+
+		pick_up_area.body_entered.connect(_on_body_entered_pick_up_area)
 
 
 
 func _disconnect_signals() -> void:
 
-	pass
+	if pick_up_area:
+
+		pick_up_area.body_entered.disconnect(_on_body_entered_pick_up_area)
 
 
 
 
 
+func receive_damage_package(damage_package: DamagePackage) -> void:
 
+	for component in component_root.get_children():
 
+		if component.has_method("receive_damage_package"):
 
+			component.receive_damage_package(damage_package)
 
 
 
@@ -130,3 +182,16 @@ func get_component(component_script: Script) -> Component:
 func get_mouse_dir() -> Vector2:
 
 	return global_position.direction_to(get_global_mouse_position())
+
+
+
+
+
+
+func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
+
+	if body is ItemNode:
+
+		inventory.add_stack(body.item_stack)
+
+		body.queue_free()

@@ -6,9 +6,12 @@ var active:= false
 
 var entity: EntityNode
 
+var current_damage_package: DamagePackage
 
 
 var hit_list: Array[Hurtbox]
+
+
 
 
 
@@ -73,6 +76,19 @@ func can_hit(hurtbox: Hurtbox) -> bool:
 func hit(hurtbox: Hurtbox) -> void:
 
 	hit_list.append(hurtbox)
+
+	var entity = hurtbox.entity
+
+	entity.receive_damage_package(current_damage_package)
+
+	
+
+
+
+
+func clear_hit_list() -> void:
+
+	hit_list.clear()
 
 
 

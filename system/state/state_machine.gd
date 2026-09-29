@@ -31,7 +31,17 @@ var current_combat_state: CombatState
 
 func _initialize(entity: EntityNode) -> void:
 
-	for state in body_root.get_children() + combat_root.get_children():
+	var states = []
+
+	if body_root:
+
+		states += body_root.get_children()
+
+	if combat_root:
+
+		states += combat_root.get_children()
+
+	for state in states:
 
 		state._initialize(entity)
 
@@ -57,11 +67,11 @@ func _deactivate() -> void:
 
 func _change_state(new_state: State) -> void:
 
-	if new_state is BodyState:
+	if new_state is BodyState and body_root:
 
 		_change_body_state(new_state)
 
-	elif new_state is CombatState:
+	elif new_state is CombatState and combat_root:
 
 		_change_combat_state(new_state)
 

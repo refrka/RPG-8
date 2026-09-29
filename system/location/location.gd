@@ -78,6 +78,13 @@ func spawn_player(spawn_id: StringName) -> void:
 
 
 
+func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
+
+	ysort_root.add_child(entity_node)
+
+	entity_node.global_position = target_position
+
+
 
 
 func _activate() -> void:

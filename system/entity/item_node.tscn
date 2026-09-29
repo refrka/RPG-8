@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dddgjwjfh66ej"]
+
+[ext_resource type="Script" uid="uid://ce3jyq6fte0cj" path="res://system/entity/item_node.gd" id="1_tswgu"]
+[ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="2_4ei2w"]
+
+[sub_resource type="Resource" id="Resource_aicu3"]
+script = ExtResource("2_4ei2w")
+entity_id = &"item_node"
+display_name = &"Item Node"
+metadata/_custom_type_script = "uid://8n74u5nmtfah"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tswgu"]
+
+[node name="ItemNode" type="StaticBody2D" unique_id=339184861 node_paths=PackedStringArray("body_sprite")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_tswgu")
+entity_def = SubResource("Resource_aicu3")
+body_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=406130051]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597796737]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_tswgu")
