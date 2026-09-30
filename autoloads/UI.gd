@@ -92,3 +92,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				add_overlay(overlay)
 
 				overlay.show()
+
+	if event.is_action_pressed("profile"):
+
+		if Game.active:
+
+			var overlay = get_overlay(ProfileOverlay)
