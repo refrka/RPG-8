@@ -107,6 +107,8 @@ func _start_attack() -> void:
 
 	current_attack_dir = get_attack_dir()
 
+	entity.hitbox.current_damage_package = get_damage_package()
+
 	entity.combat_root.rotation = current_attack_dir.angle()
 
 	entity.state_machine.request_state(CombatAttackingState)
@@ -119,6 +121,10 @@ func _start_attack() -> void:
 func _complete_attack() -> void:
 
 	current_animation_name = ""
+
+	entity.hitbox.clear_hit_list()
+
+	entity.hitbox.current_damage_package = null
 
 	if buffered:
 
@@ -198,6 +204,24 @@ func get_attack_dir() -> Vector2:
 func get_attack_animation_name() -> String:
 
 	return "%s/attack_%s" % [current_library_name, current_attack_index]
+
+
+
+
+
+func get_damage_package() -> DamagePackage:
+
+	var damage_package = DamagePackage.new()
+
+	damage_package.damage_vector = current_attack_dir
+
+	var attack_entry = get_attack_entry(current_attack_index)
+
+	var damage_entry = DamageEntry.from_attack_entry(attack_entry)
+
+	damage_package.damage_entries.append(damage_entry)
+
+	return damage_package
 
 
 

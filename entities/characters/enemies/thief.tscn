@@ -19,6 +19,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtymn"]
+size = Vector2(18, 28)
+
 [node name="Thief" unique_id=2016177718 instance=ExtResource("1_23dr1")]
 entity_def = ExtResource("2_gtymn")
 
@@ -32,3 +35,10 @@ offset = Vector2(0, -5)
 
 [node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
 position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_gtymn")
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

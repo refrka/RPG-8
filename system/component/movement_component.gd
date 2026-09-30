@@ -77,6 +77,14 @@ func add_velocity_modifier() -> void:
 
 
 
+func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	var modifier = Modifier.new_modifier(damage_package.damage_vector * 250, 0.07)
+
+	modifier_handler.add_modifier(modifier)
+
+
+
 
 
 func get_move_dir() -> Vector2:

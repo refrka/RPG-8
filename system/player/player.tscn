@@ -86,11 +86,26 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(8, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h3rsp"]
 _data = {
 &"RESET": SubResource("Animation_ukr2h")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukr2h"]
+size = Vector2(12, 24)
 
 [sub_resource type="Animation" id="Animation_ebooa"]
 length = 0.14825426
@@ -154,11 +169,26 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.038997896, 0.07492663),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_ukr2h"), null]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ukr2h"]
 _data = {
 &"attack_0": SubResource("Animation_ebooa")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_upeui"]
+radius = 23.086792
 
 [node name="Player" unique_id=2016177718 instance=ExtResource("1_o3wy1")]
 script = ExtResource("2_ho6qo")
@@ -181,6 +211,9 @@ position = Vector2(8, 0)
 hframes = 3
 frame = 1
 
+[node name="CollisionShape2D" parent="CanvasGroup/CombatRoot/Hitbox" parent_id_path=PackedInt32Array(2082418591) index="0" unique_id=160243188]
+position = Vector2(19, 0)
+
 [node name="AnimationComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="1" unique_id=780820933 node_paths=PackedStringArray("combat_anim_player")]
 combat_anim_player = NodePath("../../CombatAnimationPlayer")
 
@@ -196,6 +229,15 @@ metadata/_custom_type_script = "uid://prruy5b51dk5"
 script = ExtResource("7_ebooa")
 metadata/_custom_type_script = "uid://cqwio6bxg7hj"
 
-[node name="CombatAnimationPlayer" parent="." index="6" unique_id=487937974]
+[node name="CombatAnimationPlayer" parent="." index="7" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_h3rsp")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
+
+[node name="PickUpArea" parent="." index="8" unique_id=599380275]
+position = Vector2(0, -14)
+
+[node name="CollisionShape2D" parent="PickUpArea" index="0" unique_id=2080321684]
+shape = SubResource("CircleShape2D_upeui")
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

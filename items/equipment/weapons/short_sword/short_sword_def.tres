@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_w87oj"]
 script = ExtResource("1_jhqxb")
+damage_range = Vector2(10, 10)
 metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
 
 [sub_resource type="Resource" id="Resource_fdbda"]

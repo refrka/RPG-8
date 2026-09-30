@@ -14,8 +14,6 @@ signal attack_complete
 func _enter() -> void:
 
 	super()
-
-	print("enter attacking")
 	
 	animation_component.play_combat_animation(combat_component.current_animation_name)
 

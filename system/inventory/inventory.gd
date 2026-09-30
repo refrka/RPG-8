@@ -54,6 +54,30 @@ func resize() -> void:
 
 
 
+func add_stack(item_stack: ItemStack) -> void:
+
+	var remaining = item_stack.count
+
+	for slot in slots:
+
+		if slot.item_stack and slot.item_stack.can_stack():
+
+			remaining = slot.item_stack.add_amount(remaining)
+
+			if remaining <= 0:
+
+				break
+	
+	for slot in slots:
+
+		if slot.is_empty():
+
+			slot.item_stack = item_stack
+
+
+
+
+
 
 
 

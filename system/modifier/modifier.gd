@@ -76,12 +76,18 @@ func _tick(delta: float) -> void:
 
 
 
-static func new_modifier(value: Variant, duration:= -1.0) -> Modifier:
+static func new_modifier(value: Variant, _duration:= -1.0) -> Modifier:
 
 	var modifier = Modifier.new()
 
 	modifier.set_value(value)
 
-	modifier.duration = duration
+	modifier.duration = _duration
 
 	return modifier
+
+
+
+static func new_decay(value: Variant, _decay: float) -> Modifier:
+
+	return null

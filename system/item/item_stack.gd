@@ -111,3 +111,19 @@ func remove_amount(amount: int) -> int:
 func can_stack() -> bool:
 
 	return not is_instance_valid(item_data)
+
+
+
+
+
+static func create_new(_item_def: ItemDef, _count: int, _item_data: ItemData = null) -> ItemStack:
+
+	var stack = ItemStack.new()
+
+	stack.item_def = _item_def
+
+	stack.count = _count
+
+	stack.item_data = _item_data
+
+	return stack
