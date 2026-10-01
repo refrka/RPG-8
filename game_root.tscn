@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d2v1ei71qukpy" path="res://game_root.gd" id="1_xj5yv"]
 [ext_resource type="PackedScene" uid="uid://dw7ehg14xidmg" path="res://system/ui/game_menu.tscn" id="2_bxsma"]
 [ext_resource type="PackedScene" uid="uid://y5g450fgkcas" path="res://system/ui/main_menu.tscn" id="2_pjpa4"]
+[ext_resource type="PackedScene" uid="uid://ch2m5s11vute6" path="res://system/ui/profile_overlay.tscn" id="3_lkrbl"]
 
 [node name="GameRoot" type="Node" unique_id=91091552]
 script = ExtResource("1_xj5yv")
@@ -26,6 +27,11 @@ mouse_filter = 2
 [node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=582523827 instance=ExtResource("2_bxsma")]
 layout_mode = 1
 
+[node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
+layout_mode = 1
+
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
 
 [node name="MainMenu" parent="MenuCanvas" unique_id=1723796028 instance=ExtResource("2_pjpa4")]
+
+[node name="MouseItemSlotUICanvas" type="CanvasLayer" parent="." unique_id=241222124]

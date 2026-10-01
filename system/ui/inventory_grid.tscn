@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://sfc25eghxe0k"]
+
+[ext_resource type="Script" uid="uid://brbdgg3o3expy" path="res://system/ui/inventory_grid.gd" id="1_hm52a"]
+
+[node name="InventoryGrid" type="GridContainer" unique_id=1178125265]
+size_flags_horizontal = 4
+columns = 4
+script = ExtResource("1_hm52a")

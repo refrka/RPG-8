@@ -1,4 +1,4 @@
-class_name ItemSlot extends Resource
+class_name InventorySlot extends Resource
 
 
 signal stack_updated

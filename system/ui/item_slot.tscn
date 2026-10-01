@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://byceeb36ikncd"]
+
+[ext_resource type="Script" uid="uid://cp4tuptqpbjmn" path="res://system/ui/item_slot.gd" id="1_6hc1j"]
+
+[node name="ItemSlot" type="MarginContainer" unique_id=212764444 node_paths=PackedStringArray("panel", "count_label", "texture_rect")]
+custom_minimum_size = Vector2(32, 32)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_6hc1j")
+panel = NodePath("PanelContainer")
+count_label = NodePath("PanelContainer/MarginContainer/CountLabel")
+texture_rect = NodePath("PanelContainer/MarginContainer/TextureRect")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=510499084]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2136353934]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="CountLabel" type="Label" parent="PanelContainer/MarginContainer" unique_id=341313846]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 14
+text = "99"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer" unique_id=1396361550]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 5

@@ -1,5 +1,5 @@
-class_name ItemStack extends Resource
 
+class_name ItemStack extends Resource
 
 
 signal item_updated
@@ -103,6 +103,13 @@ func remove_amount(amount: int) -> int:
 
 	return remaining
 
+
+
+
+
+func is_empty() -> bool:
+
+	return !item_def or count <= 0
 
 
 

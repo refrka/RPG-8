@@ -51,15 +51,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 	if entity.inventory:
 
-		if !entity.inventory.weapon_slot.is_empty():
-
-			var weapon_def = entity.inventory.weapon_slot.item_stack.item_def
-
-			current_attack_config = weapon_def.attack_config
-
-			current_library_name = weapon_def.item_id
-		
-		entity.inventory.weapon_slot.stack_updated.connect(_on_weapon_slot_stack_updated.bind(entity.inventory.weapon_slot))
+		pass
 
 	if not current_attack_config:
 
@@ -269,7 +261,7 @@ func _on_attack_input_released() -> void:
 
 
 
-func _on_weapon_slot_stack_updated(weapon_slot: ItemSlot) -> void:
+func _on_weapon_slot_stack_updated(weapon_slot: InventorySlot) -> void:
 
 	if !weapon_slot.is_empty():
 

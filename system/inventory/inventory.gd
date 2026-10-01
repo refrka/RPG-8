@@ -1,16 +1,16 @@
 class_name Inventory extends Resource
 
 
+signal slot_updated(slot_index: int)
 
 
-
-@export var slots: Array[ItemSlot]
+@export var slots: Array[ItemStack]
 
 @export var size:= 9
 
 
 
-@export var weapon_slot: ItemSlot
+@export var weapon: ItemData
 
 
 
@@ -19,72 +19,107 @@ class_name Inventory extends Resource
 
 func _initialize() -> void:
 
-	resize()
+	resize(size)
+
+
+
+
+func resize(_size:= -1) -> void:
+
+	size = size if _size == -1 else _size
+
+	slots.resize(size)
+
+
+
+func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
+
+	var remaining = count
+
+	for stack in slots:
+
+		if is_instance_valid(stack):
+
+			if stack.item_def == item_def and stack.can_stack():
+
+				remaining = stack.add_amount(remaining)
+
+				if remaining == 0:
+
+					break
+
+	if remaining > 0:
+
+		var index = get_first_empty_slot_index()
+
+		if index != -1:
+
+			var stack = ItemStack.new()
+
+			stack.set_item_def(item_def)
+
+			stack.set_count(remaining)
+
+			remaining = 0
+
+			stack.set_item_data(item_data)
+
+	return remaining
 
 
 
 
 
+func get_first_empty_slot_index() -> int:
+
+	for i in range(size):
+
+		var stack = slots[i]
+
+		if !is_instance_valid(stack):
+
+			return i
+
+	return -1
 
 
 
 
+func get_slot_index_with_data(item_data: ItemData) -> int:
 
+	for i in range(size):
 
-func resize() -> void:
+		var stack = slots[i]
 
-	while slots.size() > size:
+		if is_instance_valid(stack) and stack.item_data == item_data:
 
-		slots.pop_back()
+			return i
 
-	while slots.size() < size:
-
-		slots.append(ItemSlot.new())
-
-	for slot in slots:
-
-		if !slot.stack_updated.is_connected(_on_slot_stack_updated):
-
-			slot.stack_updated.connect(_on_slot_stack_updated.bind(slot))
+	return -1
 
 
 
 
+func get_slot_index_with_def(item_def: ItemDef, count:= -1) -> int:
+
+	for i in range(size):
+
+		var stack = slots[i]
+
+		if is_instance_valid(stack) and stack.item_def == item_def:
+
+			if count == -1 or stack.count >= count:
+
+				return i
+
+	return -1
 
 
 
 
-func add_stack(item_stack: ItemStack) -> void:
+func get_slot_stack(index: int) -> ItemStack:
 
-	var remaining = item_stack.count
-
-	for slot in slots:
-
-		if slot.item_stack and slot.item_stack.can_stack():
-
-			remaining = slot.item_stack.add_amount(remaining)
-
-			if remaining <= 0:
-
-				break
-	
-	for slot in slots:
-
-		if slot.is_empty():
-
-			slot.item_stack = item_stack
-
-
-
-
-
-
-
-
-
-func get_slot(index: int) -> ItemSlot:
-
-	if slots.size() - 1 >= index:
+	if index <= size:
 
 		return slots[index]
 
@@ -98,8 +133,8 @@ func get_slot(index: int) -> ItemSlot:
 
 
 
+func set_slot_stack(index: int, stack: ItemStack) -> void:
 
+	slots[index] = stack
 
-func _on_slot_stack_updated(item_slot: ItemSlot) -> void:
-
-	pass
+	slot_updated.emit(index)

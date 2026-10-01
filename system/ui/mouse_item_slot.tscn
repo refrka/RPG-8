@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bfoc7685mg7dm"]
+
+[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="1_psagh"]
+[ext_resource type="Script" uid="uid://cavqb77xvebyy" path="res://system/ui/mouse_item_slot.gd" id="2_axmdg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psagh"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="MouseItemSlot" unique_id=212764444 instance=ExtResource("1_psagh")]
+script = ExtResource("2_axmdg")
+
+[node name="PanelContainer" parent="." index="0" unique_id=510499084]
+theme_override_styles/panel = SubResource("StyleBoxFlat_psagh")

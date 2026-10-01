@@ -10,11 +10,11 @@ var active_overlays: Array[Overlay]
 
 
 
-
-
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 
 
 
@@ -32,6 +32,8 @@ func add_overlay(overlay: Overlay) -> void:
 
 	active_overlays.append(overlay)
 
+	overlay.show()
+
 	if overlay.pause and !Game.is_paused():
 
 		Game.pause()
@@ -39,6 +41,8 @@ func add_overlay(overlay: Overlay) -> void:
 
 
 func remove_overlay(overlay: Overlay) -> void:
+	
+	overlay.hide()
 
 	active_overlays.erase(overlay)
 
@@ -98,3 +102,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Game.active:
 
 			var overlay = get_overlay(ProfileOverlay)
+
+			if active_overlays.has(overlay):
+
+				remove_overlay(overlay)
+
+			else:
+
+				add_overlay(overlay)
