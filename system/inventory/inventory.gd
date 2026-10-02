@@ -32,17 +32,23 @@ func resize(_size:= -1) -> void:
 
 
 
+
+
 func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
 
 	var remaining = count
 
-	for stack in slots:
+	for i in range(size):
 
-		if is_instance_valid(stack):
+		var stack = slots[i]
+
+		if stack != null:
 
 			if stack.item_def == item_def and stack.can_stack():
 
 				remaining = stack.add_amount(remaining)
+
+				slot_updated.emit(i)
 
 				if remaining == 0:
 
@@ -64,7 +70,27 @@ func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
 
 			stack.set_item_data(item_data)
 
+			set_slot_stack(index, stack)
+
 	return remaining
+
+
+
+
+
+func add_stack(item_stack: ItemStack) -> void:
+
+	if item_stack.item_data:
+
+		var index = get_first_empty_slot_index()
+
+		if index != -1:
+
+			set_slot_stack(index, item_stack)
+
+	else:
+
+		add_item(item_stack.item_def, item_stack.count)
 
 
 
@@ -128,13 +154,10 @@ func get_slot_stack(index: int) -> ItemStack:
 
 
 
-
-
-
-
-
 func set_slot_stack(index: int, stack: ItemStack) -> void:
 
 	slots[index] = stack
 
 	slot_updated.emit(index)
+
+	

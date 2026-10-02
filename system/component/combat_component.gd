@@ -49,9 +49,13 @@ func _initialize(_entity: EntityNode) -> void:
 
 	movement_component = entity.get_component(MovementComponent)
 
-	if entity.inventory:
+	if entity.inventory and entity.inventory.weapon:
 
-		pass
+		var weapon_def = entity.inventory.weapon.item_def
+
+		set_attack_config(weapon_def.attack_config)
+
+		current_library_name = weapon_def.item_id
 
 	if not current_attack_config:
 
@@ -260,19 +264,3 @@ func _on_attack_input_released() -> void:
 	pass
 
 
-
-func _on_weapon_slot_stack_updated(weapon_slot: InventorySlot) -> void:
-
-	if !weapon_slot.is_empty():
-
-		var weapon_def = weapon_slot.item_stack.item_def
-
-		current_attack_config = weapon_def.attack_config
-
-		current_library_name = weapon_def.item_id		
-
-	else:
-
-		current_attack_config = entity.entity_def.unarmed_attack_config
-
-		current_library_name = "unarmed"

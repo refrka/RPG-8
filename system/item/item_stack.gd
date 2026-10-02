@@ -114,7 +114,6 @@ func is_empty() -> bool:
 
 
 
-
 func can_stack() -> bool:
 
 	return not is_instance_valid(item_data)

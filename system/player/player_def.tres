@@ -3,20 +3,28 @@
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_i4wyc"]
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="1_rcknn"]
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="2_u2ucp"]
-[ext_resource type="Resource" uid="uid://cw3sd5erjs6yy" path="res://items/consumable/food/apple_def.tres" id="3_337wk"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="3_if36m"]
+[ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="4_332nq"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="4_337wk"]
+[ext_resource type="Resource" uid="uid://vmiqppfcbknh" path="res://items/equipment/weapons/short_sword/short_sword_def.tres" id="5_w87oj"]
+[ext_resource type="Script" uid="uid://3xosgjjhkkca" path="res://system/item/item_data.gd" id="6_tnhtq"]
 
-[sub_resource type="Resource" id="Resource_6hc1j"]
+[sub_resource type="Resource" id="Resource_s3q8n"]
 script = ExtResource("4_337wk")
-item_def = ExtResource("3_337wk")
-count = 5
+item_def = ExtResource("4_332nq")
+count = 10
 metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[sub_resource type="Resource" id="Resource_337wk"]
+script = ExtResource("6_tnhtq")
+item_def = ExtResource("5_w87oj")
+metadata/_custom_type_script = "uid://3xosgjjhkkca"
 
 [sub_resource type="Resource" id="Resource_u2ucp"]
 script = ExtResource("1_rcknn")
-slots = Array[ExtResource("4_337wk")]([SubResource("Resource_6hc1j")])
+slots = Array[ExtResource("4_337wk")]([SubResource("Resource_s3q8n")])
 size = 12
+weapon = SubResource("Resource_337wk")
 metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_h3rsp"]

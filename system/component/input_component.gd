@@ -9,6 +9,11 @@ signal attack_released
 
 signal dodge_pressed
 
+signal interact_pressed
+
+signal interact_released
+
+
 
 var input_dir: Vector2
 
@@ -38,6 +43,10 @@ func _clear() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 
+	if !active:
+
+		return
+
 	if event.is_action_pressed("move_left") or \
 
 		event.is_action_pressed("move_right") or \
@@ -63,6 +72,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("dodge"):
 
 		dodge_pressed.emit()
+
+	if event.is_action_pressed("interact"):
+
+		interact_pressed.emit()
+
+	if event.is_action_released("interact"):
+
+		interact_released.emit()
 
 
 

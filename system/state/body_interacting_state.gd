@@ -1,0 +1,1 @@
+class_name BodyInteractingState extends BodyBusyState

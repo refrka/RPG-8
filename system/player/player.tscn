@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://6d5renbdu5qc" path="res://items/equipment/weapons/short_sword/short_sword_atttack_0.png" id="4_o7suc"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="6_ssgc2"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="7_ebooa"]
+[ext_resource type="Script" uid="uid://bhnikxv2o67wv" path="res://system/component/interaction_component.gd" id="7_hgc5g"]
+[ext_resource type="Script" uid="uid://uyosww6dddto" path="res://system/player/interaction_area.gd" id="9_h3rsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho6qo"]
 atlas = ExtResource("3_ho6qo")
@@ -187,12 +189,17 @@ _data = {
 &"attack_0": SubResource("Animation_ebooa")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_upeui"]
-radius = 23.086792
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3rsp"]
+radius = 27.018513
 
-[node name="Player" unique_id=2016177718 instance=ExtResource("1_o3wy1")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukr2h"]
+radius = 18.0
+
+[node name="Player" unique_id=2016177718 node_paths=PackedStringArray("interaction_area", "pick_up_area") instance=ExtResource("1_o3wy1")]
 script = ExtResource("2_ho6qo")
+interaction_area = NodePath("InteractionArea")
 entity_def = ExtResource("3_ukr2h")
+pick_up_area = NodePath("PickUpArea")
 
 [node name="CenterMarker" parent="." index="0" unique_id=1440807016]
 position = Vector2(0, -14)
@@ -225,6 +232,10 @@ metadata/_custom_type_script = "uid://ddb5b7xq2nxr7"
 script = ExtResource("6_ssgc2")
 metadata/_custom_type_script = "uid://prruy5b51dk5"
 
+[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1469470646]
+script = ExtResource("7_hgc5g")
+metadata/_custom_type_script = "uid://bhnikxv2o67wv"
+
 [node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(569723837) index="0" unique_id=701708743]
 script = ExtResource("7_ebooa")
 metadata/_custom_type_script = "uid://cqwio6bxg7hj"
@@ -233,11 +244,24 @@ metadata/_custom_type_script = "uid://cqwio6bxg7hj"
 libraries/ = SubResource("AnimationLibrary_h3rsp")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
 
-[node name="PickUpArea" parent="." index="8" unique_id=599380275]
+[node name="InteractionArea" type="Area2D" parent="." index="8" unique_id=1363506223]
 position = Vector2(0, -14)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("9_h3rsp")
 
-[node name="CollisionShape2D" parent="PickUpArea" index="0" unique_id=2080321684]
-shape = SubResource("CircleShape2D_upeui")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" index="0" unique_id=379107350]
+shape = SubResource("CircleShape2D_h3rsp")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="PickUpArea" type="Area2D" parent="." index="9" unique_id=278219632]
+position = Vector2(0, -14)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" index="0" unique_id=862344967]
+shape = SubResource("CircleShape2D_ukr2h")
+debug_color = Color(0.7, 0.595, 0, 0)
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

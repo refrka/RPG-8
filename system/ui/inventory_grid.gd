@@ -10,10 +10,11 @@ var inventory: Inventory
 
 
 
-
 func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
+
+	inventory.slot_updated.connect(_on_slot_updated)
 
 	for i in range(inventory.size):
 
@@ -28,5 +29,10 @@ func load_inventory(_inventory: Inventory) -> void:
 
 
 
+func _on_slot_updated(index: int) -> void:
 
+	var slot = get_child(index)
 
+	var stack = inventory.get_slot_stack(index)
+
+	slot.set_stack(stack)

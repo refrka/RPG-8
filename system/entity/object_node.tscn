@@ -1,12 +1,28 @@
 [gd_scene format=3 uid="uid://dc1bm40p741r8"]
 
 [ext_resource type="Script" uid="uid://cufjp71bb8mll" path="res://system/entity/object_node.gd" id="1_gqn7q"]
+[ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="2_a8qsg"]
+[ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_st2tw"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=744980819]
+[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "hurtbox")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_gqn7q")
+component_root = NodePath("ComponentRoot")
+state_machine = NodePath("StateMachine")
+animated_body_sprite = NodePath("AnimatedSprite2D")
+hurtbox = NodePath("Hurtbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1905003866]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258299850]
+
+[node name="Hurtbox" parent="." unique_id=809095005 instance=ExtResource("2_a8qsg")]
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=281237021]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1040336414]
+script = ExtResource("2_st2tw")
+metadata/_custom_type_script = "uid://rgx5lh01enbs"
+
+[editable path="Hurtbox"]

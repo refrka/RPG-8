@@ -2,20 +2,76 @@
 
 [ext_resource type="Script" uid="uid://cp4tuptqpbjmn" path="res://system/ui/item_slot.gd" id="1_6hc1j"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhqxb"]
+bg_color = Color(0.12225228, 0.12225222, 0.12225223, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.26293263, 0.26293242, 0.2629323, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hc1j"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.26293263, 0.26293242, 0.2629323, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goeql"]
+bg_color = Color(0.12225228, 0.12225222, 0.12225223, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwwtl"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [node name="ItemSlot" type="MarginContainer" unique_id=212764444 node_paths=PackedStringArray("panel", "count_label", "texture_rect")]
+process_mode = 3
 custom_minimum_size = Vector2(32, 32)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6hc1j")
+default_stylebox = SubResource("StyleBoxFlat_jhqxb")
+hovered_stylebox = SubResource("StyleBoxFlat_6hc1j")
+selected_stylebox = SubResource("StyleBoxFlat_goeql")
+hovered_selected_stylebox = SubResource("StyleBoxFlat_jwwtl")
 panel = NodePath("PanelContainer")
 count_label = NodePath("PanelContainer/MarginContainer/CountLabel")
 texture_rect = NodePath("PanelContainer/MarginContainer/TextureRect")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=510499084]
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jhqxb")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2136353934]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
@@ -32,4 +88,5 @@ text = "99"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 stretch_mode = 5

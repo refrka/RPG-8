@@ -178,6 +178,35 @@ func get_component(component_script: Script) -> Component:
 
 
 
+func get_interactable_component() -> InteractableComponent:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return component
+
+	return null
+
+
+
+
+func is_interactable() -> bool:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return true
+
+	if self is CharacterNode and entity_def.dialogue_library != null:
+
+		return true
+
+	return false
+
+
+
 
 func get_mouse_dir() -> Vector2:
 
@@ -194,4 +223,4 @@ func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
 
 		inventory.add_stack(body.item_stack)
 
-		body.queue_free()
+		body.queue_free.call_deferred()

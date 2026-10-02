@@ -48,7 +48,7 @@ _data = {
 &"flash": SubResource("Animation_upeui")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root", "hitbox", "hurtbox", "pick_up_area")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root", "hitbox", "hurtbox")]
 collision_mask = 0
 script = ExtResource("1_qxfxo")
 component_root = NodePath("ComponentRoot")
@@ -57,7 +57,6 @@ animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
 combat_root = NodePath("CanvasGroup/CombatRoot")
 hitbox = NodePath("CanvasGroup/CombatRoot/Hitbox")
 hurtbox = NodePath("Hurtbox")
-pick_up_area = NodePath("PickUpArea")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -73,6 +72,7 @@ y_sort_enabled = true
 [node name="Hitbox" parent="CanvasGroup/CombatRoot" unique_id=2082418591 instance=ExtResource("2_fnjhg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549181237]
+debug_color = Color(0.7166667, 0, 1, 0)
 
 [node name="Hurtbox" parent="." unique_id=809095005 instance=ExtResource("3_upeui")]
 
@@ -119,12 +119,6 @@ metadata/_custom_type_script = "uid://c5eoul4lf6mdn"
 libraries/ = SubResource("AnimationLibrary_hrt4h")
 
 [node name="CombatAnimationPlayer" type="AnimationPlayer" parent="." unique_id=487937974]
-
-[node name="PickUpArea" type="Area2D" parent="." unique_id=599380275]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" unique_id=2080321684]
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

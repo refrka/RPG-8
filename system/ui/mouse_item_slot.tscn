@@ -16,7 +16,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="MouseItemSlot" unique_id=212764444 instance=ExtResource("1_psagh")]
+[node name="MouseItemSlot" unique_id=212764444 groups=["mouse_item_slot"] instance=ExtResource("1_psagh")]
+mouse_filter = 2
 script = ExtResource("2_axmdg")
 
 [node name="PanelContainer" parent="." index="0" unique_id=510499084]

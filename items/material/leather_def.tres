@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bffhu07ey68e3"]
+
+[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="1_qkn4w"]
+[ext_resource type="Texture2D" uid="uid://bimeuh262by13" path="res://items/material/leather_sprite.png" id="2_r4x5j"]
+
+[resource]
+script = ExtResource("1_qkn4w")
+item_id = &"leather"
+sprite_texture = ExtResource("2_r4x5j")
+metadata/_custom_type_script = "uid://bn7rgf574qily"

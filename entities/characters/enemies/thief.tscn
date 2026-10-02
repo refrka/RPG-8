@@ -19,6 +19,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hkuc"]
+radius = 6.0
+height = 18.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtymn"]
 size = Vector2(18, 28)
 
@@ -35,6 +39,11 @@ offset = Vector2(0, -5)
 
 [node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
 position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1hkuc")
 
 [node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
 position = Vector2(0, -14)
