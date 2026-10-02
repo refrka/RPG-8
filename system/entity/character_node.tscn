@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
+[ext_resource type="Script" uid="uid://dgolaqlur1kg1" path="res://system/component/navigation_component.gd" id="8_wghac"]
 [ext_resource type="Script" uid="uid://55mmhmjsvaws" path="res://system/state/combat_charging_state.gd" id="11_hrt4h"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
 
@@ -50,9 +51,10 @@ _data = {
 &"flash": SubResource("Animation_upeui")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "combat_root", "hitbox", "hurtbox")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "animated_body_sprite", "combat_root", "hitbox", "hurtbox")]
 collision_mask = 2
 script = ExtResource("1_qxfxo")
+nav_agent = NodePath("NavigationAgent2D")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
@@ -81,6 +83,8 @@ debug_color = Color(0.7166667, 0, 1, 0)
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=283233958]
 debug_color = Color(0.7, 0, 0, 0.02745098)
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=780391334]
+
 [node name="ComponentRoot" type="Node" parent="." unique_id=9866386]
 
 [node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1855537733 node_paths=PackedStringArray("modifier_handler")]
@@ -99,6 +103,10 @@ metadata/_custom_type_script = "uid://c20ddxy082c6l"
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=916333699]
 script = ExtResource("7_upeui")
+
+[node name="NavigationComponent" type="Node" parent="ComponentRoot" unique_id=12424140]
+script = ExtResource("8_wghac")
+metadata/_custom_type_script = "uid://dgolaqlur1kg1"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root", "initial_body_state", "initial_combat_state")]
 script = ExtResource("2_h02iy")

@@ -97,6 +97,10 @@ func _activate() -> void:
 
 		entity._activate()
 
+		if entity.entity_def.entity_id == "thief":
+
+			MoveToPositionCommand.run({"actor": entity, "target_position": entity.global_position + Vector2(-50.0, 0.0)})
+
 	for feature in feature_root.get_children():
 
 		feature._activate()

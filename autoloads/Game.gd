@@ -162,3 +162,4 @@ func unpause() -> void:
 func is_paused() -> bool:
 
 	return get_tree().paused
+

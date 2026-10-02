@@ -23,6 +23,10 @@ Scenes="*uid://becuysb66e2h8"
 UI="*uid://cvnfn8fwi5tmo"
 Events="*uid://cnsq06dlop7ee"
 
+[debug]
+
+shapes/navigation/2d/geometry_face_color=Color(0.5, 1, 1, 0.023529412)
+
 [display]
 
 window/size/viewport_width=640
