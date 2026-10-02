@@ -1,6 +1,11 @@
 class_name Hitbox extends Area2D
 
 
+signal entity_hit(entity_node: EntityNode)
+
+
+@export var collision_shape: CollisionShape2D
+
 
 var active:= false
 
@@ -66,6 +71,10 @@ func _disconnect_signals() -> void:
 
 func can_hit(hurtbox: Hurtbox) -> bool:
 
+	if entity is ProjectileNode and hurtbox.entity == entity.projectile_owner:
+
+		return false
+
 	if hurtbox.entity == entity:
 
 		return false
@@ -86,6 +95,8 @@ func hit(hurtbox: Hurtbox) -> void:
 	var hit_entity = hurtbox.entity
 
 	hit_entity.receive_damage_package(current_damage_package)
+
+	entity_hit.emit(hit_entity)
 
 	
 

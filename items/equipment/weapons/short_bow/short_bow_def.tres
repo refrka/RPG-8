@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WeaponDef" format=3 uid="uid://bx3lfl5v2lkvq"]
+
+[ext_resource type="Script" uid="uid://ce5et63pssfhr" path="res://system/item/weapon_def.gd" id="1_gqrsf"]
+[ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="1_tlojb"]
+[ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="2_7mnxe"]
+
+[sub_resource type="Resource" id="Resource_tlojb"]
+script = ExtResource("1_tlojb")
+knockback_force = 100.0
+has_charge = true
+can_aim_charge = true
+can_hold_charge = true
+metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
+
+[sub_resource type="Resource" id="Resource_epem1"]
+script = ExtResource("2_7mnxe")
+attack_set = Array[ExtResource("1_tlojb")]([SubResource("Resource_tlojb")])
+metadata/_custom_type_script = "uid://burdq3rfoe5k3"
+
+[resource]
+script = ExtResource("1_gqrsf")
+attack_config = SubResource("Resource_epem1")
+item_id = &"short_bow"
+max_stack = 1
+metadata/_custom_type_script = "uid://ce5et63pssfhr"

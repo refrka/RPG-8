@@ -154,6 +154,22 @@ func _disconnect_signals() -> void:
 
 
 
+func load_entity_def(_entity_def: EntityDef) -> void:
+
+	entity_def = _entity_def
+
+	if entity_def.sprite_frames:
+
+		animated_body_sprite.sprite_frames = entity_def.sprite_frames
+
+		animated_body_sprite.play("default")
+
+		animated_body_sprite.offset.y = entity_def.sprite_y_offset
+
+
+
+
+
 func receive_damage_package(damage_package: DamagePackage) -> void:
 
 	for component in component_root.get_children():
@@ -191,6 +207,21 @@ func get_interactable_component() -> InteractableComponent:
 
 
 
+func get_mouse_dir(from_combat_root:= false) -> Vector2:
+
+	var origin = global_position
+
+	if from_combat_root:
+
+		origin = combat_root.global_position
+
+	return origin.direction_to(get_global_mouse_position())
+
+
+
+
+
+
 func is_interactable() -> bool:
 
 	for component in component_root.get_children():
@@ -204,15 +235,6 @@ func is_interactable() -> bool:
 		return true
 
 	return false
-
-
-
-
-func get_mouse_dir() -> Vector2:
-
-	return global_position.direction_to(get_global_mouse_position())
-
-
 
 
 

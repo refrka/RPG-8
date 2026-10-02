@@ -16,9 +16,12 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_tswgu")
 entity_def = SubResource("Resource_aicu3")
-body_sprite = NodePath("Sprite2D")
+body_sprite = NodePath("CanvasGroup/Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=406130051]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1683297594]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=406130051]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597796737]
 position = Vector2(0, -8)

@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://ddb5b7xq2nxr7" path="res://system/component/input_component.gd" id="4_6ripc"]
 [ext_resource type="Texture2D" uid="uid://6d5renbdu5qc" path="res://items/equipment/weapons/short_sword/short_sword_atttack_0.png" id="4_o7suc"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="6_ssgc2"]
-[ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="7_ebooa"]
 [ext_resource type="Script" uid="uid://bhnikxv2o67wv" path="res://system/component/interaction_component.gd" id="7_hgc5g"]
 [ext_resource type="Script" uid="uid://b0m7umcx15s02" path="res://system/state/body_interacting_state.gd" id="8_1hkuc"]
 [ext_resource type="Script" uid="uid://uyosww6dddto" path="res://system/player/interaction_area.gd" id="9_h3rsp"]
+[ext_resource type="Texture2D" uid="uid://h7quth5qkg7e" path="res://items/equipment/weapons/short_bow/short_bow_charge_0.png" id="10_viji7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho6qo"]
 atlas = ExtResource("3_ho6qo")
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -112,6 +112,105 @@ tracks/5/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h3rsp"]
 _data = {
 &"RESET": SubResource("Animation_ukr2h")
+}
+
+[sub_resource type="Animation" id="Animation_1hkuc"]
+length = 0.009124828
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ComponentRoot/CombatComponent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.002447825),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_generate_projectile"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0007019098),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y7h06"]
+resource_name = "charge_0"
+length = 0.20179906
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_viji7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0024566748, 0.09087152, 0.18205065),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0003509456),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/CombatRoot/CombatSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0003509549),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_viji7"]
+_data = {
+&"attack_0": SubResource("Animation_1hkuc"),
+&"charge_0": SubResource("Animation_y7h06")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ukr2h"]
@@ -222,6 +321,7 @@ y_sort_enabled = true
 position = Vector2(0, -14)
 
 [node name="CombatSprite" parent="CanvasGroup/CombatRoot" index="0" unique_id=1279357900]
+visible = false
 position = Vector2(8, 0)
 hframes = 3
 frame = 1
@@ -255,14 +355,10 @@ metadata/_custom_type_script = "uid://bhnikxv2o67wv"
 
 [node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
 script = ExtResource("8_1hkuc")
-metadata/_custom_type_script = "uid://b0m7umcx15s02"
-
-[node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(569723837) index="0" unique_id=701708743]
-script = ExtResource("7_ebooa")
-metadata/_custom_type_script = "uid://cqwio6bxg7hj"
 
 [node name="CombatAnimationPlayer" parent="." index="7" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_h3rsp")
+libraries/short_bow = SubResource("AnimationLibrary_viji7")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
 
 [node name="InteractionArea" type="Area2D" parent="." index="8" unique_id=1363506223]

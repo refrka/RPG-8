@@ -29,9 +29,9 @@ size = Vector2(24, 20)
 [node name="SmallChest" unique_id=744980819 instance=ExtResource("1_g44ch")]
 entity_def = ExtResource("2_die06")
 
-[node name="AnimatedSprite2D" parent="." index="0" unique_id=1905003866]
-position = Vector2(0, -10)
+[node name="AnimatedSprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1484650591) index="0" unique_id=1905003866]
 sprite_frames = SubResource("SpriteFrames_8tak1")
+offset = Vector2(0, -10)
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=258299850]
 position = Vector2(0, -5)

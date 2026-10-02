@@ -10,7 +10,7 @@ signal slot_updated(slot_index: int)
 
 
 
-@export var weapon: ItemData
+@export var weapon: WeaponData
 
 
 

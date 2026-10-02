@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
+[ext_resource type="Script" uid="uid://55mmhmjsvaws" path="res://system/state/combat_charging_state.gd" id="11_hrt4h"]
+[ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
 
 [sub_resource type="Animation" id="Animation_fnjhg"]
 length = 0.001
@@ -117,6 +119,14 @@ metadata/_custom_type_script = "uid://ctwivvly8ar6t"
 [node name="CombatIdleState" type="Node" parent="StateMachine/CombatRoot" unique_id=1968663588]
 script = ExtResource("7_c0c35")
 metadata/_custom_type_script = "uid://c5eoul4lf6mdn"
+
+[node name="CombatChargingState" type="Node" parent="StateMachine/CombatRoot" unique_id=557303684]
+script = ExtResource("11_hrt4h")
+metadata/_custom_type_script = "uid://55mmhmjsvaws"
+
+[node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" unique_id=82723571]
+script = ExtResource("12_657qq")
+metadata/_custom_type_script = "uid://cqwio6bxg7hj"
 
 [node name="BodyAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1131495921]
 libraries/ = SubResource("AnimationLibrary_hrt4h")

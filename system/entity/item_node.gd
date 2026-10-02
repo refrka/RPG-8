@@ -15,7 +15,7 @@ func load_item_def(_item_def: ItemDef) -> void:
 
 	body_sprite.texture = item_def.sprite_texture
 
-	body_sprite.position.y = -item_def.sprite_texture.get_height() / 2
+	body_sprite.offset.y = -item_def.sprite_texture.get_height() / 2
 
 
 

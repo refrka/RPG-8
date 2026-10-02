@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bpd42cxrlvfeg"]
+
+[ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="1_lni4u"]
+[ext_resource type="Script" uid="uid://3424dpsnoj2f" path="res://system/entity/projectile_node.gd" id="1_p8c12"]
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="2_btenr"]
+[ext_resource type="Script" uid="uid://dscci57lqsjwx" path="res://system/component/movement_component.gd" id="2_ewsyu"]
+[ext_resource type="Script" uid="uid://d2rn00tsx74i3" path="res://system/component/projectile_component.gd" id="3_btenr"]
+[ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="4_btenr"]
+[ext_resource type="PackedScene" uid="uid://ctchxalk0p3w6" path="res://system/damage/hitbox.tscn" id="4_pnuhf"]
+
+[sub_resource type="Resource" id="Resource_ewsyu"]
+script = ExtResource("2_btenr")
+metadata/_custom_type_script = "uid://bpdbf5o18qx1d"
+
+[node name="ProjectileNode" type="CharacterBody2D" unique_id=798857217 node_paths=PackedStringArray("on_screen_notifier", "component_root", "animated_body_sprite", "hitbox")]
+script = ExtResource("1_p8c12")
+on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+entity_def = SubResource("Resource_ewsyu")
+component_root = NodePath("ComponentRoot")
+animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
+hitbox = NodePath("Hitbox")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=2139391975]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=2033748074]
+
+[node name="Hitbox" parent="." unique_id=2082418591 instance=ExtResource("4_pnuhf")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=160243188]
+position = Vector2(9.5, 0)
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=1523920685]
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1683721219 node_paths=PackedStringArray("modifier_handler")]
+script = ExtResource("2_ewsyu")
+modifier_handler = NodePath("ModifierHandler")
+metadata/_custom_type_script = "uid://dscci57lqsjwx"
+
+[node name="ModifierHandler" type="Node" parent="ComponentRoot/MovementComponent" unique_id=1698740273]
+script = ExtResource("4_btenr")
+metadata/_custom_type_script = "uid://bobpp4mvy8vl4"
+
+[node name="ProjectileComponent" type="Node" parent="ComponentRoot" unique_id=71081619]
+script = ExtResource("3_btenr")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1177146212]
+script = ExtResource("1_lni4u")
+metadata/_custom_type_script = "uid://rgx5lh01enbs"
+
+[node name="BodyRoot" type="Node" parent="StateMachine" unique_id=824657672]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1633559649]
+
+[editable path="Hitbox"]

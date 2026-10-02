@@ -1,0 +1,1 @@
+class_name AmmunitionDef extends ProjectileDef

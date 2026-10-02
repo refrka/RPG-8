@@ -12,6 +12,8 @@ signal move_ended
 
 var current_velocity:= Vector2.ZERO
 
+var move_speed:= 0.0
+
 var move_dir:= Vector2.ZERO
 
 var face_dir:= Vector2.RIGHT
@@ -34,6 +36,8 @@ func _initialize(_entity: EntityNode) -> void:
 	if input_component:
 
 		input_component.move_input_received.connect(_on_move_input_received)
+
+	move_speed = entity.entity_def.move_speed
 
 
 
@@ -59,6 +63,20 @@ func _clear() -> void:
 
 	first_input_received = false
 
+
+
+
+
+func halt(immediate:= true) -> void:
+
+	set_move_dir(Vector2.ZERO)
+
+	entity.velocity = Vector2.ZERO
+
+	if immediate:
+
+		current_velocity = Vector2.ZERO
+
 	
 
 
@@ -79,9 +97,11 @@ func add_velocity_modifier() -> void:
 
 func receive_damage_package(damage_package: DamagePackage) -> void:
 
-	var modifier = Modifier.new_modifier(damage_package.damage_vector * 250, 0.07)
+	if damage_package.attack_entry.knockback_force > 0.0:
 
-	modifier_handler.add_modifier(modifier)
+		var modifier = Modifier.new_modifier(damage_package.damage_vector * damage_package.attack_entry.knockback_force, 0.07)
+
+		modifier_handler.add_modifier(modifier)
 
 
 
@@ -105,8 +125,22 @@ func get_move_speed() -> float:
 
 	var modifier_total = modifier_handler.get_float_total()
 
-	return 300.0 + modifier_total
+	return move_speed + modifier_total
 
+
+
+
+func set_move_dir(dir: Vector2) -> void:
+
+	if dir != move_dir:
+
+		move_dir = dir
+
+
+
+func set_move_speed(speed: float) -> void:
+
+	move_speed = speed
 
 
 

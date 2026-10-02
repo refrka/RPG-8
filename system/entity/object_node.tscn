@@ -10,10 +10,13 @@ collision_mask = 0
 script = ExtResource("1_gqn7q")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
-animated_body_sprite = NodePath("AnimatedSprite2D")
+animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
 hurtbox = NodePath("Hurtbox")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1905003866]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1484650591]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=1905003866]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258299850]
 debug_color = Color(0.7166667, 0, 1, 0)

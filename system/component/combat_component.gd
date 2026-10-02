@@ -20,6 +20,7 @@ var buffer_enabled:= false
 
 var buffered:= false
 
+var charged:= false
 
 
 
@@ -36,6 +37,10 @@ func _initialize(_entity: EntityNode) -> void:
 	var attacking_state = entity.state_machine.get_state(CombatAttackingState)
 
 	attacking_state.attack_complete.connect(_on_attack_complete)
+
+	var charging_state = entity.state_machine.get_state(CombatChargingState)
+
+	charging_state.charge_complete.connect(_on_charge_complete)
 
 	var input_component = entity.get_component(InputComponent)
 
@@ -88,7 +93,13 @@ func _try_attack() -> void:
 
 		return
 
-	_start_attack()
+	if !attack_entry.has_charge:
+
+		_start_attack()
+
+	else:
+
+		_start_charge()
 
 	
 
@@ -139,10 +150,78 @@ func _complete_attack() -> void:
 
 
 
-
 func _end_attack() -> void:
 
+	buffered = false
+
+	charged = false
+
+	current_attack_index = 0
+
 	entity.state_machine.request_state(CombatIdleState)
+
+
+
+
+
+func _start_charge() -> void:
+
+	current_animation_name = get_charge_animation_name()
+
+	current_attack_dir = get_attack_dir()
+
+	entity.state_machine.request_state(CombatChargingState)
+
+	entity.combat_root.rotation = current_attack_dir.angle()
+
+
+
+
+
+func _complete_charge() -> void:
+
+	charged = true
+
+	var attack_entry = get_attack_entry(current_attack_index)
+
+	if !attack_entry.can_hold_charge:
+
+		_start_attack()
+
+
+
+
+
+func _cancel_change() -> void:
+
+	current_animation_name = ""
+
+	_end_attack()
+
+
+
+
+
+
+func _generate_projectile() -> void:
+
+	var weapon_data = entity.inventory.weapon
+
+	if weapon_data.ammunition_stack and !weapon_data.ammunition_stack.is_empty():
+
+		var projectile_def = weapon_data.ammunition_stack.item_def
+
+		var projectile_node = ProjectileNode.new_projectile(projectile_def, current_attack_dir, entity)
+
+		projectile_node.hitbox.current_damage_package = get_damage_package()
+
+		Scenes.current_location.add_entity_node(projectile_node, entity.combat_root.global_position)
+
+		projectile_node.rotation = current_attack_dir.angle()
+
+		projectile_node._activate()
+
+		weapon_data.ammunition_stack.remove_amount(1)
 
 
 
@@ -188,7 +267,7 @@ func get_attack_dir() -> Vector2:
 
 	if entity is Player:
 
-		return entity.get_mouse_dir()
+		return entity.get_mouse_dir(true)
 
 	else:
 
@@ -201,6 +280,11 @@ func get_attack_animation_name() -> String:
 
 	return "%s/attack_%s" % [current_library_name, current_attack_index]
 
+
+
+func get_charge_animation_name() -> String:
+
+	return "%s/charge_%s" % [current_library_name, current_attack_index]
 
 
 
@@ -216,6 +300,8 @@ func get_damage_package() -> DamagePackage:
 	var damage_entry = DamageEntry.from_attack_entry(attack_entry)
 
 	damage_package.damage_entries.append(damage_entry)
+
+	damage_package.attack_entry = attack_entry
 
 	return damage_package
 
@@ -244,6 +330,11 @@ func _on_attack_complete() -> void:
 
 
 
+func _on_charge_complete() -> void:
+
+	_complete_charge()
+
+
 
 func _on_dodge_input_pressed() -> void:
 
@@ -261,6 +352,30 @@ func _on_attack_input_pressed() -> void:
 
 func _on_attack_input_released() -> void:
 
-	pass
+	if is_charging():
+
+		if !charged:
+
+			_cancel_change()
+
+		else:
+
+			_start_attack()
 
 
+
+
+
+
+
+func _process(_delta: float) -> void:
+
+	if is_charging():
+
+		var attack_entry = get_attack_entry(current_attack_index)
+		
+		if attack_entry.can_aim_charge:
+
+			current_attack_dir = get_attack_dir()
+
+			entity.combat_root.rotation = current_attack_dir.angle()

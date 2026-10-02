@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="3_if36m"]
 [ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="4_332nq"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="4_337wk"]
-[ext_resource type="Resource" uid="uid://vmiqppfcbknh" path="res://items/equipment/weapons/short_sword/short_sword_def.tres" id="5_w87oj"]
-[ext_resource type="Script" uid="uid://3xosgjjhkkca" path="res://system/item/item_data.gd" id="6_tnhtq"]
+[ext_resource type="Resource" uid="uid://ch2qvog42j5qj" path="res://items/ammunition/wood_arrow_def.tres" id="4_tnhtq"]
+[ext_resource type="Resource" uid="uid://bx3lfl5v2lkvq" path="res://items/equipment/weapons/short_bow/short_bow_def.tres" id="4_w87oj"]
+[ext_resource type="Script" uid="uid://bm6wwvskg5d1i" path="res://system/item/weapon_data.gd" id="6_sa8tt"]
 
 [sub_resource type="Resource" id="Resource_s3q8n"]
 script = ExtResource("4_337wk")
@@ -15,16 +16,23 @@ item_def = ExtResource("4_332nq")
 count = 10
 metadata/_custom_type_script = "uid://wbgpq46tveo5"
 
-[sub_resource type="Resource" id="Resource_337wk"]
-script = ExtResource("6_tnhtq")
-item_def = ExtResource("5_w87oj")
-metadata/_custom_type_script = "uid://3xosgjjhkkca"
+[sub_resource type="Resource" id="Resource_sa8tt"]
+script = ExtResource("4_337wk")
+item_def = ExtResource("4_tnhtq")
+count = 10
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[sub_resource type="Resource" id="Resource_tnhtq"]
+script = ExtResource("6_sa8tt")
+ammunition_stack = SubResource("Resource_sa8tt")
+item_def = ExtResource("4_w87oj")
+metadata/_custom_type_script = "uid://bm6wwvskg5d1i"
 
 [sub_resource type="Resource" id="Resource_u2ucp"]
 script = ExtResource("1_rcknn")
 slots = Array[ExtResource("4_337wk")]([SubResource("Resource_s3q8n")])
 size = 12
-weapon = SubResource("Resource_337wk")
+weapon = SubResource("Resource_tnhtq")
 metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_h3rsp"]
@@ -37,4 +45,5 @@ unarmed_attack_config = SubResource("Resource_h3rsp")
 entity_id = &"player"
 display_name = &"Player"
 initial_inventory = SubResource("Resource_u2ucp")
+move_speed = 300.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

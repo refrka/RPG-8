@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="AmmunitionDef" format=3 uid="uid://ch2qvog42j5qj"]
+
+[ext_resource type="Script" uid="uid://c018dj228ylrm" path="res://system/item/ammunition_def.gd" id="1_3fa8g"]
+[ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://items/ammunition/wood_arrow_sprite.png" id="2_3fa8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fa8g"]
+size = Vector2(3, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccrrg"]
+atlas = ExtResource("2_3fa8g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fa8g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccrrg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_3fa8g")
+projectile_hitbox_collision_shape = SubResource("RectangleShape2D_3fa8g")
+projectile_speed = 1000.0
+item_id = &"wood_arrow"
+max_stack = 200
+sprite_frames = SubResource("SpriteFrames_3fa8g")
+metadata/_custom_type_script = "uid://bn7rgf574qily"
