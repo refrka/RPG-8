@@ -1,5 +1,48 @@
 [gd_scene format=3 uid="uid://4dxnfyw7gdjm"]
 
 [ext_resource type="PackedScene" uid="uid://dc1bm40p741r8" path="res://system/entity/object_node.tscn" id="1_g44ch"]
+[ext_resource type="Resource" uid="uid://cnbosd3spgp2w" path="res://entities/objects/containers/small_chest_def.tres" id="2_die06"]
+[ext_resource type="Texture2D" uid="uid://cph64f43h8aps" path="res://entities/objects/containers/small_chest_sprite.png" id="2_rx4kd"]
+[ext_resource type="Script" uid="uid://iea0jh1d8qa5" path="res://system/component/container_component.gd" id="4_m60rv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_die06"]
+atlas = ExtResource("2_rx4kd")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tak1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_die06")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx4kd"]
+size = Vector2(24, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_die06"]
+size = Vector2(24, 20)
 
 [node name="SmallChest" unique_id=744980819 instance=ExtResource("1_g44ch")]
+entity_def = ExtResource("2_die06")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1905003866]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_8tak1")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=258299850]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_rx4kd")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_die06")
+
+[node name="ContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="0" unique_id=730518585]
+script = ExtResource("4_m60rv")
+metadata/_custom_type_script = "uid://iea0jh1d8qa5"
+
+[editable path="Hurtbox"]

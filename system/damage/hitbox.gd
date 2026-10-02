@@ -54,6 +54,8 @@ func _connect_signals() -> void:
 
 
 
+
+
 func _disconnect_signals() -> void:
 
 	area_entered.disconnect(_on_area_entered)
@@ -63,6 +65,10 @@ func _disconnect_signals() -> void:
 
 
 func can_hit(hurtbox: Hurtbox) -> bool:
+
+	if hurtbox.entity == entity:
+
+		return false
 
 	if hit_list.has(hurtbox):
 
@@ -77,9 +83,9 @@ func hit(hurtbox: Hurtbox) -> void:
 
 	hit_list.append(hurtbox)
 
-	var entity = hurtbox.entity
+	var hit_entity = hurtbox.entity
 
-	entity.receive_damage_package(current_damage_package)
+	hit_entity.receive_damage_package(current_damage_package)
 
 	
 

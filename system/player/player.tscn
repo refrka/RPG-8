@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="6_ssgc2"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="7_ebooa"]
 [ext_resource type="Script" uid="uid://bhnikxv2o67wv" path="res://system/component/interaction_component.gd" id="7_hgc5g"]
+[ext_resource type="Script" uid="uid://b0m7umcx15s02" path="res://system/state/body_interacting_state.gd" id="8_1hkuc"]
 [ext_resource type="Script" uid="uid://uyosww6dddto" path="res://system/player/interaction_area.gd" id="9_h3rsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho6qo"]
@@ -25,6 +26,13 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a8qsg"]
+radius = 4.0
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgc5g"]
+size = Vector2(20, 32)
 
 [sub_resource type="Animation" id="Animation_ukr2h"]
 length = 0.001
@@ -221,6 +229,15 @@ frame = 1
 [node name="CollisionShape2D" parent="CanvasGroup/CombatRoot/Hitbox" parent_id_path=PackedInt32Array(2082418591) index="0" unique_id=160243188]
 position = Vector2(19, 0)
 
+[node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a8qsg")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_hgc5g")
+
 [node name="AnimationComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="1" unique_id=780820933 node_paths=PackedStringArray("combat_anim_player")]
 combat_anim_player = NodePath("../../CombatAnimationPlayer")
 
@@ -235,6 +252,10 @@ metadata/_custom_type_script = "uid://prruy5b51dk5"
 [node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1469470646]
 script = ExtResource("7_hgc5g")
 metadata/_custom_type_script = "uid://bhnikxv2o67wv"
+
+[node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
+script = ExtResource("8_1hkuc")
+metadata/_custom_type_script = "uid://b0m7umcx15s02"
 
 [node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(569723837) index="0" unique_id=701708743]
 script = ExtResource("7_ebooa")

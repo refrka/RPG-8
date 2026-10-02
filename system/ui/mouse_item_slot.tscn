@@ -3,6 +3,55 @@
 [ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="1_psagh"]
 [ext_resource type="Script" uid="uid://cavqb77xvebyy" path="res://system/ui/mouse_item_slot.gd" id="2_axmdg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axmdg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psw8x"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.26293263, 0.26293242, 0.2629323, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcy6r"]
+bg_color = Color(0.12225228, 0.12225222, 0.12225223, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq4he"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psagh"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -19,6 +68,10 @@ corner_detail = 5
 [node name="MouseItemSlot" unique_id=212764444 groups=["mouse_item_slot"] instance=ExtResource("1_psagh")]
 mouse_filter = 2
 script = ExtResource("2_axmdg")
+default_stylebox = SubResource("StyleBoxFlat_axmdg")
+hovered_stylebox = SubResource("StyleBoxFlat_psw8x")
+selected_stylebox = SubResource("StyleBoxFlat_kcy6r")
+hovered_selected_stylebox = SubResource("StyleBoxFlat_hq4he")
 
 [node name="PanelContainer" parent="." index="0" unique_id=510499084]
 theme_override_styles/panel = SubResource("StyleBoxFlat_psagh")

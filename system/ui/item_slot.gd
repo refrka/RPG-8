@@ -1,6 +1,8 @@
 class_name ItemSlot extends MarginContainer
 
 
+signal contents_updated
+
 
 @export var default_stylebox: StyleBoxFlat
 
@@ -24,6 +26,7 @@ class_name ItemSlot extends MarginContainer
 
 
 
+var parent_inventory: Inventory
 
 var item_stack: ItemStack
 
@@ -77,7 +80,9 @@ func set_stack(_item_stack: ItemStack) -> void:
 
 	if item_stack:
 
-		item_stack.item_updated.disconnect(_on_stack_item_updated)
+		if item_stack == _item_stack:
+
+			return
 
 		item_stack.count_updated.disconnect(_on_stack_count_updated)
 
@@ -85,11 +90,11 @@ func set_stack(_item_stack: ItemStack) -> void:
 
 	if item_stack:
 
-		item_stack.item_updated.connect(_on_stack_item_updated)
-
 		item_stack.count_updated.connect(_on_stack_count_updated)
 
-	_update_item_visuals()
+	contents_updated.emit()
+
+	update()
 
 
 
@@ -155,7 +160,6 @@ func swap(target_slot: ItemSlot) -> void:
 func is_empty() -> bool:
 
 	return !item_stack or item_stack.is_empty()
-
 
 
 
@@ -254,6 +258,8 @@ func _on_slot_gui_input(event: InputEvent) -> void:
 func _on_stack_item_updated() -> void:
 
 	_update_item_visuals()
+
+
 
 
 

@@ -20,8 +20,6 @@ func _ready() -> void:
 
 func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
-	print("[%s, pressed: %s, target empty: %s, mouse slot empty: %s]" % [event.button_index, event.is_pressed(), target_slot.is_empty(), is_empty()])
-
 	match [event.button_index, event.is_pressed(), target_slot.is_empty(), is_empty()]:
 
 		[1, true, true, true]: # Left click (down), empty slot, nothing held
@@ -30,11 +28,29 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
 			target_slot.set_selected_state(true)
 
-		[1, true, _, false]: # Left click (down), empty slot, something held
+		[1, true, true, false]: # Left click (down), empty slot, something held
 
 			target_slot.swap(held_slot)
 
 			drop_slot()
+
+		[1, true, false, false]: # Left click (down), occupied slot, something held
+
+			if target_slot == held_slot:
+
+				drop_slot()
+
+			else:
+
+				if target_slot.item_stack.can_stack(held_slot.item_stack):
+
+					target_slot.item_stack.merge_stack(held_slot.item_stack)
+
+				else:
+
+					target_slot.swap(held_slot)
+
+					drop_slot()
 
 		[2, true, true, false]: # Right click (down), empty slot, something held
 

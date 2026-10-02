@@ -40,9 +40,13 @@ func add_overlay(overlay: Overlay) -> void:
 
 		Game.pause()
 
+	overlay._activate()
+
 
 
 func remove_overlay(overlay: Overlay) -> void:
+
+	overlay._deactivate()
 
 	active_overlays.erase(overlay)
 
@@ -73,6 +77,10 @@ func show_overlay(overlay_script: Script) -> Overlay:
 func hide_overlay(overlay_script: Script) -> Overlay:
 
 	var overlay = get_overlay(overlay_script)
+
+	if !overlay.active:
+
+		return overlay
 
 	remove_overlay(overlay)
 

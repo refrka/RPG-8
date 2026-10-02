@@ -29,10 +29,10 @@ mouse_filter = 2
 [node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=582523827 instance=ExtResource("2_bxsma")]
 layout_mode = 1
 
-[node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
+[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1437819695 instance=ExtResource("4_0o8ui")]
 layout_mode = 1
 
-[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1437819695 instance=ExtResource("4_0o8ui")]
+[node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
 layout_mode = 1
 
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]

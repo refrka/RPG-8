@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c70ovvphl6a34"]
 
 [ext_resource type="Script" uid="uid://6eswqijc3ppo" path="res://system/ui/container_overlay.gd" id="1_64klf"]
+[ext_resource type="PackedScene" uid="uid://sfc25eghxe0k" path="res://system/ui/inventory_grid.tscn" id="2_nqqrh"]
 
-[node name="ContainerOverlay" type="Control" unique_id=1437819695]
+[node name="ContainerOverlay" type="Control" unique_id=1437819695 node_paths=PackedStringArray("container_inventory_grid", "player_inventory_grid")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_64klf")
+container_inventory_grid = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContainerInventoryGrid")
+player_inventory_grid = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayerInventoryGrid")
 metadata/_custom_type_script = "uid://bey0mr5gq1a57"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1312077518]
@@ -29,3 +33,22 @@ theme_override_constants/margin_bottom = 8
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=307755122]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1649145416]
+layout_mode = 2
+
+[node name="ContainerInventoryGrid" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1178125265 instance=ExtResource("2_nqqrh")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=947636967]
+layout_mode = 2
+
+[node name="PlayerInventoryGrid" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=203084798 instance=ExtResource("2_nqqrh")]
+layout_mode = 2

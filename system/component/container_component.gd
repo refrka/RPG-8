@@ -3,9 +3,16 @@ class_name ContainerComponent extends InteractableComponent
 
 
 
+
+
+
 func _start() -> void:
 
-	var overlay = UI.get_overlay(ContainerComponent)
+	var overlay = UI.show_overlay(ContainerOverlay)
+
+	overlay.overlay_deactivated.connect(_on_overlay_deactivated, CONNECT_ONE_SHOT)
+
+	overlay.load_container_inventory(entity.inventory)
 
 
 
@@ -15,4 +22,15 @@ func _start() -> void:
 
 func _end() -> void:
 
-	pass
+	var overlay = UI.hide_overlay(ContainerOverlay)
+
+	overlay.clear()
+
+
+
+
+
+
+func _on_overlay_deactivated() -> void:
+
+	interaction_overlay_closed.emit()

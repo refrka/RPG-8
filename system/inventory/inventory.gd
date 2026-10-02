@@ -154,10 +154,16 @@ func get_slot_stack(index: int) -> ItemStack:
 
 
 
+
 func set_slot_stack(index: int, stack: ItemStack) -> void:
+
+	if slots[index] == stack:
+
+		return
 
 	slots[index] = stack
 
 	slot_updated.emit(index)
+
 
 	

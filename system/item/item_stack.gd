@@ -45,6 +45,12 @@ func set_count(new_count: int) -> void:
 
 	count = new_count
 
+	if count == 0:
+
+		item_def = null
+
+		item_data = null
+
 	count_updated.emit()
 
 
@@ -114,10 +120,26 @@ func is_empty() -> bool:
 
 
 
-func can_stack() -> bool:
+func can_stack(incoming_stack: ItemStack = null) -> bool:
 
-	return not is_instance_valid(item_data)
+	if !incoming_stack:
 
+		return not is_instance_valid(item_data)
+
+	if incoming_stack.item_data:
+
+		return false
+
+	return incoming_stack.item_def == item_def
+
+
+
+
+func merge_stack(incoming_stack: ItemStack) -> void:
+
+	var remaining = add_amount(incoming_stack.count)
+
+	incoming_stack.set_count(remaining)
 
 
 

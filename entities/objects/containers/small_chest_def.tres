@@ -1,9 +1,24 @@
 [gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://cnbosd3spgp2w"]
 
+[ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="1_11yqe"]
 [ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_47ut5"]
+[ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="2_gow3f"]
+[ext_resource type="Resource" uid="uid://cw3sd5erjs6yy" path="res://items/consumable/food/apple_def.tres" id="3_us1or"]
+
+[sub_resource type="Resource" id="Resource_8wjft"]
+script = ExtResource("2_gow3f")
+item_def = ExtResource("3_us1or")
+count = 99
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[sub_resource type="Resource" id="Resource_m60rv"]
+script = ExtResource("1_11yqe")
+slots = Array[ExtResource("2_gow3f")]([SubResource("Resource_8wjft")])
+metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [resource]
 script = ExtResource("1_47ut5")
 entity_id = &"small_chest"
 display_name = &"Small chest"
+initial_inventory = SubResource("Resource_m60rv")
 metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

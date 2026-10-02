@@ -1,6 +1,10 @@
 class_name InteractionArea extends Area2D
 
 
+signal interactable_entity_entered_area(entity_node: EntityNode)
+
+signal interactable_entity_exited_area(entity_node: EntityNode)
+
 
 var entity: EntityNode
 
@@ -48,10 +52,14 @@ func get_nearest_interactable_entity() -> EntityNode:
 
 func _on_body_entered_area(body: PhysicsBody2D) -> void:
 
-	pass
+	if body is EntityNode and body.is_interactable():
+
+		interactable_entity_entered_area.emit(body)
 
 
 
 func _on_body_exited_area(body: PhysicsBody2D) -> void:
 
-	pass
+	if body is EntityNode and body.is_interactable():
+
+		interactable_entity_exited_area.emit(body)

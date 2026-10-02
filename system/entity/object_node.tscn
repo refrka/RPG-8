@@ -16,8 +16,12 @@ hurtbox = NodePath("Hurtbox")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1905003866]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258299850]
+debug_color = Color(0.7166667, 0, 1, 0)
 
 [node name="Hurtbox" parent="." unique_id=809095005 instance=ExtResource("2_a8qsg")]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=283233958]
+debug_color = Color(0.7, 0, 0, 0.02745098)
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=281237021]
 
