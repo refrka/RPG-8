@@ -2,6 +2,9 @@ class_name NavigationComponent extends Component
 
 
 
+signal navigation_finished
+
+
 
 var movement_component: MovementComponent
 
@@ -47,6 +50,8 @@ func stop_navigation() -> void:
 func _on_navigation_finished() -> void:
 
 	stop_navigation()
+
+	navigation_finished.emit()
 
 
 
