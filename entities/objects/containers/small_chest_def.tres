@@ -21,4 +21,5 @@ script = ExtResource("1_47ut5")
 entity_id = &"small_chest"
 display_name = &"Small chest"
 initial_inventory = SubResource("Resource_m60rv")
+base_health = 3.0
 metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

@@ -1,9 +1,22 @@
 class_name EntityDef extends Resource
 
 
+enum EntityType {
+
+	NONE,
+
+	HOSTILE,
+
+	PASSIVE,
+
+}
+
+
 @export var entity_id: StringName
 
 @export var display_name: StringName
+
+@export var entity_type: EntityType
 
 
 

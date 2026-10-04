@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://cnbosd3spgp2w" path="res://entities/objects/containers/small_chest_def.tres" id="2_die06"]
 [ext_resource type="Texture2D" uid="uid://cph64f43h8aps" path="res://entities/objects/containers/small_chest_sprite.png" id="2_rx4kd"]
 [ext_resource type="Script" uid="uid://iea0jh1d8qa5" path="res://system/component/container_component.gd" id="4_m60rv"]
+[ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="5_8wjft"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_die06"]
 atlas = ExtResource("2_rx4kd")
@@ -44,5 +45,9 @@ shape = SubResource("RectangleShape2D_die06")
 [node name="ContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="0" unique_id=730518585]
 script = ExtResource("4_m60rv")
 metadata/_custom_type_script = "uid://iea0jh1d8qa5"
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="1" unique_id=1660784714]
+script = ExtResource("5_8wjft")
+metadata/_custom_type_script = "uid://dsasjc47aw65v"
 
 [editable path="Hurtbox"]

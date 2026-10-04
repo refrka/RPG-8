@@ -27,6 +27,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var pick_up_area: Area2D
 
+@export var vision_area: Area2D
+
 
 
 
@@ -95,6 +97,10 @@ func _activate() -> void:
 
 		hurtbox._activate()
 
+	if vision_area:
+
+		vision_area.monitoring = true
+
 	if component_root:
 
 		for component in component_root.get_children():
@@ -119,6 +125,10 @@ func _deactivate() -> void:
 	if hurtbox:
 
 		hurtbox._deactivate()
+
+	if vision_area:
+
+		vision_area.monitoring = false
 
 	if component_root:
 

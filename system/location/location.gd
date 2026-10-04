@@ -80,7 +80,7 @@ func spawn_player(spawn_id: StringName) -> void:
 
 func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
 
-	ysort_root.add_child(entity_node)
+	ysort_root.add_child.call_deferred(entity_node)
 
 	entity_node.global_position = target_position
 
@@ -96,10 +96,6 @@ func _activate() -> void:
 	for entity in ysort_root.get_children():
 
 		entity._activate()
-
-		if entity.entity_def.entity_id == "thief":
-
-			MoveToPositionCommand.run({"actor": entity, "target_position": entity.global_position + Vector2(-50.0, 0.0)})
 
 	for feature in feature_root.get_children():
 

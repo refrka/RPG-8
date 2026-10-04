@@ -3,4 +3,4 @@ class_name BehaviorProfile extends Resource
 
 
 
-@export var behaviors: Dictionary[BehaviorComponent.BehaviorState, Behavior]
+@export var behaviors: Array[Behavior]

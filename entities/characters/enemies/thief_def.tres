@@ -1,9 +1,25 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://db6drctv8hwrj"]
 
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_5i12c"]
+[ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_pq5v7"]
+[ext_resource type="Script" uid="uid://brthuseq3nvl7" path="res://system/command/command.gd" id="2_eaeu0"]
+[ext_resource type="Script" uid="uid://chj7x0jqc3ri0" path="res://system/condition/condition.gd" id="3_vpurf"]
+[ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="4_ea8t0"]
+[ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="5_himam"]
+
+[sub_resource type="Resource" id="Resource_gow3f"]
+script = ExtResource("1_pq5v7")
+metadata/_custom_type_script = "uid://dip60lvo86j0i"
+
+[sub_resource type="Resource" id="Resource_11yqe"]
+script = ExtResource("5_himam")
+behaviors = Array[ExtResource("1_pq5v7")]([SubResource("Resource_gow3f")])
+metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
 [resource]
 script = ExtResource("1_5i12c")
+behavior_profile = SubResource("Resource_11yqe")
 entity_id = &"thief"
 display_name = &"Thief"
+entity_type = 1
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

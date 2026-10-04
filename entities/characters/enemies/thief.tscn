@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_23dr1"]
 [ext_resource type="Resource" uid="uid://db6drctv8hwrj" path="res://entities/characters/enemies/thief_def.tres" id="2_gtymn"]
 [ext_resource type="Texture2D" uid="uid://niiobpqsnvll" path="res://entities/characters/enemies/thief_sprite.png" id="3_qfgul"]
+[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_qfgul"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plypq"]
 atlas = ExtResource("3_qfgul")
@@ -26,6 +27,9 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtymn"]
 size = Vector2(18, 28)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pq5v7"]
+radius = 193.04144
+
 [node name="Thief" unique_id=2016177718 instance=ExtResource("1_23dr1")]
 entity_def = ExtResource("2_gtymn")
 
@@ -48,6 +52,13 @@ shape = SubResource("CapsuleShape2D_1hkuc")
 [node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_gtymn")
+
+[node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
+shape = SubResource("CircleShape2D_pq5v7")
+
+[node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1707206816]
+script = ExtResource("4_qfgul")
+metadata/_custom_type_script = "uid://brmk31djiyou1"
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]
