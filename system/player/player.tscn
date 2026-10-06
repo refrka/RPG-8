@@ -34,6 +34,12 @@ height = 20.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgc5g"]
 size = Vector2(20, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3rsp"]
+radius = 27.018513
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukr2h"]
+radius = 18.0
+
 [sub_resource type="Animation" id="Animation_ukr2h"]
 length = 0.001
 tracks/0/type = "value"
@@ -296,12 +302,6 @@ _data = {
 &"attack_0": SubResource("Animation_ebooa")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h3rsp"]
-radius = 27.018513
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ukr2h"]
-radius = 18.0
-
 [node name="Player" unique_id=2016177718 node_paths=PackedStringArray("interaction_area", "pick_up_area") instance=ExtResource("1_o3wy1")]
 script = ExtResource("2_ho6qo")
 interaction_area = NodePath("InteractionArea")
@@ -356,11 +356,6 @@ metadata/_custom_type_script = "uid://bhnikxv2o67wv"
 [node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
 script = ExtResource("8_1hkuc")
 
-[node name="CombatAnimationPlayer" parent="." index="7" unique_id=487937974]
-libraries/ = SubResource("AnimationLibrary_h3rsp")
-libraries/short_bow = SubResource("AnimationLibrary_viji7")
-libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
-
 [node name="InteractionArea" type="Area2D" parent="." index="8" unique_id=1363506223]
 position = Vector2(0, -14)
 collision_layer = 0
@@ -379,6 +374,11 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" index="0" unique_id=862344967]
 shape = SubResource("CircleShape2D_ukr2h")
 debug_color = Color(0.7, 0.595, 0, 0)
+
+[node name="CombatAnimationPlayer" parent="." index="11" unique_id=487937974]
+libraries/ = SubResource("AnimationLibrary_h3rsp")
+libraries/short_bow = SubResource("AnimationLibrary_viji7")
+libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

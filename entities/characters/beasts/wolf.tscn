@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dw061ntdby0by"]
+
+[ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_vjujl"]
+[ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/beasts/wolf_sprite.png" id="2_3unts"]
+[ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/beasts/wolf_def.tres" id="2_ku6ha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjujl"]
+atlas = ExtResource("2_3unts")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3unts"]
+atlas = ExtResource("2_3unts")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ogyw"]
+atlas = ExtResource("2_3unts")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wlex"]
+atlas = ExtResource("2_3unts")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku6ha"]
+atlas = ExtResource("2_3unts")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hkuc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjujl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3unts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ogyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wlex")
+}],
+"loop": 0,
+"name": &"bite",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ku6ha")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3unts"]
+radius = 3.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjujl"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3unts"]
+size = Vector2(13, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vjujl"]
+radius = 215.59453
+
+[sub_resource type="Animation" id="Animation_3lhe6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"bite"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn6f7"]
+_data = {
+&"RESET": SubResource("Animation_3lhe6")
+}
+
+[sub_resource type="Animation" id="Animation_cq8lg"]
+length = 0.7791027
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.005999756, 0.73398435),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"bite", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.005999756, 0.36647162, 0.48746237, 0.63398015),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_se3qs"]
+_data = {
+&"attack_0": SubResource("Animation_cq8lg")
+}
+
+[node name="Wolf" unique_id=2016177718 instance=ExtResource("1_vjujl")]
+entity_def = ExtResource("2_ku6ha")
+
+[node name="AnimatedSprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=126469266]
+sprite_frames = SubResource("SpriteFrames_1hkuc")
+animation = &"bite"
+frame = 3
+offset = Vector2(0, -16)
+
+[node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
+position = Vector2(0, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3unts")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_vjujl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="1" unique_id=1758742900]
+position = Vector2(9.5, -19)
+shape = SubResource("RectangleShape2D_3unts")
+debug_color = Color(0.7, 0, 0, 0.02745098)
+
+[node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
+shape = SubResource("CircleShape2D_vjujl")
+
+[node name="CombatAnimationPlayer" parent="." index="9" unique_id=487937974]
+libraries/ = SubResource("AnimationLibrary_kn6f7")
+libraries/unarmed = SubResource("AnimationLibrary_se3qs")
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

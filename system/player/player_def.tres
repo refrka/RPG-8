@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://wbgpq46tveo5"
 [sub_resource type="Resource" id="Resource_sa8tt"]
 script = ExtResource("4_337wk")
 item_def = ExtResource("4_tnhtq")
-count = 10
+count = 20
 metadata/_custom_type_script = "uid://wbgpq46tveo5"
 
 [sub_resource type="Resource" id="Resource_tnhtq"]

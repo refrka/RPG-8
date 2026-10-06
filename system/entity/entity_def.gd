@@ -3,11 +3,11 @@ class_name EntityDef extends Resource
 
 enum EntityType {
 
-	NONE,
+	NPC,
 
-	HOSTILE,
+	BEAST,
 
-	PASSIVE,
+	SPIRIT,
 
 }
 
@@ -15,8 +15,6 @@ enum EntityType {
 @export var entity_id: StringName
 
 @export var display_name: StringName
-
-@export var entity_type: EntityType
 
 
 

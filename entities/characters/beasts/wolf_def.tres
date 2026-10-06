@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://daeonhydf5vqd"]
+
+[ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_ddhmd"]
+[ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_xrgoe"]
+[ext_resource type="Script" uid="uid://dpw5gm1m7rx1t" path="res://system/behavior/wolf_combat_behavior.gd" id="2_yl36r"]
+[ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="3_mkytq"]
+
+[sub_resource type="Resource" id="Resource_tnhtq"]
+script = ExtResource("2_yl36r")
+metadata/_custom_type_script = "uid://dpw5gm1m7rx1t"
+
+[sub_resource type="Resource" id="Resource_w87oj"]
+script = ExtResource("3_mkytq")
+behaviors = Dictionary[int, ExtResource("1_ddhmd")]({
+1: SubResource("Resource_tnhtq")
+})
+metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
+
+[resource]
+script = ExtResource("1_xrgoe")
+behavior_profile = SubResource("Resource_w87oj")
+entity_id = &"wolf"
+display_name = &"Wolf"
+base_health = 7.0
+metadata/_custom_type_script = "uid://bqy5pfm8psxlk"
