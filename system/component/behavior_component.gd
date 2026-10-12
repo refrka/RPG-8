@@ -35,6 +35,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 	behaviors = entity.entity_def.behavior_profile.behaviors.duplicate(true)
 
+	for behavior in behaviors.values():
+
+		behavior._initialize(entity)
+
 
 
 

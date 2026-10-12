@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_vjujl"]
 [ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/beasts/wolf_sprite.png" id="2_3unts"]
 [ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/beasts/wolf_def.tres" id="2_ku6ha"]
+[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_ku6ha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjujl"]
 atlas = ExtResource("2_3unts")
@@ -157,6 +158,10 @@ debug_color = Color(0.7, 0, 0, 0.02745098)
 
 [node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_vjujl")
+
+[node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1036456560]
+script = ExtResource("4_ku6ha")
+metadata/_custom_type_script = "uid://brmk31djiyou1"
 
 [node name="CombatAnimationPlayer" parent="." index="9" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_kn6f7")

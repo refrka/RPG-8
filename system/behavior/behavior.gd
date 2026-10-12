@@ -24,11 +24,30 @@ func _start(_data:= {}) -> void:
 
 	data = _data
 
-
+	_connect_signals()
 
 
 
 
 func _stop() -> void:
+
+	_disconnect_signals()
+
+
+
+func _connect_signals() -> void:
+
+	pass
+
+
+
+func _disconnect_signals() -> void:
+
+	pass
+
+
+
+
+func _tick(_delta: float) -> void:
 
 	pass
