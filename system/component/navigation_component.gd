@@ -26,6 +26,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity.nav_agent.navigation_finished.connect(_on_navigation_finished)
 
+	entity.nav_agent.velocity_computed.connect(_on_velocity_computed)
+
 
 
 
@@ -67,6 +69,14 @@ func _on_navigation_finished() -> void:
 
 
 
+func _on_velocity_computed(velocity: Vector2) -> void:
+
+	movement_component.set_move_dir(velocity)
+
+	print(velocity)
+
+
+
 func _physics_process(_delta: float) -> void:
 
 	if !active:
@@ -80,3 +90,5 @@ func _physics_process(_delta: float) -> void:
 		var move_dir = entity.global_position.direction_to(next_position)
 
 		movement_component.set_move_dir(move_dir)
+
+		entity.nav_agent.set_velocity(move_dir)

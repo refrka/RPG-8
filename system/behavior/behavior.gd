@@ -2,6 +2,8 @@ class_name Behavior extends Resource
 
 
 
+signal behavior_state_requested(state: BehaviorComponent.BehaviorState)
+
 
 
 

@@ -4,11 +4,11 @@ class_name Inventory extends Resource
 signal slot_updated(slot_index: int)
 
 
-@export var slots: Array[ItemStack]
+@export var stacks: Array[ItemStack]
 
 @export var size:= 9
 
-
+@export var loot_table: LootTable
 
 @export var weapon: WeaponData
 
@@ -28,7 +28,7 @@ func resize(_size:= -1) -> void:
 
 	size = size if _size == -1 else _size
 
-	slots.resize(size)
+	stacks.resize(size)
 
 
 
@@ -40,7 +40,7 @@ func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
 
 	for i in range(size):
 
-		var stack = slots[i]
+		var stack = stacks[i]
 
 		if stack != null:
 
@@ -96,11 +96,28 @@ func add_stack(item_stack: ItemStack) -> void:
 
 
 
+
+func get_item_list() -> Dictionary[ItemDef, int]:
+
+	var item_list: Dictionary[ItemDef, int] = {}
+
+	for stack in stacks:
+
+		if is_instance_valid(stack) and !stack.is_empty():
+
+			item_list[stack.item_def] = stack.count
+
+	return item_list
+
+
+
+
+
 func get_first_empty_slot_index() -> int:
 
 	for i in range(size):
 
-		var stack = slots[i]
+		var stack = stacks[i]
 
 		if !is_instance_valid(stack):
 
@@ -115,7 +132,7 @@ func get_slot_index_with_data(item_data: ItemData) -> int:
 
 	for i in range(size):
 
-		var stack = slots[i]
+		var stack = stacks[i]
 
 		if is_instance_valid(stack) and stack.item_data == item_data:
 
@@ -130,7 +147,7 @@ func get_slot_index_with_def(item_def: ItemDef, count:= -1) -> int:
 
 	for i in range(size):
 
-		var stack = slots[i]
+		var stack = stacks[i]
 
 		if is_instance_valid(stack) and stack.item_def == item_def:
 
@@ -147,7 +164,7 @@ func get_slot_stack(index: int) -> ItemStack:
 
 	if index <= size:
 
-		return slots[index]
+		return stacks[index]
 
 	return null
 
@@ -157,11 +174,11 @@ func get_slot_stack(index: int) -> ItemStack:
 
 func set_slot_stack(index: int, stack: ItemStack) -> void:
 
-	if slots[index] == stack:
+	if stacks[index] == stack:
 
 		return
 
-	slots[index] = stack
+	stacks[index] = stack
 
 	slot_updated.emit(index)
 

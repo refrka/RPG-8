@@ -75,11 +75,7 @@ func _die() -> void:
 
 		await animation_component.body_animation_finished
 
-	var item_def = load("res://items/consumable/food/apple_def.tres")
-
-	var node = ItemNode.create_new(item_def)
-	
-	Scenes.current_location.add_entity_node(node, entity.global_position)
+	entity.die()
 
 	entity.queue_free.call_deferred()
 

@@ -1,6 +1,8 @@
 class_name EntityNode extends PhysicsBody2D
 
 
+signal died
+
 
 
 
@@ -198,6 +200,8 @@ func load_entity_def(_entity_def: EntityDef) -> void:
 
 func receive_damage_package(damage_package: DamagePackage) -> void:
 
+	print("%s: ow" % name)
+
 	for component in component_root.get_children():
 
 		if component.has_method("receive_damage_package"):
@@ -261,6 +265,28 @@ func is_interactable() -> bool:
 		return true
 
 	return false
+
+
+
+
+
+func die() -> void:
+
+	_deactivate()
+
+	if inventory and inventory.loot_table:
+
+		var item_list = inventory.loot_table.get_loot(randf())
+
+		for item_def in item_list:
+
+			var count = item_list[item_def]
+
+			var target_position = global_position + Vector2(randf_range(-30.0, 30.0), randf_range(-30.0, 30.0))
+
+			Scenes.current_location.drop_item(item_def, target_position, count)
+
+	died.emit()
 
 
 

@@ -1,6 +1,7 @@
 class_name CombatComponent extends Component
 
 
+signal attack_completed
 
 
 
@@ -120,6 +121,8 @@ func _start_attack() -> void:
 
 	entity.state_machine.request_state(CombatAttackingState)
 
+	print(current_animation_name)
+
 
 
 
@@ -132,6 +135,8 @@ func _complete_attack() -> void:
 	entity.hitbox.clear_hit_list()
 
 	entity.hitbox.current_damage_package = null
+
+	attack_completed.emit()
 
 	if buffered:
 
@@ -369,6 +374,10 @@ func _on_attack_input_released() -> void:
 
 
 func _process(_delta: float) -> void:
+
+	if !active:
+
+		return
 
 	if is_charging():
 

@@ -33,11 +33,13 @@ func _initialize(_entity: EntityNode) -> void:
 
 		return
 
-	behaviors = entity.entity_def.behavior_profile.behaviors.duplicate(true)
+	behaviors = entity.entity_def.behavior_profile.behaviors.duplicate_deep()
 
 	for behavior in behaviors.values():
 
 		behavior._initialize(entity)
+
+		behavior.behavior_state_requested.connect(_on_behavior_state_requested)
 
 
 
@@ -72,6 +74,10 @@ func _change_behavior(behavior: Behavior) -> void:
 
 	if current_behavior:
 
+		if current_behavior == behavior:
+
+			return
+
 		current_behavior._stop()
 
 	current_behavior = behavior
@@ -93,6 +99,13 @@ func _get_behavior(_behavior_state: BehaviorState) -> Behavior:
 	return null
 
 
+
+
+
+
+func _on_behavior_state_requested(_behavior_state: BehaviorState) -> void:
+
+	_change_behavior_state(_behavior_state)
 
 
 

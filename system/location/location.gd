@@ -77,6 +77,17 @@ func spawn_player(spawn_id: StringName) -> void:
 
 
 
+func drop_item(item_def: ItemDef, target_position: Vector2, count:= 1) -> void:
+
+	var node = ItemNode.create_new(item_def, count)
+	
+	Scenes.current_location.add_entity_node(node, target_position)
+
+
+
+
+
+
 
 func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
 

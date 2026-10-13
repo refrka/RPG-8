@@ -1,57 +1,10 @@
 [gd_scene format=3 uid="uid://dw061ntdby0by"]
 
-[ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_vjujl"]
-[ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/beasts/wolf_sprite.png" id="2_3unts"]
-[ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/beasts/wolf_def.tres" id="2_ku6ha"]
-[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_ku6ha"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjujl"]
-atlas = ExtResource("2_3unts")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3unts"]
-atlas = ExtResource("2_3unts")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ogyw"]
-atlas = ExtResource("2_3unts")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wlex"]
-atlas = ExtResource("2_3unts")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ku6ha"]
-atlas = ExtResource("2_3unts")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1hkuc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjujl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3unts")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ogyw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6wlex")
-}],
-"loop": 0,
-"name": &"bite",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ku6ha")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_6ogyw"]
+[ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/beasts/wolf_def.tres" id="2_6wlex"]
+[ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/beasts/wolf_sprite.png" id="3_3lhe6"]
+[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_kn6f7"]
+[ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="5_cq8lg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3unts"]
 radius = 3.0
@@ -66,78 +19,139 @@ size = Vector2(13, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjujl"]
 radius = 215.59453
 
-[sub_resource type="Animation" id="Animation_3lhe6"]
-length = 0.001
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ogyw"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_6ogyw"]
+resource_name = "attack_0"
+length = 0.59834576
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.39725962, 0.51617146),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"bite"]
+"values": [SubResource("CircleShape2D_6ogyw"), null]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasGroup/AnimatedSprite2D:frame")
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.39603373),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/BodySprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0032601277),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/BodySprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.027272344, 0.27377683, 0.41579312, 0.4939527, 0.5697269),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku6ha"]
+_data = {
+&"attack_0": SubResource("Animation_6ogyw")
+}
+
+[sub_resource type="Animation" id="Animation_3lhe6"]
+length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn6f7"]
 _data = {
 &"RESET": SubResource("Animation_3lhe6")
 }
 
-[sub_resource type="Animation" id="Animation_cq8lg"]
-length = 0.7791027
+[sub_resource type="Animation" id="Animation_6wlex"]
+resource_name = "attack_0"
+length = 0.59834576
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.005999756, 0.73398435),
+"times": PackedFloat32Array(0.39725962, 0.51617146),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"bite", &"default"]
+"values": [SubResource("CircleShape2D_6ogyw"), null]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasGroup/AnimatedSprite2D:frame")
+tracks/1/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.005999756, 0.36647162, 0.48746237, 0.63398015),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.39603373),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/BodySprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0032601277),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/BodySprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.027272344, 0.27377683, 0.41579312, 0.4939527, 0.5697269),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 6, 7, 8]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_se3qs"]
 _data = {
-&"attack_0": SubResource("Animation_cq8lg")
+&"attack_0": SubResource("Animation_6wlex")
 }
 
-[node name="Wolf" unique_id=2016177718 instance=ExtResource("1_vjujl")]
-entity_def = ExtResource("2_ku6ha")
+[node name="Wolf" unique_id=2016177718 instance=ExtResource("1_6ogyw")]
+entity_def = ExtResource("2_6wlex")
 
-[node name="AnimatedSprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=126469266]
-sprite_frames = SubResource("SpriteFrames_1hkuc")
-animation = &"bite"
-frame = 3
+[node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=1734593589]
+texture = ExtResource("3_3lhe6")
 offset = Vector2(0, -16)
+hframes = 6
+vframes = 3
 
 [node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
 position = Vector2(0, -9)
@@ -159,9 +173,20 @@ debug_color = Color(0.7, 0, 0, 0.02745098)
 [node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_vjujl")
 
+[node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+avoidance_enabled = true
+radius = 5.0
+
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1036456560]
-script = ExtResource("4_ku6ha")
+script = ExtResource("4_kn6f7")
 metadata/_custom_type_script = "uid://brmk31djiyou1"
+
+[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=2020302319]
+script = ExtResource("5_cq8lg")
+metadata/_custom_type_script = "uid://prruy5b51dk5"
+
+[node name="BodyAnimationPlayer" parent="." index="8" unique_id=1131495921]
+libraries/unarmed = SubResource("AnimationLibrary_ku6ha")
 
 [node name="CombatAnimationPlayer" parent="." index="9" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_kn6f7")

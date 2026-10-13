@@ -8,34 +8,10 @@
 [sub_resource type="Animation" id="Animation_ytkjt"]
 resource_name = "RESET"
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_nt2ef"]
 resource_name = "flash"
 length = 0.25090358
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.057313073, 0.11908139, 0.181749, 0.24128532),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ytkjt"]
 _data = {
@@ -43,19 +19,19 @@ _data = {
 &"flash": SubResource("Animation_nt2ef")
 }
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "hurtbox")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "body_sprite", "hurtbox")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_gqn7q")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
-animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
+body_sprite = NodePath("CanvasGroup/BodySprite")
 hurtbox = NodePath("Hurtbox")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1484650591]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=1905003866]
+[node name="BodySprite" type="Sprite2D" parent="CanvasGroup" unique_id=433715869]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258299850]
 debug_color = Color(0.7166667, 0, 1, 0)

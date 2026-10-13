@@ -5,8 +5,6 @@ signal body_animation_finished(anim_name: StringName)
 
 signal combat_animation_finished(anim_name: StringName)
 
-signal sprite_animation_finished
-
 
 @export var body_anim_player: AnimationPlayer
 
@@ -26,8 +24,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 		combat_anim_player.animation_finished.connect(_on_combat_animation_finished)
 
-	entity.animated_body_sprite.animation_finished.connect(_on_sprite_animation_finished)
-
 
 
 
@@ -42,6 +38,10 @@ func play_body_animation(anim_name: String) -> void:
 
 
 func play_combat_animation(anim_name: String) -> void:
+
+	print("playing: ", anim_name)
+
+	print("has it: ", combat_anim_player.has_animation(anim_name))
 
 	if combat_anim_player:
 
@@ -83,8 +83,3 @@ func _on_combat_animation_finished(anim_name: String) -> void:
 
 	combat_animation_finished.emit(anim_name)
 
-
-
-func _on_sprite_animation_finished(anim_name: String) -> void:
-
-	sprite_animation_finished.emit(anim_name)
