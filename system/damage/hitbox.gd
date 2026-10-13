@@ -1,4 +1,4 @@
-class_name Hitbox extends Area2D
+class_name Hitbox extends Sensor
 
 
 signal entity_hit(entity_node: EntityNode)
@@ -7,63 +7,11 @@ signal entity_hit(entity_node: EntityNode)
 @export var collision_shape: CollisionShape2D
 
 
-var active:= false
-
-var entity: EntityNode
-
 var current_damage_package: DamagePackage
 
 
 var hit_list: Array[Hurtbox]
 
-
-
-
-
-
-func _initialize(_entity: EntityNode) -> void:
-
-	entity = _entity
-
-	
-
-
-
-
-
-
-func _activate() -> void:
-	
-	active = true
-
-	_connect_signals()
-
-
-
-
-
-
-func _deactivate() -> void:
-
-	_disconnect_signals()
-
-	active = false
-
-
-
-
-
-func _connect_signals() -> void:
-
-	area_entered.connect(_on_area_entered)
-
-
-
-
-
-func _disconnect_signals() -> void:
-
-	area_entered.disconnect(_on_area_entered)
 
 
 
@@ -113,7 +61,7 @@ func clear_hit_list() -> void:
 
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered_sensor(area: Area2D) -> void:
 
 	if area is Hurtbox and can_hit(area):
 

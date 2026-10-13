@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b0m7umcx15s02" path="res://system/state/body_interacting_state.gd" id="8_1hkuc"]
 [ext_resource type="Script" uid="uid://uyosww6dddto" path="res://system/player/interaction_area.gd" id="9_h3rsp"]
 [ext_resource type="Texture2D" uid="uid://h7quth5qkg7e" path="res://items/equipment/weapons/short_bow/short_bow_charge_0.png" id="10_viji7"]
+[ext_resource type="Script" uid="uid://djwmq6um80d4a" path="res://system/sensor/sensor.gd" id="10_y7h06"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho6qo"]
 atlas = ExtResource("3_ho6qo")
@@ -366,10 +367,12 @@ script = ExtResource("9_h3rsp")
 shape = SubResource("CircleShape2D_h3rsp")
 debug_color = Color(1, 1, 1, 0)
 
-[node name="PickUpArea" type="Area2D" parent="." index="9" unique_id=278219632]
+[node name="PickUpArea" type="Area2D" parent="." index="9" unique_id=1782873402]
 position = Vector2(0, -14)
 collision_layer = 0
 collision_mask = 8
+script = ExtResource("10_y7h06")
+metadata/_custom_type_script = "uid://djwmq6um80d4a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" index="0" unique_id=862344967]
 shape = SubResource("CircleShape2D_ukr2h")

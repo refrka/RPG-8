@@ -4,13 +4,8 @@
 [ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_pq5v7"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="5_himam"]
 
-[sub_resource type="Resource" id="Resource_gow3f"]
-script = ExtResource("1_pq5v7")
-metadata/_custom_type_script = "uid://dip60lvo86j0i"
-
 [sub_resource type="Resource" id="Resource_11yqe"]
 script = ExtResource("5_himam")
-behaviors = Array[ExtResource("1_pq5v7")]([SubResource("Resource_gow3f")])
 metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
 [resource]

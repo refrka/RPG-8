@@ -14,6 +14,8 @@ var current_velocity:= Vector2.ZERO
 
 var move_speed:= 0.0
 
+var move_speed_override:= 0.0
+
 var move_dir:= Vector2.ZERO
 
 var face_dir:= Vector2.RIGHT
@@ -122,6 +124,10 @@ func get_move_dir() -> Vector2:
 
 
 func get_move_speed() -> float:
+
+	if move_speed_override != 0.0:
+
+		return move_speed_override
 
 	var modifier_total = modifier_handler.get_float_total()
 

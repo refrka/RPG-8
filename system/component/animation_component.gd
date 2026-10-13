@@ -56,7 +56,7 @@ func play_sprite_animation(anim_name: String) -> void:
 
 
 
-func receive_damage_package(_damage_package: DamagePackage) -> void:
+func receive_damage_package(_damage_package: DamagePackage) -> void:	
 
 	play_body_animation("flash")
 

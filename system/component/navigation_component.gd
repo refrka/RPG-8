@@ -39,11 +39,22 @@ func set_target_position(_target_position: Vector2) -> void:
 
 
 
+
+func set_forced_velocity(velocity: Vector2) -> void:
+
+	entity.nav_agent.set_velocity(velocity)
+
+
+
+
+
+
 func stop_navigation() -> void:
 
 	target_position = entity.global_position
 
 	entity.nav_agent.target_position = target_position
+
 
 
 

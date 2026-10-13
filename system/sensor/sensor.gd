@@ -57,6 +57,10 @@ func _deactivate() -> void:
 
 func _connect_signals() -> void:
 
+	area_entered.connect(_on_area_entered_sensor)
+
+	area_exited.connect(_on_area_exited_sensor)
+
 	body_entered.connect(_on_body_entered_sensor)
 
 	body_exited.connect(_on_body_exited_sensor)
@@ -65,6 +69,10 @@ func _connect_signals() -> void:
 
 
 func _disconnect_signals() -> void:
+
+	area_entered.disconnect(_on_area_entered_sensor)
+
+	area_exited.disconnect(_on_area_exited_sensor)
 
 	body_entered.disconnect(_on_body_entered_sensor)
 
@@ -75,7 +83,7 @@ func _disconnect_signals() -> void:
 
 func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
 
-	if body is EntityNode:
+	if body is EntityNode and body != entity:
 
 		entities.append(body)
 
@@ -96,7 +104,7 @@ func _on_body_exited_sensor(body: PhysicsBody2D) -> void:
 
 func _on_area_entered_sensor(area: Area2D) -> void:
 
-	if area is Sensor:
+	if area is Sensor and area.entity != entity:
 
 		sensors.append(area)
 
@@ -106,7 +114,7 @@ func _on_area_entered_sensor(area: Area2D) -> void:
 
 func _on_area_exited_sensor(area: Area2D) -> void:
 
-	if area is Sensor and areas.has(area):
+	if area is Sensor and sensors.has(area):
 
 		sensors.erase(area)
 

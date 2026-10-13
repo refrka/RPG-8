@@ -3,6 +3,45 @@
 [ext_resource type="Script" uid="uid://cufjp71bb8mll" path="res://system/entity/object_node.gd" id="1_gqn7q"]
 [ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="2_a8qsg"]
 [ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_st2tw"]
+[ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_nt2ef"]
+
+[sub_resource type="Animation" id="Animation_ytkjt"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nt2ef"]
+resource_name = "flash"
+length = 0.25090358
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.057313073, 0.11908139, 0.181749, 0.24128532),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(2.844042, 2.844042, 2.844042, 1), Color(1.353256, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytkjt"]
+_data = {
+&"RESET": SubResource("Animation_ytkjt"),
+&"flash": SubResource("Animation_nt2ef")
+}
 
 [node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "hurtbox")]
 collision_layer = 2
@@ -28,8 +67,16 @@ debug_color = Color(0.7, 0, 0, 0.02745098)
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=281237021]
 
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=1333273197 node_paths=PackedStringArray("body_anim_player")]
+script = ExtResource("3_nt2ef")
+body_anim_player = NodePath("../../BodyAnimPlayer")
+metadata/_custom_type_script = "uid://c20ddxy082c6l"
+
 [node name="StateMachine" type="Node" parent="." unique_id=1040336414]
 script = ExtResource("2_st2tw")
 metadata/_custom_type_script = "uid://rgx5lh01enbs"
+
+[node name="BodyAnimPlayer" type="AnimationPlayer" parent="." unique_id=975314067]
+libraries/ = SubResource("AnimationLibrary_ytkjt")
 
 [editable path="Hurtbox"]

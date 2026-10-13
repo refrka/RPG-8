@@ -25,9 +25,9 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var hurtbox: Hurtbox
 
-@export var pick_up_area: Area2D
+@export var pick_up_area: Sensor
 
-@export var vision_area: Area2D
+@export var vision_area: Sensor
 
 
 
@@ -58,6 +58,14 @@ func _initialize() -> bool:
 	if hurtbox:
 		
 		hurtbox._initialize(self)
+
+	if vision_area:
+
+		vision_area._initialize(self)
+
+	if pick_up_area:
+
+		pick_up_area._initialize(self)
 
 	if entity_def.initial_inventory:
 
@@ -99,7 +107,11 @@ func _activate() -> void:
 
 	if vision_area:
 
-		vision_area.monitoring = true
+		vision_area._activate()
+
+	if pick_up_area:
+
+		pick_up_area._activate()
 
 	if component_root:
 
@@ -128,7 +140,11 @@ func _deactivate() -> void:
 
 	if vision_area:
 
-		vision_area.monitoring = false
+		vision_area._deactivate()
+
+	if pick_up_area:
+
+		pick_up_area._deactivate()
 
 	if component_root:
 
