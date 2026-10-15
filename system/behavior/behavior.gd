@@ -84,3 +84,10 @@ func _disconnect_signals() -> void:
 
 	pass
 
+
+
+
+
+func _tick(_delta: float) -> void:
+
+	pass

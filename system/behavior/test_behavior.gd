@@ -166,6 +166,7 @@ func _on_target_died() -> void:
 	behavior_state_requested.emit(BehaviorComponent.BehaviorState.PASSIVE)
 
 	target_entity = null
+	
 
 
 

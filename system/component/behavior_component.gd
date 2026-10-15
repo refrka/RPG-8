@@ -66,7 +66,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
-
 func _activate() -> void:
 
 	if disabled:

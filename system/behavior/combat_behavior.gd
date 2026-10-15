@@ -1,1 +1,0 @@
-class_name CombatBehavior extends Behavior
