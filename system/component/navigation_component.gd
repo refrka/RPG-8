@@ -20,6 +20,10 @@ var follow_buffer:= 16.0
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	movement_component = entity.get_component(MovementComponent)
@@ -35,6 +39,8 @@ func _initialize(_entity: EntityNode) -> void:
 func set_target_position(_target_position: Vector2) -> void:
 
 	target_position = _target_position
+
+	
 
 	entity.nav_agent.target_position = target_position
 
@@ -73,7 +79,6 @@ func _on_velocity_computed(velocity: Vector2) -> void:
 
 	movement_component.set_move_dir(velocity)
 
-	print(velocity)
 
 
 
@@ -83,12 +88,14 @@ func _physics_process(_delta: float) -> void:
 
 		return
 
-	if !entity.nav_agent.is_navigation_finished():
+	var position = entity.nav_agent.get_next_path_position()
 
-		var next_position = entity.nav_agent.get_next_path_position()
+	var dir_velocity = entity.global_position.direction_to(position)
 
-		var move_dir = entity.global_position.direction_to(next_position)
+	if entity.nav_agent.avoidance_enabled:
 
-		movement_component.set_move_dir(move_dir)
+		entity.nav_agent.set_velocity(dir_velocity)
 
-		entity.nav_agent.set_velocity(move_dir)
+	else:
+
+		_on_velocity_computed(dir_velocity)

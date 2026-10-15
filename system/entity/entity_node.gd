@@ -29,7 +29,7 @@ signal died
 
 @export var pick_up_area: Sensor
 
-@export var vision_area: Sensor
+@export var vision_sensor: Sensor
 
 
 
@@ -61,9 +61,9 @@ func _initialize() -> bool:
 		
 		hurtbox._initialize(self)
 
-	if vision_area:
+	if vision_sensor:
 
-		vision_area._initialize(self)
+		vision_sensor._initialize(self)
 
 	if pick_up_area:
 
@@ -107,9 +107,9 @@ func _activate() -> void:
 
 		hurtbox._activate()
 
-	if vision_area:
+	if vision_sensor:
 
-		vision_area._activate()
+		vision_sensor._activate()
 
 	if pick_up_area:
 
@@ -140,9 +140,9 @@ func _deactivate() -> void:
 
 		hurtbox._deactivate()
 
-	if vision_area:
+	if vision_sensor:
 
-		vision_area._deactivate()
+		vision_sensor._deactivate()
 
 	if pick_up_area:
 
@@ -199,8 +199,6 @@ func load_entity_def(_entity_def: EntityDef) -> void:
 
 
 func receive_damage_package(damage_package: DamagePackage) -> void:
-
-	print("%s: ow" % name)
 
 	for component in component_root.get_children():
 

@@ -12,6 +12,10 @@ var expiration_timer_active:= false
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	movement_component = entity.get_component(MovementComponent)
@@ -74,7 +78,7 @@ func _on_expiration_timeout() -> void:
 
 func _physics_process(_delta: float) -> void:
 
-	if !active:
+	if !active or disabled:
 
 		return
 

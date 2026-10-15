@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_uf26u"]
 [ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="3_upeui"]
 [ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="3_wnsgr"]
-[ext_resource type="Script" uid="uid://djwmq6um80d4a" path="res://system/sensor/sensor.gd" id="4_nhrk4"]
+[ext_resource type="Script" uid="uid://b2s2i0xorim8p" path="res://system/sensor/vision_sensor.gd" id="4_nhrk4"]
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
@@ -76,7 +76,7 @@ _data = {
 &"flash": SubResource("Animation_upeui")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_area")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor")]
 collision_mask = 2
 script = ExtResource("1_qxfxo")
 nav_agent = NodePath("NavigationAgent2D")
@@ -86,7 +86,7 @@ body_sprite = NodePath("CanvasGroup/BodySprite")
 combat_root = NodePath("CanvasGroup/CombatRoot")
 hitbox = NodePath("CanvasGroup/CombatRoot/Hitbox")
 hurtbox = NodePath("Hurtbox")
-vision_area = NodePath("VisionArea")
+vision_sensor = NodePath("VisionSensor")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -112,12 +112,12 @@ debug_color = Color(0.7166667, 0, 1, 0)
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=283233958]
 debug_color = Color(0.7, 0, 0, 0.02745098)
 
-[node name="VisionArea" type="Area2D" parent="." unique_id=1210573016]
+[node name="VisionSensor" type="Area2D" parent="." unique_id=1210573016]
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("4_nhrk4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=1251574029]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionSensor" unique_id=1251574029]
 debug_color = Color(0.97704154, 0.7942424, 0.50736034, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=780391334]

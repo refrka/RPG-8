@@ -41,7 +41,7 @@ func start() -> void:
 
 	location.spawn_player(active_save_data["spawn_id"])
 
-	location._activate()
+	location._activate.call_deferred()
 
 
 

@@ -2,6 +2,7 @@ class_name Component extends Node
 
 
 
+@export var disabled:= false
 
 
 
@@ -13,12 +14,20 @@ var entity: EntityNode
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	entity = _entity
 
 
 
 
 func _activate() -> void:
+
+	if disabled:
+
+		return
 
 	active = true
 

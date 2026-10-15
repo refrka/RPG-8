@@ -81,6 +81,62 @@ func _disconnect_signals() -> void:
 
 
 
+
+
+
+
+
+
+func get_nearest_entity() -> EntityNode:
+
+	var nearest_entity: EntityNode = null
+
+	var nearest_distance:= INF
+
+	for entity_node in entities:
+
+		var distance = entity.global_position.distance_squared_to(entity_node.global_position)
+
+		if !nearest_entity or distance < nearest_distance:
+
+			nearest_entity = entity_node
+
+			nearest_distance = distance
+
+	return nearest_entity
+
+
+
+
+
+
+func get_nearest_sensor() -> Sensor:
+
+	var nearest_sensor: Sensor = null
+
+	var nearest_distance:= INF
+
+	for sensor in sensors:
+
+		var distance = entity.global_position.distance_squared_to(sensor.global_position)
+
+		if !nearest_sensor or distance < nearest_distance:
+
+			nearest_sensor = sensor
+
+			nearest_distance = distance
+
+	return nearest_sensor
+
+
+
+
+
+
+
+
+
+
 func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
 
 	if body is EntityNode and body != entity:

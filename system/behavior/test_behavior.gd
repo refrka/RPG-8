@@ -61,7 +61,7 @@ func _initialize(_actor: EntityNode) -> void:
 
 func _connect_signals() -> void:
 
-	actor.vision_area.entity_entered.connect(_on_entity_entered_sensor)
+	actor.vision_sensor.entity_entered.connect(_on_entity_entered_sensor)
 
 
 
@@ -163,8 +163,6 @@ func _on_attack_completed() -> void:
 
 func _on_target_died() -> void:
 
-	print("target died")
-
 	behavior_state_requested.emit(BehaviorComponent.BehaviorState.PASSIVE)
 
 	target_entity = null
@@ -203,8 +201,6 @@ func _tick(delta: float) -> void:
 			if !is_instance_valid(navigation_component):
 
 				return
-
-			navigation_component.set_target_position(target_entity.global_position)
 
 		Phase.INTIMIDATE:
 

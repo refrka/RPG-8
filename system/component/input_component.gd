@@ -26,6 +26,10 @@ var first_move_input_received:= false
 
 func _activate() -> void:
 
+	if disabled:
+
+		return
+
 	super()
 
 	_clear()

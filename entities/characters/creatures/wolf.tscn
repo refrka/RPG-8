@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dw061ntdby0by"]
 
 [ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_6ogyw"]
-[ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/beasts/wolf_def.tres" id="2_6wlex"]
-[ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/beasts/wolf_sprite.png" id="3_3lhe6"]
+[ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/creatures/wolf_def.tres" id="2_6wlex"]
+[ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/creatures/wolf_sprite.png" id="3_3lhe6"]
 [ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_kn6f7"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="5_cq8lg"]
 
@@ -170,12 +170,13 @@ position = Vector2(9.5, -19)
 shape = SubResource("RectangleShape2D_3unts")
 debug_color = Color(0.7, 0, 0, 0.02745098)
 
-[node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_vjujl")
 
 [node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
 avoidance_enabled = true
 radius = 5.0
+debug_enabled = true
 
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1036456560]
 script = ExtResource("4_kn6f7")

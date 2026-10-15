@@ -42,6 +42,10 @@ shape = SubResource("RectangleShape2D_gtymn")
 [node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_pq5v7")
 
+[node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+avoidance_enabled = true
+debug_enabled = true
+
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1707206816]
 script = ExtResource("4_qfgul")
 metadata/_custom_type_script = "uid://brmk31djiyou1"

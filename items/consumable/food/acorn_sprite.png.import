@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://banmj8yioeoo8"
-path="res://.godot/imported/wolf_sprite.png-58576128070dc747a02f609235907811.ctex"
+uid="uid://dbadyrjfg0db"
+path="res://.godot/imported/acorn_sprite.png-475f25d111903449f38f1a5278622d18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/characters/beasts/wolf_sprite.png"
-dest_files=["res://.godot/imported/wolf_sprite.png-58576128070dc747a02f609235907811.ctex"]
+source_file="res://items/consumable/food/acorn_sprite.png"
+dest_files=["res://.godot/imported/acorn_sprite.png-475f25d111903449f38f1a5278622d18.ctex"]
 
 [params]
 

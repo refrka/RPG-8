@@ -46,7 +46,7 @@ func _get_flanking_partner() -> CharacterNode:
 
 	var flanking_partner: CharacterNode = null
 
-	for body in actor.vision_area.get_overlapping_bodies():
+	for body in actor.vision_sensor.get_overlapping_bodies():
 
 		if body is CharacterNode and body.entity_def.entity_id == "wolf":
 

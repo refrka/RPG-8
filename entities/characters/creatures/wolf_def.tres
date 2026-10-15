@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://daeonhydf5vqd"]
+
+[ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_lwkxy"]
+[ext_resource type="Script" uid="uid://dly05d2yxxow3" path="res://system/behavior/test_behavior.gd" id="2_6iu8w"]
+[ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_ywn8i"]
+[ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_1f81s"]
+[ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_are0r"]
+[ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="6_um0jx"]
+[ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_apnh0"]
+[ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="8_diwo1"]
+[ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="9_q78kr"]
+[ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="10_jpkyo"]
+[ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="11_u4c76"]
+[ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="12_gthq3"]
+
+[sub_resource type="Resource" id="Resource_pinj3"]
+script = ExtResource("2_6iu8w")
+metadata/_custom_type_script = "uid://dly05d2yxxow3"
+
+[sub_resource type="Resource" id="Resource_w87oj"]
+script = ExtResource("4_1f81s")
+behaviors = Array[ExtResource("1_lwkxy")]([SubResource("Resource_pinj3")])
+metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
+
+[sub_resource type="Resource" id="Resource_o5quc"]
+script = ExtResource("5_are0r")
+item_def = ExtResource("6_um0jx")
+count_range = Vector2i(1, 2)
+metadata/_custom_type_script = "uid://dd5nur0tqmxp5"
+
+[sub_resource type="Resource" id="Resource_feft3"]
+script = ExtResource("7_apnh0")
+entries = Array[ExtResource("5_are0r")]([SubResource("Resource_o5quc")])
+metadata/_custom_type_script = "uid://cxk2pjyg8l41k"
+
+[sub_resource type="Resource" id="Resource_a78n4"]
+script = ExtResource("9_q78kr")
+item_def = ExtResource("6_um0jx")
+count = 2
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[sub_resource type="Resource" id="Resource_ppefn"]
+script = ExtResource("8_diwo1")
+stacks = Array[ExtResource("9_q78kr")]([SubResource("Resource_a78n4")])
+loot_table = SubResource("Resource_feft3")
+metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
+
+[sub_resource type="Resource" id="Resource_y7h06"]
+script = ExtResource("11_u4c76")
+damage_range = Vector2(5, 5)
+knockback_force = 50.0
+metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
+
+[sub_resource type="Resource" id="Resource_viji7"]
+script = ExtResource("12_gthq3")
+attack_set = Array[ExtResource("11_u4c76")]([SubResource("Resource_y7h06")])
+metadata/_custom_type_script = "uid://burdq3rfoe5k3"
+
+[resource]
+script = ExtResource("10_jpkyo")
+behavior_profile = SubResource("Resource_w87oj")
+unarmed_attack_config = SubResource("Resource_viji7")
+entity_id = &"wolf"
+display_name = &"Wolf"
+initial_inventory = SubResource("Resource_ppefn")
+base_health = 4.0
+metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

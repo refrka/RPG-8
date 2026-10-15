@@ -19,6 +19,10 @@ func _ready() -> void:
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	var input_component = entity.get_component(InputComponent)

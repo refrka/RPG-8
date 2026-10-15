@@ -31,6 +31,10 @@ var first_input_received:= false
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	input_component = entity.get_component(InputComponent)
@@ -48,6 +52,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 func _activate() -> void:
+
+	if disabled:
+
+		return
 
 	super()
 

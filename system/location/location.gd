@@ -70,9 +70,10 @@ func spawn_player(spawn_id: StringName) -> void:
 
 	var player = Game.get_player()
 
+	player.global_position = spawn_point.global_position
+
 	player.reparent(ysort_root)
 
-	player.global_position = spawn_point.global_position
 
 
 
@@ -100,9 +101,11 @@ func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
 
 func _activate() -> void:
 
-	active = true
+	await get_tree().physics_frame
 
 	_connect_signals()
+
+	active = true
 
 	for entity in ysort_root.get_children():
 

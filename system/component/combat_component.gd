@@ -33,6 +33,10 @@ var movement_component: MovementComponent
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	var attacking_state = entity.state_machine.get_state(CombatAttackingState)
@@ -120,8 +124,6 @@ func _start_attack() -> void:
 	entity.combat_root.rotation = current_attack_dir.angle()
 
 	entity.state_machine.request_state(CombatAttackingState)
-
-	print(current_animation_name)
 
 
 
@@ -375,7 +377,7 @@ func _on_attack_input_released() -> void:
 
 func _process(_delta: float) -> void:
 
-	if !active:
+	if !active or disabled:
 
 		return
 
