@@ -39,10 +39,13 @@ shape = SubResource("CapsuleShape2D_1hkuc")
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_gtymn")
 
-[node name="CollisionShape2D" parent="VisionArea" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_pq5v7")
 
-[node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+[node name="CombatMeleeSensor" parent="." index="5" unique_id=1821677152]
+position = Vector2(0, -11)
+
+[node name="NavigationAgent2D" parent="." index="6" unique_id=780391334]
 avoidance_enabled = true
 debug_enabled = true
 

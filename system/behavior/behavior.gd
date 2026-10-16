@@ -2,9 +2,12 @@ class_name Behavior extends Resource
 
 
 
+@warning_ignore_start("unused_signal")
+
 signal behavior_state_requested(state: BehaviorComponent.BehaviorState)
 
 signal new_target_requested(new_target: EntityNode)
+
 
 
 
@@ -61,11 +64,24 @@ func _find_target() -> void:
 
 
 
+func _evaluate_target(_new_target: EntityNode) -> bool:
+
+	return true
+
+
+
+
 
 
 func _update_target(new_target: EntityNode) -> void:
 
-	target = new_target
+	if target and new_target == target:
+
+		return
+
+	if _evaluate_target(new_target):
+
+		target = new_target
 
 
 

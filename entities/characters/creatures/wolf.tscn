@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_kn6f7"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="5_cq8lg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_viji7"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3unts"]
 radius = 3.0
 height = 32.0
@@ -156,6 +158,10 @@ vframes = 3
 [node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
 position = Vector2(0, -9)
 
+[node name="CollisionShape2D" parent="CanvasGroup/CombatRoot/CombatMeleeSensor" parent_id_path=PackedInt32Array(1821677152) index="0" unique_id=326915327]
+position = Vector2(17, -1)
+shape = SubResource("CircleShape2D_viji7")
+
 [node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
 position = Vector2(0, -3)
 rotation = 1.5707964
@@ -176,7 +182,6 @@ shape = SubResource("CircleShape2D_vjujl")
 [node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
 avoidance_enabled = true
 radius = 5.0
-debug_enabled = true
 
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1036456560]
 script = ExtResource("4_kn6f7")

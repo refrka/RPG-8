@@ -61,6 +61,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 		behavior.new_target_requested.connect(_on_new_target_requested)
 
+	entity.vision_sensor.entity_entered.connect(_on_entity_entered_vision)
+
 
 
 
@@ -98,6 +100,12 @@ func _evaluate_and_choose_behavior(behavior_list: Array[Behavior]) -> Behavior:
 
 func _change_behavior_state(new_state: BehaviorState) -> void:
 
+	if behavior_state == new_state:
+
+		return
+
+	behavior_state = new_state
+
 	var valid_behaviors = _get_valid_behaviors(new_state)
 
 	var behavior = _evaluate_and_choose_behavior(valid_behaviors)
@@ -116,7 +124,9 @@ func _change_behavior_target(new_target: EntityNode) -> void:
 	
 	behavior_target = new_target
 
-	current_behavior._update_target(new_target)
+	if current_behavior:
+
+		current_behavior._update_target(new_target)
 
 
 
@@ -134,6 +144,8 @@ func _change_behavior(behavior: Behavior) -> void:
 		current_behavior._stop()
 
 	current_behavior = behavior
+
+	current_behavior._update_target(behavior_target)
 
 	current_behavior._start()
 
@@ -185,6 +197,7 @@ func is_target_valid(target_entity: EntityNode = null) -> bool:
 
 
 
+
 func is_target_in_range(target_entity: EntityNode = null) -> bool:
 
 	if !target_entity:
@@ -221,6 +234,18 @@ func _on_behavior_state_requested(_behavior_state: BehaviorState) -> void:
 func _on_new_target_requested(target_entity: EntityNode) -> void:
 
 	_change_behavior_target(target_entity)
+
+
+
+
+
+func _on_entity_entered_vision(entity_node: EntityNode) -> void:
+
+	if entity.entity_def.behavior_profile.enemy_defs.has(entity_node.entity_def):
+
+		_change_behavior_target(entity_node)
+
+		_change_behavior_state(BehaviorState.HOSTILE)
 
 
 

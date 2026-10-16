@@ -40,8 +40,6 @@ func set_target_position(_target_position: Vector2) -> void:
 
 	target_position = _target_position
 
-	
-
 	entity.nav_agent.target_position = target_position
 
 

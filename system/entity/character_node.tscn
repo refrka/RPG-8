@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="3_upeui"]
 [ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="3_wnsgr"]
 [ext_resource type="Script" uid="uid://b2s2i0xorim8p" path="res://system/sensor/vision_sensor.gd" id="4_nhrk4"]
+[ext_resource type="Script" uid="uid://djwmq6um80d4a" path="res://system/sensor/sensor.gd" id="5_kg6yd"]
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
@@ -76,7 +77,7 @@ _data = {
 &"flash": SubResource("Animation_upeui")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor")]
 collision_mask = 2
 script = ExtResource("1_qxfxo")
 nav_agent = NodePath("NavigationAgent2D")
@@ -87,6 +88,7 @@ combat_root = NodePath("CanvasGroup/CombatRoot")
 hitbox = NodePath("CanvasGroup/CombatRoot/Hitbox")
 hurtbox = NodePath("Hurtbox")
 vision_sensor = NodePath("VisionSensor")
+combat_melee_sensor = NodePath("CanvasGroup/CombatRoot/CombatMeleeSensor")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -103,6 +105,12 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" parent="CanvasGroup/CombatRoot/Hitbox" index="0" unique_id=160243188]
 debug_color = Color(0.5, 0, 0.1583333, 0.24705882)
+
+[node name="CombatMeleeSensor" type="Area2D" parent="CanvasGroup/CombatRoot" unique_id=1821677152]
+script = ExtResource("5_kg6yd")
+metadata/_custom_type_script = "uid://djwmq6um80d4a"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/CombatRoot/CombatMeleeSensor" unique_id=326915327]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=549181237]
 debug_color = Color(0.7166667, 0, 1, 0)

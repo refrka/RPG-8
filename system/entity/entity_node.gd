@@ -31,7 +31,7 @@ signal died
 
 @export var vision_sensor: Sensor
 
-
+@export var combat_melee_sensor: Sensor
 
 
 
@@ -64,6 +64,10 @@ func _initialize() -> bool:
 	if vision_sensor:
 
 		vision_sensor._initialize(self)
+
+	if combat_melee_sensor:
+
+		combat_melee_sensor._initialize(self)
 
 	if pick_up_area:
 
@@ -111,6 +115,10 @@ func _activate() -> void:
 
 		vision_sensor._activate()
 
+	if combat_melee_sensor:
+
+		combat_melee_sensor._activate()
+
 	if pick_up_area:
 
 		pick_up_area._activate()
@@ -143,6 +151,10 @@ func _deactivate() -> void:
 	if vision_sensor:
 
 		vision_sensor._deactivate()
+
+	if combat_melee_sensor:
+
+		combat_melee_sensor._deactivate()
 
 	if pick_up_area:
 
@@ -244,6 +256,34 @@ func get_mouse_dir(from_combat_root:= false) -> Vector2:
 		origin = combat_root.global_position
 
 	return origin.direction_to(get_global_mouse_position())
+
+
+
+
+
+func get_direction(target_entity: EntityNode, invert:= false) -> Vector2:
+
+	if !invert:
+
+		return global_position.direction_to(target_entity.global_position)
+
+	else:
+
+		return target_entity.global_position.direction_to(global_position)
+
+
+
+
+
+func get_distance(target_entity: EntityNode, squared:= false) -> float:
+
+	if !squared:
+
+		return global_position.distance_to(target_entity.global_position)
+
+	else:
+
+		return global_position.distance_squared_to(target_entity.global_position)
 
 
 
