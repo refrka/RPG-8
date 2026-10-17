@@ -44,7 +44,7 @@ func get_vector_total() -> Vector2:
 
 func get_float_total() -> float:
 
-	var total:= 0.0
+	var total:= 1.0
 
 	for modifier in modifiers:
 

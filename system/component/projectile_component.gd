@@ -2,7 +2,7 @@ class_name ProjectileComponent extends Component
 
 
 
-var movement_component: MovementComponent
+var movement_component: MovementComponent2
 
 var current_trajectory:= Vector2.ZERO
 
@@ -18,7 +18,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
-	movement_component = entity.get_component(MovementComponent)
+	movement_component = entity.get_component(MovementComponent2)
 
 	entity.hitbox.entity_hit.connect(_on_projectile_hit_entity)
 
@@ -38,7 +38,7 @@ func set_trajectory(trajectory: Vector2) -> void:
 
 	current_trajectory = trajectory + variation
 
-	movement_component.set_move_speed(entity.projectile_def.projectile_speed)
+	movement_component.set_move_speed_override(entity.projectile_def.projectile_speed)
 
 
 

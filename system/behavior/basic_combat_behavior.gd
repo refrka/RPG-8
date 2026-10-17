@@ -26,7 +26,7 @@ enum Phase {
 @export var reposition_range:= Vector2(0.0, 0.0)
 
 
-var navigation_component: NavigationComponent
+var movement_component: MovementComponent2
 
 var combat_component: CombatComponent
 
@@ -48,7 +48,7 @@ func _initialize(_actor: EntityNode) -> void:
 
 	super(_actor)
 
-	navigation_component = actor.get_component(NavigationComponent)
+	movement_component = actor.get_component(MovementComponent2)
 
 	combat_component = actor.get_component(CombatComponent)
 
@@ -138,11 +138,11 @@ func _get_circle_position() -> Vector2:
 
 func _reposition() -> void:
 
-	navigation_component.navigation_finished.connect(_on_navigation_finished, CONNECT_ONE_SHOT)
+	movement_component.navigation_position_reached.connect(_on_navigation_finished, CONNECT_ONE_SHOT)
 
 	var target_position = _get_reposition_position()
 
-	navigation_component.set_target_position(target_position)
+	movement_component.set_navigation_position(target_position)
 
 
 
@@ -208,18 +208,8 @@ func _tick(delta: float) -> void:
 
 		Phase.CIRCLE:
 
-			circle_timer -= delta
+			var move_dir = actor.global_position.direction_to(target.global_position).rotated(deg_to_rad(90) * circle_direction)
 
-			if circle_timer <= 0.0:
+			print("setting ", move_dir)
 
-				_change_phase(Phase.ATTACK)
-
-			circle_position_timer -= delta
-
-			if circle_position_timer <= 0.0:
-
-				var target_position = _get_circle_position()
-
-				navigation_component.set_target_position(target_position)
-
-				circle_position_timer = 0.2
+			movement_component.set_move_dir(move_dir)

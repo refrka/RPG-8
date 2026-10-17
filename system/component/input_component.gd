@@ -19,6 +19,18 @@ var input_dir: Vector2
 
 var first_move_input_received:= false
 
+var movement_component: MovementComponent2
+
+
+
+
+
+
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	movement_component = entity.get_component(MovementComponent2)
 
 
 
@@ -98,3 +110,7 @@ func _process(_delta: float) -> void:
 		return
 
 	input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+	if movement_component:
+
+		movement_component.set_move_dir(input_dir)
