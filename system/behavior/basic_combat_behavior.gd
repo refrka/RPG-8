@@ -142,7 +142,9 @@ func _reposition() -> void:
 
 	var target_position = _get_reposition_position()
 
-	movement_component.set_navigation_position(target_position)
+	# movement_component.set_navigation_position(target_position)
+
+	movement_component.set_navigation_target(target)
 
 
 
@@ -209,7 +211,5 @@ func _tick(delta: float) -> void:
 		Phase.CIRCLE:
 
 			var move_dir = actor.global_position.direction_to(target.global_position).rotated(deg_to_rad(90) * circle_direction)
-
-			print("setting ", move_dir)
 
 			movement_component.set_move_dir(move_dir)

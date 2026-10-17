@@ -4,7 +4,9 @@ class_name MovementComponent2 extends Component
 
 signal navigation_position_reached
 
-signal navigation_target_reached
+signal move_started
+
+signal move_ended
 
 
 enum MovementState {
@@ -18,6 +20,8 @@ enum MovementState {
 	TARGET,
 
 }
+
+@export var target_position_time:= 0.2
 
 var modifier_handler: ModifierHandler
 
@@ -37,6 +41,7 @@ var move_speed_override:= -1.0
 
 var desired_move_velocity:= Vector2.ZERO
 
+var target_position_timer:= 0.0
 
 
 
@@ -158,10 +163,6 @@ func _change_movement_state(new_state: MovementState) -> void:
 			current_move_velocity = Vector2.ZERO
 
 			entity.velocity = Vector2.ZERO
-
-		MovementState.DIRECTION:
-
-			pass
 			
 		MovementState.POSITION:
 
@@ -169,7 +170,9 @@ func _change_movement_state(new_state: MovementState) -> void:
 
 		MovementState.TARGET:
 
-			pass
+			entity.nav_agent.target_position = current_navigation_target.global_position
+
+			target_position_timer = target_position_time
 
 
 
@@ -210,7 +213,31 @@ func _physics_process(delta: float) -> void:
 
 		MovementState.TARGET:
 
-			pass
+			if !is_instance_valid(current_navigation_target):
+
+				_change_movement_state(MovementState.HALT)
+
+				return
+
+			target_position_timer -= delta
+
+			if target_position_timer <= 0.0:
+
+				entity.nav_agent.target_position = current_navigation_target.global_position
+
+				target_position_timer = target_position_time
+
+			if entity.nav_agent.is_navigation_finished():
+
+				move_velocity = move_velocity.move_toward(Vector2.ZERO, 8000.0 * delta)
+
+			else:
+
+				var next_position = entity.nav_agent.get_next_path_position()
+
+				var path_dir = entity.global_position.direction_to(next_position)
+
+				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
 
 		MovementState.POSITION:
 
@@ -226,9 +253,21 @@ func _physics_process(delta: float) -> void:
 
 				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
 
+	if entity.velocity == Vector2.ZERO and move_velocity != Vector2.ZERO:
+
+		move_started.emit()
+
+	if entity.velocity != Vector2.ZERO and move_velocity == Vector2.ZERO:
+
+		move_ended.emit()
+
 	entity.velocity = move_velocity + modifier_handler.get_vector_total()
 
 	current_move_velocity = move_velocity
+
+	if move_velocity != Vector2.ZERO:
+
+		face_dir = move_velocity.normalized()
 
 	entity.move_and_slide()
 

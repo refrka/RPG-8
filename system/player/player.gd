@@ -38,3 +38,10 @@ func _deactivate() -> void:
 
 
 	
+
+
+func _die() -> void:
+
+	super()
+
+	Game.exit()

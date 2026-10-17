@@ -308,7 +308,7 @@ func is_interactable() -> bool:
 
 
 
-func die() -> void:
+func _die() -> void:
 
 	_deactivate()
 

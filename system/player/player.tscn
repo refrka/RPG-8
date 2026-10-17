@@ -331,9 +331,6 @@ metadata/_custom_type_script = "uid://ddb5b7xq2nxr7"
 script = ExtResource("6_ssgc2")
 metadata/_custom_type_script = "uid://prruy5b51dk5"
 
-[node name="NavigationComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=12424140]
-disabled = true
-
 [node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1469470646]
 script = ExtResource("7_hgc5g")
 metadata/_custom_type_script = "uid://bhnikxv2o67wv"
@@ -366,6 +363,9 @@ debug_color = Color(0.7, 0.595, 0, 0)
 libraries/ = SubResource("AnimationLibrary_h3rsp")
 libraries/short_bow = SubResource("AnimationLibrary_viji7")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
+
+[node name="HealthBar" parent="." index="12" unique_id=1011421391]
+visible = false
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

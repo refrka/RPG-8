@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="5_cq8lg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_viji7"]
+radius = 12.0415945
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3unts"]
 radius = 3.0
@@ -153,8 +154,9 @@ vframes = 3
 position = Vector2(0, -9)
 
 [node name="CollisionShape2D" parent="CanvasGroup/CombatRoot/CombatMeleeSensor" parent_id_path=PackedInt32Array(1821677152) index="0" unique_id=326915327]
-position = Vector2(17, -1)
+position = Vector2(10, -1)
 shape = SubResource("CircleShape2D_viji7")
+debug_color = Color(0, 0.5950001, 0.7, 0)
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
 position = Vector2(0, -3)
@@ -171,6 +173,7 @@ polygon = PackedVector2Array(-16, -16, -16, 0, -11, 0, -11, -5, 11, -5, 11, 0, 1
 shape = SubResource("CircleShape2D_vjujl")
 
 [node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+target_desired_distance = 20.0
 avoidance_enabled = true
 radius = 5.0
 
@@ -188,6 +191,10 @@ libraries/unarmed = SubResource("AnimationLibrary_ku6ha")
 [node name="CombatAnimationPlayer" parent="." index="9" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_kn6f7")
 libraries/unarmed = SubResource("AnimationLibrary_se3qs")
+
+[node name="HealthProgressBar" parent="." index="10" unique_id=1011421391]
+offset_top = -31.0
+offset_bottom = -27.0
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

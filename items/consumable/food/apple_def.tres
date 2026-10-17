@@ -1,10 +1,18 @@
-[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cw3sd5erjs6yy"]
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://cw3sd5erjs6yy"]
 
-[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="1_22fwd"]
+[ext_resource type="Script" uid="uid://dixfk76l3q44i" path="res://system/effect/effect.gd" id="1_e02e1"]
 [ext_resource type="Texture2D" uid="uid://c61dm5e4iw5it" path="res://items/consumable/food/apple_sprite.png" id="2_0gm40"]
+[ext_resource type="Script" uid="uid://l45md7h10sjb" path="res://system/event/player_initialized_event.gd" id="2_ruhoq"]
+[ext_resource type="Script" uid="uid://ce0le2bucmhba" path="res://system/effect/instant_effect.gd" id="3_uiwo4"]
+[ext_resource type="Script" uid="uid://solcjy8yopbb" path="res://system/item/consumable_def.gd" id="4_hvw3d"]
+
+[sub_resource type="Resource" id="Resource_pinj3"]
+script = ExtResource("3_uiwo4")
+event_trigger = ExtResource("2_ruhoq")
 
 [resource]
-script = ExtResource("1_22fwd")
+script = ExtResource("4_hvw3d")
+effects_on_consume = Array[ExtResource("1_e02e1")]([SubResource("Resource_pinj3")])
 item_id = &"apple"
 sprite_texture = ExtResource("2_0gm40")
 metadata/_custom_type_script = "uid://bn7rgf574qily"

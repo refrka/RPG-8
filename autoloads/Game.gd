@@ -139,6 +139,13 @@ func get_save_template() -> Dictionary:
 
 
 
+func get_timer(duration: float) -> SceneTreeTimer:
+
+	var timer = get_tree().create_timer(duration)
+
+	return timer
+
+
 
 
 func pause() -> void:

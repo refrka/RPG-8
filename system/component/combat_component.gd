@@ -25,7 +25,7 @@ var charged:= false
 
 
 
-var movement_component: MovementComponent
+var movement_component: MovementComponent2
 
 
 
@@ -57,7 +57,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.attack_released.connect(_on_attack_input_released)
 
-	movement_component = entity.get_component(MovementComponent)
+	movement_component = entity.get_component(MovementComponent2)
 
 	if entity.inventory and entity.inventory.weapon:
 

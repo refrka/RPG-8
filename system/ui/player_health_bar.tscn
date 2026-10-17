@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://i1veiabr5x3k"]
+
+[ext_resource type="Texture2D" uid="uid://cr1w45y06nirj" path="res://resources/textures/ui/health_bar_left.png" id="1_nbxdd"]
+[ext_resource type="Script" uid="uid://prc63rfqsm2o" path="res://system/ui/player_health_bar.gd" id="1_p6fc7"]
+[ext_resource type="Texture2D" uid="uid://du7ncpu22k2gk" path="res://resources/textures/ui/health_bar_divider.png" id="2_p6fc7"]
+[ext_resource type="Texture2D" uid="uid://ioop4dqirc8d" path="res://resources/textures/ui/health_bar_segment.png" id="3_rorsw"]
+
+[node name="PlayerHealthBar" type="MarginContainer" unique_id=2037660773]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_p6fc7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1295538056]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=957554829]
+layout_mode = 2
+texture = ExtResource("1_nbxdd")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=645077801]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer" unique_id=106073725]
+layout_mode = 2
+texture = ExtResource("2_p6fc7")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1212537383]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1788857231]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_rorsw")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1244625242]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_rorsw")
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=158740814]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_rorsw")
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1309975916]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_rorsw")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=474426536]
+layout_mode = 2
+texture = ExtResource("1_nbxdd")
+stretch_mode = 2
+flip_h = true

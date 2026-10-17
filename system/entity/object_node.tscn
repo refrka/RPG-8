@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://crwq5805ij6u6" path="res://system/damage/hurtbox.tscn" id="2_a8qsg"]
 [ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_st2tw"]
 [ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_nt2ef"]
+[ext_resource type="Script" uid="uid://lhvhd2bifu7k" path="res://system/component/effects_component.gd" id="4_ytkjt"]
 
 [sub_resource type="Animation" id="Animation_ytkjt"]
 resource_name = "RESET"
@@ -47,6 +48,10 @@ debug_color = Color(0.7, 0, 0, 0.02745098)
 script = ExtResource("3_nt2ef")
 body_anim_player = NodePath("../../BodyAnimPlayer")
 metadata/_custom_type_script = "uid://c20ddxy082c6l"
+
+[node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=301467675]
+script = ExtResource("4_ytkjt")
+metadata/_custom_type_script = "uid://lhvhd2bifu7k"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1040336414]
 script = ExtResource("2_st2tw")

@@ -1,34 +1,35 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://daeonhydf5vqd"]
 
 [ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_lwkxy"]
-[ext_resource type="Script" uid="uid://b5avj013sygsc" path="res://system/behavior/basic_combat_behavior.gd" id="2_lwkxy"]
+[ext_resource type="Script" uid="uid://cp75lbkqtyo2c" path="res://system/behavior/basic_attack_behavior.gd" id="2_6iu8w"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_ywn8i"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_1f81s"]
 [ext_resource type="Resource" uid="uid://c6oewvdkbnw4o" path="res://system/player/player_def.tres" id="4_6iu8w"]
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_are0r"]
 [ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="6_um0jx"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_apnh0"]
+[ext_resource type="Resource" uid="uid://cw3sd5erjs6yy" path="res://items/consumable/food/apple_def.tres" id="7_ywn8i"]
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="8_diwo1"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="9_q78kr"]
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="10_jpkyo"]
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="11_u4c76"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="12_gthq3"]
 
-[sub_resource type="Resource" id="Resource_8tak1"]
-script = ExtResource("2_lwkxy")
-reposition_range = Vector2(100, 100)
+[sub_resource type="Resource" id="Resource_pinj3"]
+script = ExtResource("2_6iu8w")
+navigation_delay = 2.0
 behavior_state = 2
-metadata/_custom_type_script = "uid://b5avj013sygsc"
+metadata/_custom_type_script = "uid://cp75lbkqtyo2c"
 
 [sub_resource type="Resource" id="Resource_w87oj"]
 script = ExtResource("4_1f81s")
-behaviors = Array[ExtResource("1_lwkxy")]([SubResource("Resource_8tak1")])
+behaviors = Array[ExtResource("1_lwkxy")]([SubResource("Resource_pinj3")])
 enemy_defs = Array[ExtResource("3_ywn8i")]([ExtResource("4_6iu8w")])
 metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
 [sub_resource type="Resource" id="Resource_o5quc"]
 script = ExtResource("5_are0r")
-item_def = ExtResource("6_um0jx")
+item_def = ExtResource("7_ywn8i")
 count_range = Vector2i(1, 2)
 metadata/_custom_type_script = "uid://dd5nur0tqmxp5"
 
@@ -51,7 +52,7 @@ metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_y7h06"]
 script = ExtResource("11_u4c76")
-damage_range = Vector2(5, 5)
+damage_range = Vector2(1, 1.5)
 knockback_force = 50.0
 metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
 
@@ -68,4 +69,5 @@ entity_id = &"wolf"
 display_name = &"Wolf"
 initial_inventory = SubResource("Resource_ppefn")
 base_health = 4.0
+move_speed = 110.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

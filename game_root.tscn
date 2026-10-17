@@ -5,7 +5,42 @@
 [ext_resource type="PackedScene" uid="uid://y5g450fgkcas" path="res://system/ui/main_menu.tscn" id="2_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://ch2m5s11vute6" path="res://system/ui/profile_overlay.tscn" id="3_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://c70ovvphl6a34" path="res://system/ui/container_overlay.tscn" id="4_0o8ui"]
+[ext_resource type="Script" uid="uid://iuavs48mowyf" path="res://system/ui/hud.gd" id="5_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/mouse_item_slot.tscn" id="5_wd1uf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o8ui"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.21348056, 0.21348056, 0.21348056, 0.3019608)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19349456, 0.19349453, 0.1934945, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gxew"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0, 0, 0.54901963)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.49, 0.49, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 6
 
 [node name="GameRoot" type="Node" unique_id=91091552]
 script = ExtResource("1_xj5yv")
@@ -34,6 +69,40 @@ layout_mode = 1
 
 [node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
 layout_mode = 1
+
+[node name="HUDCanvas" type="CanvasLayer" parent="." unique_id=869869159]
+
+[node name="HUDRoot" type="Control" parent="HUDCanvas" unique_id=18563791]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HUD" type="MarginContainer" parent="HUDCanvas/HUDRoot" unique_id=1413650009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("5_8gxew")
+
+[node name="HealthProgressBar" type="ProgressBar" parent="HUDCanvas/HUDRoot/HUD" unique_id=777954952 groups=["player_health_bar"]]
+custom_minimum_size = Vector2(100, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_0o8ui")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8gxew")
+value = 50.0
 
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
 
