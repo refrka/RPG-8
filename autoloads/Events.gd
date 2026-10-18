@@ -32,9 +32,11 @@ func unsubscribe(event_script: Script, callback: Callable) -> void:
 
 
 
-func fire(event: Event) -> void:
+func fire(event_script: Script, data:= {}) -> void:
 
-	var event_script = event.get_script()
+	var event = event_script.new()
+
+	event.data = {}
 
 	if subscriptions.has(event_script):
 

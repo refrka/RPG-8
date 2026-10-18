@@ -43,6 +43,9 @@ func start() -> void:
 
 	location._activate.call_deferred()
 
+	Events.fire(GameStartedEvent)
+
+
 
 
 
@@ -59,6 +62,8 @@ func exit() -> void:
 	Scenes.clear_location()
 
 	Scenes.main_menu.show()
+
+	Events.fire(GameExitedEvent)
 
 
 
@@ -111,6 +116,8 @@ func hold_player() -> void:
 	if player.get_parent() == self:
 
 		return
+
+	player._deactivate()
 
 	player.hide()
 

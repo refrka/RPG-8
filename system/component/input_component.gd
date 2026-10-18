@@ -19,7 +19,7 @@ var input_dir: Vector2
 
 var first_move_input_received:= false
 
-var movement_component: MovementComponent2
+var movement_component: MovementComponent
 
 
 
@@ -30,7 +30,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
-	movement_component = entity.get_component(MovementComponent2)
+	movement_component = entity.get_component(MovementComponent)
 
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbadyrjfg0db"
-path="res://.godot/imported/acorn_sprite.png-475f25d111903449f38f1a5278622d18.ctex"
+uid="uid://d277i7rjxf5po"
+path="res://.godot/imported/cooked_meat_sprite.png-7e0a36b70587d97401fdbf670a174e23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/consumable/food/acorn_sprite.png"
-dest_files=["res://.godot/imported/acorn_sprite.png-475f25d111903449f38f1a5278622d18.ctex"]
+source_file="res://resources/textures/items/cooked_meat_sprite.png"
+dest_files=["res://.godot/imported/cooked_meat_sprite.png-7e0a36b70587d97401fdbf670a174e23.ctex"]
 
 [params]
 

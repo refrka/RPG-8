@@ -18,6 +18,7 @@ signal new_target_requested(new_target: EntityNode)
 
 @export var target_position_update_time:= 0.2
 
+var active:= false
 
 var data:= {}
 
@@ -42,6 +43,8 @@ func _start(_data:= {}) -> void:
 
 	data = _data
 
+	active = true
+
 	_connect_signals()
 
 
@@ -50,6 +53,8 @@ func _start(_data:= {}) -> void:
 
 
 func _stop() -> void:
+
+	active = false
 
 	_disconnect_signals()
 
@@ -64,7 +69,15 @@ func _find_target() -> void:
 
 
 
-func _evaluate_target(_new_target: EntityNode) -> bool:
+func _evaluate_target(_target: EntityNode = null) -> bool:
+
+	if !_target:
+
+		_target = target
+	
+	if !is_instance_valid(_target):
+
+		return false
 
 	return true
 
@@ -81,7 +94,13 @@ func _update_target(new_target: EntityNode) -> void:
 
 	if _evaluate_target(new_target):
 
+		if target:
+
+			target.died.disconnect(_on_target_died)
+
 		target = new_target
+
+		target.died.connect(_on_target_died)
 
 
 
@@ -101,6 +120,10 @@ func _disconnect_signals() -> void:
 	pass
 
 
+
+func _on_target_died() -> void:
+
+	pass
 
 
 

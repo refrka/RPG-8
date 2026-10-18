@@ -12,6 +12,8 @@ enum BehaviorState {
 
 	FLEE,
 
+	RETURN_TO_ANCHOR,
+
 }
 
 
@@ -30,7 +32,7 @@ var behavior_target: EntityNode
 
 var target_last_known_position: Vector2
 
-
+var data:= {}
 
 
 
@@ -100,19 +102,25 @@ func _evaluate_and_choose_behavior(behavior_list: Array[Behavior]) -> Behavior:
 
 func _change_behavior_state(new_state: BehaviorState) -> void:
 
-	if behavior_state == new_state:
-
-		return
-
 	behavior_state = new_state
 
-	var valid_behaviors = _get_valid_behaviors(new_state)
+	var new_behavior: Behavior = null
 
-	var behavior = _evaluate_and_choose_behavior(valid_behaviors)
+	if behavior_state == BehaviorState.RETURN_TO_ANCHOR:
 
-	if behavior:
+		new_behavior = ReturnToAnchorBehavior.new()
 
-		_change_behavior(behavior)
+		new_behavior._initialize(entity)
+
+	else:
+
+		var valid_behaviors = _get_valid_behaviors(new_state)
+
+		new_behavior = _evaluate_and_choose_behavior(valid_behaviors)
+
+	if new_behavior:
+
+		_change_behavior(new_behavior)
 
 
 
@@ -124,6 +132,8 @@ func _change_behavior_target(new_target: EntityNode) -> void:
 	
 	behavior_target = new_target
 
+	target_position_update_timer = 0.2
+
 	if current_behavior:
 
 		current_behavior._update_target(new_target)
@@ -134,6 +144,12 @@ func _change_behavior_target(new_target: EntityNode) -> void:
 
 
 func _change_behavior(behavior: Behavior) -> void:
+
+	var combat_component = entity.get_component(CombatComponent)
+
+	if combat_component and combat_component.is_attacking():
+
+		await combat_component.attack_completed
 
 	if current_behavior:
 
@@ -147,9 +163,7 @@ func _change_behavior(behavior: Behavior) -> void:
 
 	current_behavior._update_target(behavior_target)
 
-	current_behavior._start()
-
-
+	current_behavior._start(data)
 
 
 
@@ -166,6 +180,8 @@ func _update_target_position() -> void:
 
 			current_behavior._find_target()
 
+		target_position_update_timer = 0.2
+
 
 
 
@@ -176,6 +192,15 @@ func _get_valid_behaviors(_behavior_state: BehaviorState) -> Array[Behavior]:
 
 	return behaviors.filter(func(b): return b.behavior_state == _behavior_state)
 
+
+
+
+
+
+
+func request_behavior_state(_behavior_state: BehaviorState) -> void:
+
+	_change_behavior_state(_behavior_state)
 
 
 
@@ -195,6 +220,21 @@ func is_target_valid(target_entity: EntityNode = null) -> bool:
 	return true
 
 
+
+
+func is_target_enemy(target: EntityNode = null) -> bool:
+
+	if !target:
+
+		if !behavior_target:
+
+			return false
+
+		target = behavior_target
+
+	return entity.combat_melee_sensor.entities.has(target)
+
+	
 
 
 

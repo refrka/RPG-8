@@ -20,6 +20,8 @@ func _ready() -> void:
 
 func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
+	var player = Game.get_player()
+
 	match [event.button_index, event.is_pressed(), target_slot.is_empty(), is_empty()]:
 
 		[1, true, true, true]: # Left click (down), empty slot, nothing held
@@ -52,10 +54,6 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
 					drop_slot()
 
-		[2, true, true, false]: # Right click (down), empty slot, something held
-
-			drop_slot()
-
 		[1, false, true, true]: # Left click (up), empty slot, nothing held
 
 			if selected_slot:
@@ -65,6 +63,20 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 		[1, true, false, true]: # Left click (down), occupied slot, nothing held
 
 			hold_slot(target_slot)
+
+		[2, true, true, false]: # Right click (down), empty slot, something held
+
+			drop_slot()
+
+		[2, true, false, true]: # Right click (down), occupied slot, nothing held
+
+			var item_def = target_slot.item_stack.item_def
+
+			if item_def is ConsumableDef:
+
+				player.consume(item_def)
+
+				target_slot.item_stack.remove_amount(1)
 
 			
 

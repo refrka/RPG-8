@@ -9,8 +9,21 @@ signal entity_hit(entity_node: EntityNode)
 
 var current_damage_package: DamagePackage
 
-
 var hit_list: Array[Hurtbox]
+
+var combat_component: CombatComponent
+
+
+
+
+
+
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	combat_component = entity.get_component(CombatComponent)
+
 
 
 
@@ -24,6 +37,12 @@ func can_hit(hurtbox: Hurtbox) -> bool:
 		return false
 
 	if hurtbox.entity == entity:
+
+		return false
+
+	var attack_entry = combat_component.get_attack_entry(combat_component.current_attack_index)
+
+	if !attack_entry.hit_self_scene and hurtbox.entity.entity_def == entity.entity_def:
 
 		return false
 

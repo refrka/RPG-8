@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu5bgtxmkyc4"
-path="res://.godot/imported/berries_sprite.png-5301def5813cbc6fe52baa9281cff827.ctex"
+uid="uid://btcxnac80ee8n"
+path="res://.godot/imported/poison_mushroom_sprite.png-462ca8ba1b79c5bdc625d2b8c82062c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/consumable/food/berries_sprite.png"
-dest_files=["res://.godot/imported/berries_sprite.png-5301def5813cbc6fe52baa9281cff827.ctex"]
+source_file="res://resources/textures/items/poison_mushroom_sprite.png"
+dest_files=["res://.godot/imported/poison_mushroom_sprite.png-462ca8ba1b79c5bdc625d2b8c82062c2.ctex"]
 
 [params]
 

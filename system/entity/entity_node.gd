@@ -310,6 +310,8 @@ func is_interactable() -> bool:
 
 func _die() -> void:
 
+	print("dying")
+
 	_deactivate()
 
 	if inventory and inventory.loot_table:
@@ -323,6 +325,8 @@ func _die() -> void:
 			var target_position = global_position + Vector2(randf_range(-30.0, 30.0), randf_range(-30.0, 30.0))
 
 			Scenes.current_location.drop_item(item_def, target_position, count)
+
+	print("Emitting dying")
 
 	died.emit()
 

@@ -6,6 +6,8 @@ signal item_updated
 
 signal count_updated
 
+signal stack_emptied
+
 
 
 @export var item_def: ItemDef
@@ -50,6 +52,8 @@ func set_count(new_count: int) -> void:
 		item_def = null
 
 		item_data = null
+
+		stack_emptied.emit()
 
 	count_updated.emit()
 

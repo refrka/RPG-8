@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqgog86lkqkmi"
-path="res://.godot/imported/raw_meat_sprite.png-957558f67882ea7725fb796751094eea.ctex"
+uid="uid://bu5bgtxmkyc4"
+path="res://.godot/imported/berries_sprite.png-27ae23c6ba4e87c45ee8e3b3fc3aab02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/consumable/food/raw_meat_sprite.png"
-dest_files=["res://.godot/imported/raw_meat_sprite.png-957558f67882ea7725fb796751094eea.ctex"]
+source_file="res://resources/textures/items/berries_sprite.png"
+dest_files=["res://.godot/imported/berries_sprite.png-27ae23c6ba4e87c45ee8e3b3fc3aab02.ctex"]
 
 [params]
 

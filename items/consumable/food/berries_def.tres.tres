@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://dmra6iliwh07g"]
+
+[ext_resource type="Script" uid="uid://dixfk76l3q44i" path="res://system/effect/effect.gd" id="1_o0cfm"]
+[ext_resource type="Script" uid="uid://solcjy8yopbb" path="res://system/item/consumable_def.gd" id="2_4awgo"]
+[ext_resource type="Texture2D" uid="uid://bu5bgtxmkyc4" path="res://resources/textures/items/berries_sprite.png" id="3_4awgo"]
+
+[resource]
+script = ExtResource("2_4awgo")
+item_id = &"berries"
+sprite_texture = ExtResource("3_4awgo")
+metadata/_custom_type_script = "uid://solcjy8yopbb"

@@ -92,6 +92,8 @@ func set_stack(_item_stack: ItemStack) -> void:
 
 		item_stack.count_updated.connect(_on_stack_count_updated)
 
+		item_stack.stack_emptied.connect(_on_stack_emptied)
+
 	contents_updated.emit()
 
 	update()
@@ -262,7 +264,13 @@ func _on_stack_item_updated() -> void:
 
 
 
-
 func _on_stack_count_updated() -> void:
 
 	_update_item_visuals()
+
+
+
+
+func _on_stack_emptied() -> void:
+
+	set_stack(null)

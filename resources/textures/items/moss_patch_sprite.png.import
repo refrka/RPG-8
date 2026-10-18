@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckhee7gc0mdri"
-path="res://.godot/imported/mushroom_sprite.png-e8616bb739f25ff1a8200b5d06b90924.ctex"
+uid="uid://b2mr1nx2b15rj"
+path="res://.godot/imported/moss_patch_sprite.png-73418d8bcc4f7c0c8da33318bd2fa10b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/consumable/food/mushroom_sprite.png"
-dest_files=["res://.godot/imported/mushroom_sprite.png-e8616bb739f25ff1a8200b5d06b90924.ctex"]
+source_file="res://resources/textures/items/moss_patch_sprite.png"
+dest_files=["res://.godot/imported/moss_patch_sprite.png-73418d8bcc4f7c0c8da33318bd2fa10b.ctex"]
 
 [params]
 

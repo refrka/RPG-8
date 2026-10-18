@@ -25,7 +25,7 @@ var charged:= false
 
 
 
-var movement_component: MovementComponent2
+var movement_component: MovementComponent
 
 
 
@@ -57,7 +57,9 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.attack_released.connect(_on_attack_input_released)
 
-	movement_component = entity.get_component(MovementComponent2)
+	movement_component = entity.get_component(MovementComponent)
+
+	movement_component.face_dir_updated.connect(_on_face_dir_updated)
 
 	if entity.inventory and entity.inventory.weapon:
 
@@ -369,6 +371,12 @@ func _on_attack_input_released() -> void:
 
 			_start_attack()
 
+
+
+
+func _on_face_dir_updated() -> void:
+
+	entity.combat_root.rotation = movement_component.face_dir.angle()
 
 
 

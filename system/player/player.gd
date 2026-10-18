@@ -13,7 +13,7 @@ func _initialize() -> bool:
 
 	interaction_area._initialize(self)
 
-	PlayerInitializedEvent.fire()
+	Events.fire(PlayerInitializedEvent)
 
 	return true
 

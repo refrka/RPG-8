@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://deuo4lu0qqoga"]
+
+[ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_kx4td"]
+[ext_resource type="Resource" uid="uid://cl6bwfpg14fo4" path="res://entities/characters/creatures/squirrel_def.tres" id="2_whuyn"]
+[ext_resource type="Texture2D" uid="uid://cpjc58b4adn4j" path="res://resources/textures/entities/temp_entity.png" id="2_y4pc3"]
+[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_t0ejo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8tak1"]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whuyn"]
+size = Vector2(14, 14)
+
+[node name="Squirrel" unique_id=2016177718 instance=ExtResource("1_kx4td")]
+entity_def = ExtResource("2_whuyn")
+
+[node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=1734593589]
+texture = ExtResource("2_y4pc3")
+offset = Vector2(0, -7)
+
+[node name="CombatRoot" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="1" unique_id=1011823152]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
+position = Vector2(0, -2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8tak1")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_whuyn")
+
+[node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=172160824]
+script = ExtResource("4_t0ejo")
+metadata/_custom_type_script = "uid://brmk31djiyou1"
+
+[node name="HealthProgressBar" parent="." index="10" unique_id=1011421391]
+offset_top = -21.0
+offset_bottom = -17.0
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

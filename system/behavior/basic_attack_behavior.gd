@@ -9,7 +9,8 @@ var delay_timer: SceneTreeTimer
 
 var combat_component: CombatComponent
 
-var movement_component: MovementComponent2
+var movement_component: MovementComponent
+
 
 
 
@@ -21,9 +22,7 @@ func _initialize(_actor: EntityNode) -> void:
 
 	combat_component.attack_completed.connect(_on_attack_completed)
 
-	movement_component = actor.get_component(MovementComponent2)
-
-	movement_component.navigation_position_reached.connect(_on_target_reached)
+	movement_component = actor.get_component(MovementComponent)
 
 	actor.combat_melee_sensor.entity_entered.connect(_on_entity_entered_melee_sensor)
 
@@ -45,6 +44,48 @@ func _start(_data:= {}) -> void:
 
 
 
+func _stop() -> void:
+
+	super()
+
+	if delay_timer:
+	
+		if delay_timer.timeout.is_connected(_on_delay_timer_timeout):
+
+			delay_timer.timeout.disconnect(_on_delay_timer_timeout)
+
+		delay_timer = null
+
+
+
+	
+
+
+
+func _update_target(new_target: EntityNode) -> void:
+
+	super(new_target)
+
+	movement_component.set_navigation_target(new_target)
+
+
+
+
+func _connect_signals() -> void:
+
+	movement_component.navigation_position_reached.connect(_on_target_reached)
+
+
+
+
+
+func _disconnect_signals() -> void:
+
+	movement_component.navigation_position_reached.disconnect(_on_target_reached)
+
+	if is_instance_valid(target):
+
+		target.died.disconnect(_on_target_died)
 
 
 
@@ -52,7 +93,7 @@ func _start(_data:= {}) -> void:
 
 func _on_entity_entered_melee_sensor(entity_node: EntityNode) -> void:
 
-	if delay_timer:
+	if delay_timer or !active:
 
 		return
 
@@ -68,7 +109,11 @@ func _on_entity_entered_melee_sensor(entity_node: EntityNode) -> void:
 
 func _on_attack_completed() -> void:
 
-	if is_instance_valid(target) and !delay_timer:
+	if !is_instance_valid(target):
+
+		return
+
+	if !delay_timer and _evaluate_target(target):
 
 		delay_timer = Game.get_timer(navigation_delay)
 
@@ -82,9 +127,19 @@ func _on_target_reached() -> void:
 
 	if !delay_timer:
 
-		movement_component.halt()
+		if actor.combat_melee_sensor.entities.has(target):
 
-		combat_component._try_attack()
+			movement_component.halt()
+
+			combat_component._try_attack()
+
+
+
+
+func _on_target_died() -> void:
+
+	behavior_state_requested.emit(BehaviorComponent.BehaviorState.PASSIVE)
+
 
 
 

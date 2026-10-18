@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2fgknfmnbcb4"
-path="res://.godot/imported/bread_sprite.png-f4944572a87f800907b20c5cee0d2f29.ctex"
+uid="uid://c61dm5e4iw5it"
+path="res://.godot/imported/apple_sprite.png-5ea8375f1b20f7b514be768d3237bddc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/consumable/food/bread_sprite.png"
-dest_files=["res://.godot/imported/bread_sprite.png-f4944572a87f800907b20c5cee0d2f29.ctex"]
+source_file="res://resources/textures/items/apple_sprite.png"
+dest_files=["res://.godot/imported/apple_sprite.png-5ea8375f1b20f7b514be768d3237bddc.ctex"]
 
 [params]
 

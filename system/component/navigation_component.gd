@@ -6,7 +6,7 @@ signal navigation_finished
 
 
 
-var movement_component: MovementComponent2
+var movement_component: MovementComponent
 
 
 var target_position: Vector2
@@ -26,7 +26,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
-	movement_component = entity.get_component(MovementComponent2)
+	movement_component = entity.get_component(MovementComponent)
 
 	entity.nav_agent.navigation_finished.connect(_on_navigation_finished)
 

@@ -26,7 +26,9 @@ enum Phase {
 @export var reposition_range:= Vector2(0.0, 0.0)
 
 
-var movement_component: MovementComponent2
+
+
+var movement_component: MovementComponent
 
 var combat_component: CombatComponent
 
@@ -48,7 +50,7 @@ func _initialize(_actor: EntityNode) -> void:
 
 	super(_actor)
 
-	movement_component = actor.get_component(MovementComponent2)
+	movement_component = actor.get_component(MovementComponent)
 
 	combat_component = actor.get_component(CombatComponent)
 

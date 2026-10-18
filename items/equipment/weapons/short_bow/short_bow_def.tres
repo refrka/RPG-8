@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_tlojb"]
 script = ExtResource("1_tlojb")
-knockback_force = 100.0
+knockback_force = 15.0
 has_charge = true
 can_aim_charge = true
 can_hold_charge = true

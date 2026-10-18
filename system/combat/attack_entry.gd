@@ -13,3 +13,5 @@ class_name AttackEntry extends Resource
 @export var can_aim_charge:= false
 
 @export var can_hold_charge:= false
+
+@export var hit_self_scene:= false

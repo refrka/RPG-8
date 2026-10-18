@@ -1,4 +1,4 @@
-class_name MovementComponent extends Component
+class_name MovementComponentOld extends Component
 
 
 

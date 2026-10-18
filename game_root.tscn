@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c70ovvphl6a34" path="res://system/ui/container_overlay.tscn" id="4_0o8ui"]
 [ext_resource type="Script" uid="uid://iuavs48mowyf" path="res://system/ui/hud.gd" id="5_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/mouse_item_slot.tscn" id="5_wd1uf"]
+[ext_resource type="Script" uid="uid://frkul2fktkgw" path="res://system/ui/player_health_bar.gd" id="6_ledqy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o8ui"]
 content_margin_left = 2.0
@@ -50,26 +51,6 @@ follow_viewport_enabled = true
 
 [node name="LocationRoot" type="Node2D" parent="LocationCanvas" unique_id=1339218736 groups=["location_root"]]
 
-[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=921132394]
-
-[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=535348346]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=582523827 instance=ExtResource("2_bxsma")]
-layout_mode = 1
-
-[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1437819695 instance=ExtResource("4_0o8ui")]
-layout_mode = 1
-
-[node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
-layout_mode = 1
-
 [node name="HUDCanvas" type="CanvasLayer" parent="." unique_id=869869159]
 
 [node name="HUDRoot" type="Control" parent="HUDCanvas" unique_id=18563791]
@@ -95,7 +76,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("5_8gxew")
 
-[node name="HealthProgressBar" type="ProgressBar" parent="HUDCanvas/HUDRoot/HUD" unique_id=777954952 groups=["player_health_bar"]]
+[node name="PlayerHealthBar" type="ProgressBar" parent="HUDCanvas/HUDRoot/HUD" unique_id=777954952 groups=["player_health_bar"]]
 custom_minimum_size = Vector2(100, 18)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -103,6 +84,27 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/background = SubResource("StyleBoxFlat_0o8ui")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8gxew")
 value = 50.0
+script = ExtResource("6_ledqy")
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=921132394]
+
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=535348346]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=582523827 instance=ExtResource("2_bxsma")]
+layout_mode = 1
+
+[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1437819695 instance=ExtResource("4_0o8ui")]
+layout_mode = 1
+
+[node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
+layout_mode = 1
 
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
 
