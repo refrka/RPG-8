@@ -1,4 +1,4 @@
-class_name ReturnToAnchorBehavior extends Behavior
+class_name ReturnToAnchorBehavior extends BehaviorOld
 
 
 

@@ -2,9 +2,10 @@ class_name BehaviorProfile extends Resource
 
 
 
+
+
 @export var behaviors: Array[Behavior]
 
+@export var baseline_hostility_scores: Dictionary[EntityDef, float]
 
-@export var enemy_defs: Array[EntityDef]
-
-@export var target_distance_threshold:= 200.0
+@export var default_behavior: Behavior

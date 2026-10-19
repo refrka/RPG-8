@@ -103,6 +103,8 @@ profile={
 2d_physics/layer_9="Hitbox"
 2d_physics/layer_10="Hurtbox"
 2d_physics/layer_11="TileMapImpassable"
+avoidance/layer_1="CharacterNode"
+avoidance/layer_2="ObjectNode"
 
 [physics]
 

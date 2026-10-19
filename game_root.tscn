@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://iuavs48mowyf" path="res://system/ui/hud.gd" id="5_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/mouse_item_slot.tscn" id="5_wd1uf"]
 [ext_resource type="Script" uid="uid://frkul2fktkgw" path="res://system/ui/player_health_bar.gd" id="6_ledqy"]
+[ext_resource type="Script" uid="uid://dqbmuk2yx6jfc" path="res://system/ui/debug_panel_controls.gd" id="9_6t5o2"]
+[ext_resource type="Script" uid="uid://blvhavomf7l6k" path="res://system/ui/behavior_panel.gd" id="10_aiwur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o8ui"]
 content_margin_left = 2.0
@@ -42,6 +44,53 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ledqy"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.24158412, 0.24158394, 0.24158391, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1334365, 0.1334365, 0.1334365, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ledqy"]
+content_margin_left = 2.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aiwur"]
+content_margin_left = 2.0
+bg_color = Color(0.47138423, 0.4713843, 0.47138417, 0.18431373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t5o2"]
+content_margin_left = 2.0
+bg_color = Color(0.47138423, 0.4713843, 0.47138417, 0.18431373)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0.14117648)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krhou"]
+content_margin_left = 2.0
+bg_color = Color(0.43685514, 0.4368552, 0.43685505, 0.18431373)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8tlgu"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
 
 [node name="GameRoot" type="Node" unique_id=91091552]
 script = ExtResource("1_xj5yv")
@@ -113,3 +162,127 @@ layout_mode = 1
 [node name="MouseItemSlotCanvas" type="CanvasLayer" parent="." unique_id=241222124]
 
 [node name="MouseItemSlot" parent="MouseItemSlotCanvas" unique_id=212764444 instance=ExtResource("5_wd1uf")]
+
+[node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1412821183]
+
+[node name="DebugRoot" type="Control" parent="DebugCanvas" unique_id=1275871152 groups=["debug_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugCanvas/DebugRoot" unique_id=2099576277]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 33
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer" unique_id=1701468542]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DebugPanelControls" type="PanelContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer" unique_id=95551364 node_paths=PackedStringArray("behavior_panel_checkbox", "behavior_panel")]
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ledqy")
+script = ExtResource("9_6t5o2")
+behavior_panel_checkbox = NodePath("MarginContainer/VBoxContainer/VBoxContainer/CheckBox")
+behavior_panel = NodePath("../BehaviorPanel")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls" unique_id=1103585101]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls/MarginContainer" unique_id=1384279345]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls/MarginContainer/VBoxContainer" unique_id=1869953799]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Panels"
+
+[node name="HSeparator" type="HSeparator" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls/MarginContainer/VBoxContainer" unique_id=115340287]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls/MarginContainer/VBoxContainer" unique_id=1220184539]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/DebugPanelControls/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2012653997]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/icon_max_width = 8
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ledqy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aiwur")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6t5o2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_krhou")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8tlgu")
+text = "Behavior"
+
+[node name="BehaviorPanel" type="PanelContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer" unique_id=788547352 node_paths=PackedStringArray("entity_id_label", "current_behavior_label") groups=["debug_behavior_panel"]]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("10_aiwur")
+entity_id_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/SelectedEntityIDLabel")
+current_behavior_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CurrentBehaviorLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel" unique_id=1741406550]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer" unique_id=853325370]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer" unique_id=1898185576]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Behavior"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer" unique_id=765765918]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer" unique_id=26038874]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=400932161]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=365411722]
+layout_mode = 2
+
+[node name="SelectedEntityIDLabel" type="Label" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1608986542]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "[ n/a ]"
+
+[node name="VSeparator" type="VSeparator" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=761247946]
+layout_mode = 2
+
+[node name="CurrentBehaviorLabel" type="Label" parent="DebugCanvas/DebugRoot/MarginContainer/HBoxContainer/BehaviorPanel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=426304986]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "[ no behavior ]"

@@ -1,4 +1,4 @@
-class_name BasicAttackBehavior extends Behavior
+class_name BasicAttackBehavior extends BehaviorOld
 
 
 
@@ -58,6 +58,28 @@ func _stop() -> void:
 
 
 
+
+
+func _evaluate_target(_target: EntityNode = null) -> bool:
+
+	if !super(_target):
+
+		return false
+
+	if !target:
+
+		return true
+
+	if target is Player:
+
+		return false
+
+	if _target.entity_def == target.entity_def:
+
+		return false
+
+	return true
+
 	
 
 
@@ -66,7 +88,7 @@ func _update_target(new_target: EntityNode) -> void:
 
 	super(new_target)
 
-	movement_component.set_navigation_target(new_target)
+	movement_component.set_navigation_target(target)
 
 
 
@@ -113,7 +135,7 @@ func _on_attack_completed() -> void:
 
 		return
 
-	if !delay_timer and _evaluate_target(target):
+	if !delay_timer:
 
 		delay_timer = Game.get_timer(navigation_delay)
 

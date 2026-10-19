@@ -86,6 +86,8 @@ func set_stack(_item_stack: ItemStack) -> void:
 
 		item_stack.count_updated.disconnect(_on_stack_count_updated)
 
+		item_stack.stack_emptied.disconnect(_on_stack_emptied)
+
 	item_stack = _item_stack
 
 	if item_stack:

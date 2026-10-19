@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_6ogyw"]
 [ext_resource type="Resource" uid="uid://daeonhydf5vqd" path="res://entities/characters/creatures/wolf_def.tres" id="2_6wlex"]
 [ext_resource type="Texture2D" uid="uid://banmj8yioeoo8" path="res://entities/characters/creatures/wolf_sprite.png" id="3_3lhe6"]
-[ext_resource type="Script" uid="uid://brmk31djiyou1" path="res://system/component/behavior_component.gd" id="4_kn6f7"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="5_cq8lg"]
+[ext_resource type="Script" uid="uid://b1dr455elg62r" path="res://system/component/behavior_component.gd" id="5_pinj3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hc1j"]
 radius = 9.0
@@ -142,6 +142,8 @@ _data = {
 &"attack_0": SubResource("Animation_6wlex")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4k1ij"]
+
 [node name="Wolf" unique_id=2016177718 instance=ExtResource("1_6ogyw")]
 entity_def = ExtResource("2_6wlex")
 
@@ -175,27 +177,34 @@ polygon = PackedVector2Array(-16, -16, -16, 0, -11, 0, -11, -5, 11, -5, 11, 0, 1
 shape = SubResource("CircleShape2D_vjujl")
 
 [node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
-avoidance_enabled = true
+target_desired_distance = 8.0
 radius = 5.0
+debug_enabled = true
 
-[node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="3" unique_id=1036456560]
-script = ExtResource("4_kn6f7")
-metadata/_custom_type_script = "uid://brmk31djiyou1"
-
-[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=2020302319]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="3" unique_id=2020302319]
 script = ExtResource("5_cq8lg")
 metadata/_custom_type_script = "uid://prruy5b51dk5"
 
-[node name="BodyAnimationPlayer" parent="." index="8" unique_id=1131495921]
+[node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1277958252]
+script = ExtResource("5_pinj3")
+metadata/_custom_type_script = "uid://b1dr455elg62r"
+
+[node name="BodyAnimationPlayer" parent="." index="9" unique_id=1131495921]
 libraries/unarmed = SubResource("AnimationLibrary_ku6ha")
 
-[node name="CombatAnimationPlayer" parent="." index="9" unique_id=487937974]
+[node name="CombatAnimationPlayer" parent="." index="10" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_kn6f7")
 libraries/unarmed = SubResource("AnimationLibrary_se3qs")
 
-[node name="HealthProgressBar" parent="." index="10" unique_id=1011421391]
+[node name="HealthProgressBar" parent="." index="11" unique_id=1011421391]
 offset_top = -31.0
 offset_bottom = -27.0
+
+[node name="DebugPanel" parent="." index="12" unique_id=1608834270]
+offset_bottom = 3.0
+
+[node name="PanelContainer" parent="DebugPanel/VBoxContainer" parent_id_path=PackedInt32Array(1574249897) index="1" unique_id=351654181]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4k1ij")
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

@@ -1,8 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://cl6bwfpg14fo4"]
 
-[ext_resource type="Script" uid="uid://dip60lvo86j0i" path="res://system/behavior/behavior.gd" id="1_2d7um"]
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_22blx"]
-[ext_resource type="Script" uid="uid://dw82l2fshdrpl" path="res://system/behavior/wander_behavior.gd" id="2_iffok"]
+[ext_resource type="Script" uid="uid://dlwkos3f6dq52" path="res://system/behavior/behavior.gd" id="1_bj35x"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_66vjd"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_qwi7p"]
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_b2k2r"]
@@ -11,16 +10,8 @@
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="8_65x2f"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="9_cnlk3"]
 
-[sub_resource type="Resource" id="Resource_iovgs"]
-script = ExtResource("2_iffok")
-wander_distance_range = Vector2(100, 200)
-idle_duration_range = Vector2(3, 10)
-wander_speed = 500.0
-metadata/_custom_type_script = "uid://dw82l2fshdrpl"
-
 [sub_resource type="Resource" id="Resource_8tak1"]
 script = ExtResource("4_qwi7p")
-behaviors = Array[ExtResource("1_2d7um")]([SubResource("Resource_iovgs")])
 metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
 [sub_resource type="Resource" id="Resource_aq7pe"]

@@ -2,82 +2,50 @@ class_name Behavior extends Resource
 
 
 
-@warning_ignore_start("unused_signal")
+@export var display_name: String
 
-signal behavior_state_requested(state: BehaviorComponent.BehaviorState)
-
-signal new_target_requested(new_target: EntityNode)
+@export var required_behavior_state: BehaviorComponent.BehaviorState
 
 
-
-
-
-@export var priority:= 0
-
-@export var behavior_state: BehaviorComponent.BehaviorState
-
-@export var target_position_update_time:= 0.2
-
-var active:= false
-
-var data:= {}
 
 var actor: EntityNode
+
+var behavior_component: BehaviorComponent
 
 var target: EntityNode
 
 
 
-
-
-func _initialize(_actor: EntityNode) -> void:
+func _initialize(_actor: EntityNode, _behavior_component: BehaviorComponent) -> void:
 
 	actor = _actor
 
+	behavior_component = _behavior_component
 
 
 
 
 
-func _start(_data:= {}) -> void:
 
-	data = _data
+func _start(_target: EntityNode = null) -> void:
 
-	active = true
-
-	_connect_signals()
-
-
+	target = _target
 
 
 
 
 func _stop() -> void:
 
-	active = false
-
-	_disconnect_signals()
-
-
-
-
-
-func _find_target() -> void:
-
 	pass
 
 
 
 
-func _evaluate_target(_target: EntityNode = null) -> bool:
 
-	if !_target:
 
-		_target = target
-	
-	if !is_instance_valid(_target):
+# Compare a new target to the current one
 
-		return false
+func _evaluate_new_target(new_target: EntityNode) -> bool:
 
 	return true
 
@@ -86,44 +54,13 @@ func _evaluate_target(_target: EntityNode = null) -> bool:
 
 
 
-func _update_target(new_target: EntityNode) -> void:
+func _get_valid_targets() -> Array[EntityNode]:
 
-	if target and new_target == target:
+	var valid_targets: Array[EntityNode] = actor.vision_sensor.entities
 
-		return
-
-	if _evaluate_target(new_target):
-
-		if target:
-
-			target.died.disconnect(_on_target_died)
-
-		target = new_target
-
-		target.died.connect(_on_target_died)
+	return valid_targets
 
 
-
-
-
-
-func _connect_signals() -> void:
-
-	pass
-
-
-
-
-
-func _disconnect_signals() -> void:
-
-	pass
-
-
-
-func _on_target_died() -> void:
-
-	pass
 
 
 

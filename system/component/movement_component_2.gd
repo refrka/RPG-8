@@ -268,7 +268,7 @@ func _physics_process(delta: float) -> void:
 
 		move_ended.emit()
 
-	if entity.nav_agent.avoidance_enabled:
+	if entity is CharacterNode and entity.nav_agent.avoidance_enabled:
 
 		entity.nav_agent.set_velocity(move_velocity)
 

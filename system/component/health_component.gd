@@ -78,6 +78,12 @@ func is_alive() -> bool:
 
 
 
+func is_weak() -> bool:
+
+	return current_health / max_health <= 0.3
+
+
+
 
 
 func _die() -> void:

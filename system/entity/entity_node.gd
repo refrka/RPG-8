@@ -33,6 +33,14 @@ signal died
 
 @export var combat_melee_sensor: Sensor
 
+@export var on_screen_notifier: VisibleOnScreenNotifier2D
+
+@export var debug_panel: EntityDebugPanel
+
+
+
+
+
 
 
 var initialized:= false
@@ -275,6 +283,7 @@ func get_direction(target_entity: EntityNode, invert:= false) -> Vector2:
 
 
 
+
 func get_distance(target_entity: EntityNode, squared:= false) -> float:
 
 	if !squared:
@@ -284,6 +293,7 @@ func get_distance(target_entity: EntityNode, squared:= false) -> float:
 	else:
 
 		return global_position.distance_squared_to(target_entity.global_position)
+
 
 
 
@@ -308,9 +318,14 @@ func is_interactable() -> bool:
 
 
 
-func _die() -> void:
+func is_on_screen() -> bool:
 
-	print("dying")
+	return on_screen_notifier.is_on_screen()
+
+
+
+
+func _die() -> void:
 
 	_deactivate()
 
@@ -325,8 +340,6 @@ func _die() -> void:
 			var target_position = global_position + Vector2(randf_range(-30.0, 30.0), randf_range(-30.0, 30.0))
 
 			Scenes.current_location.drop_item(item_def, target_position, count)
-
-	print("Emitting dying")
 
 	died.emit()
 

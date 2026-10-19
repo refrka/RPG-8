@@ -1,7 +1,6 @@
 class_name ProjectileNode extends EntityNode
 
 
-@export var on_screen_notifier: VisibleOnScreenNotifier2D
 
 
 var projectile_owner: EntityNode

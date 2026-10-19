@@ -1,4 +1,4 @@
-class_name TestBehavior extends Behavior
+class_name TestBehavior extends BehaviorOld
 
 
 

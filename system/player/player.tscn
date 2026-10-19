@@ -291,6 +291,8 @@ _data = {
 &"attack_0": SubResource("Animation_ebooa")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ly01"]
+
 [node name="Player" unique_id=2016177718 node_paths=PackedStringArray("interaction_area", "pick_up_area") instance=ExtResource("1_o3wy1")]
 script = ExtResource("2_ho6qo")
 interaction_area = NodePath("InteractionArea")
@@ -326,6 +328,10 @@ shape = SubResource("CapsuleShape2D_a8qsg")
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_hgc5g")
 
+[node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+avoidance_layers = 0
+avoidance_mask = 0
+
 [node name="MovementComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="0" unique_id=1855537733 node_paths=PackedStringArray("modifier_handler")]
 script = ExtResource("5_6v7yr")
 modifier_handler = NodePath("ModifierHandler")
@@ -351,9 +357,6 @@ metadata/_custom_type_script = "uid://bhnikxv2o67wv"
 script = ExtResource("10_dpa2h")
 metadata/_custom_type_script = "uid://dgolaqlur1kg1"
 
-[node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
-script = ExtResource("8_1hkuc")
-
 [node name="InteractionArea" type="Area2D" parent="." index="8" unique_id=1363506223]
 position = Vector2(0, -14)
 collision_layer = 0
@@ -375,10 +378,22 @@ metadata/_custom_type_script = "uid://djwmq6um80d4a"
 shape = SubResource("CircleShape2D_ukr2h")
 debug_color = Color(0.7, 0.595, 0, 0)
 
-[node name="CombatAnimationPlayer" parent="." index="11" unique_id=487937974]
+[node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
+script = ExtResource("8_1hkuc")
+
+[node name="CombatAnimationPlayer" parent="." index="12" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_h3rsp")
 libraries/short_bow = SubResource("AnimationLibrary_viji7")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
+
+[node name="DebugOverlay" parent="." index="14" unique_id=1608834270]
+offset_left = -14.0
+offset_top = -47.0
+offset_right = 13.0
+offset_bottom = 3.0
+
+[node name="PanelContainer" parent="DebugOverlay/VBoxContainer" parent_id_path=PackedInt32Array(1574249897) index="1" unique_id=351654181]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ly01")
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

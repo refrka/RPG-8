@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://55mmhmjsvaws" path="res://system/state/combat_charging_state.gd" id="11_hrt4h"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
 [ext_resource type="Script" uid="uid://vwvqw0xsi68o" path="res://system/ui/health_progress_bar.gd" id="14_nhrk4"]
+[ext_resource type="Script" uid="uid://tm8tfq81rqpv" path="res://system/ui/entity_debug_panel.gd" id="16_4ly01"]
 
 [sub_resource type="Animation" id="Animation_fnjhg"]
 resource_name = "RESET"
@@ -102,7 +103,16 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "health_bar", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrdxv"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu7xt"]
+
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "health_bar", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor", "on_screen_notifier", "debug_panel")]
 collision_mask = 2
 script = ExtResource("1_qxfxo")
 nav_agent = NodePath("NavigationAgent2D")
@@ -115,6 +125,8 @@ hitbox = NodePath("CanvasGroup/CombatRoot/Hitbox")
 hurtbox = NodePath("Hurtbox")
 vision_sensor = NodePath("VisionSensor")
 combat_melee_sensor = NodePath("CanvasGroup/CombatRoot/CombatMeleeSensor")
+on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+debug_panel = NodePath("DebugPanel")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -156,7 +168,8 @@ debug_color = Color(0.97704154, 0.7942424, 0.50736034, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=780391334]
 avoidance_enabled = true
-debug_enabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=824061252]
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=9866386]
 
@@ -229,6 +242,39 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_nhrk4")
 value = 50.0
 show_percentage = false
 script = ExtResource("14_nhrk4")
+
+[node name="DebugPanel" type="MarginContainer" parent="." unique_id=1608834270 node_paths=PackedStringArray("entity_id_label", "panel")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+script = ExtResource("16_4ly01")
+entity_id_label = NodePath("VBoxContainer/EntityIDLabel")
+panel = NodePath("VBoxContainer/PanelContainer")
+hover_stylebox = SubResource("StyleBoxFlat_lrdxv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel" unique_id=1574249897]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EntityIDLabel" type="Label" parent="DebugPanel/VBoxContainer" unique_id=967390338]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="DebugPanel/VBoxContainer" unique_id=351654181]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tu7xt")
+metadata/_edit_lock_ = true
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]
