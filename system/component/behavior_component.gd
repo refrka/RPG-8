@@ -37,18 +37,18 @@ var change_cooldown:= 0.0
 
 
 
+
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
-	behavior_profile = entity.entity_def.behavior_profile
+	behavior_profile = entity.entity_def.behavior_profile.duplicate_deep()
 
-	behaviors = behavior_profile.behaviors.duplicate_deep()
+	behaviors = behavior_profile.behaviors
 
-	behaviors.append(behavior_profile.default_behavior.duplicate())
+	behaviors.append(behavior_profile.default_behavior)
 
 	_set_behavior_state(behavior_profile.default_behavior.required_behavior_state)
-
 
 
 
@@ -66,6 +66,14 @@ func _activate() -> void:
 # Is the current behavior still valid? If not, choose a new one
 
 func _evaluate() -> void:
+
+	var desired_behavior = _choose_behavior(behavior_state)
+
+	var desired_target = _choose_target()
+
+	if desired_behavior != current_behavior:
+
+		_change_behavior(desired_behavior)
 
 	# Cases
 
@@ -85,16 +93,6 @@ func _evaluate() -> void:
 
 		#	d - The actor's condition has changed
 
-	match behavior_state:
-
-		BehaviorState.PASSIVE:
-
-			pass
-
-		BehaviorState.HOSTILE:
-
-			pass
-
 	evaluation_timer = 1.0
 
 
@@ -105,6 +103,10 @@ func _evaluate() -> void:
 func _change_behavior(behavior: Behavior, target: EntityNode = null) -> void:
 	
 	if !_can_change_behavior():
+
+		return
+
+	if behavior == current_behavior:
 
 		return
 
@@ -124,6 +126,21 @@ func _change_behavior(behavior: Behavior, target: EntityNode = null) -> void:
 
 
 
+func _choose_behavior(_behavior_state: BehaviorState) -> Behavior:
+
+	var behavior_list = _get_state_behaviors(_behavior_state)
+
+	behavior_list.sort_custom(func(b1, b2): return b1.priority > b2.priority)
+
+	return behavior_list.front()
+
+
+
+
+
+func _choose_target() -> EntityNode:
+
+	return null
 
 
 
@@ -145,9 +162,44 @@ func _set_behavior_state(_behavior_state: BehaviorState) -> void:
 
 func _get_state_behaviors(_behavior_state: BehaviorState) -> Array[Behavior]:
 
-	return behaviors.filter(func(b): return b.required_behavior_state == _behavior_state)
+	var state_behaviors: Array[Behavior] = behaviors.filter(func(b): return b.required_behavior_state == _behavior_state)
+
+	state_behaviors.sort_custom(func(b1, b2): return b1.priority > b2.priority)
+
+	return state_behaviors
 
 
+
+
+
+func _get_hostility_score(target_entity: EntityNode) -> float:
+
+	var score = 0.0
+
+	if behavior_profile.baseline_hostility_scores.has(target_entity.entity_def):
+
+		score = behavior_profile.baseline_hostility_scores[target_entity.entity_def]
+
+	return score
+
+
+
+
+func _get_visible_hostile_entities() -> Array[EntityNode]:
+
+	var visible_entities = entity.vision_sensor.entities
+
+	var visible_hostiles: Array[EntityNode] = []
+
+	for entity_node in visible_entities:
+
+		var hostility_score = _get_hostility_score(entity_node)
+
+		if hostility_score > 0.0:
+
+			visible_hostiles.append(entity_node)
+
+	return visible_hostiles
 
 
 

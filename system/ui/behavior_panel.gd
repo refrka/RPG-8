@@ -68,6 +68,8 @@ func _update() -> void:
 
 
 
+
+
 func _on_behavior_changed() -> void:
 
 	current_behavior_label.text = behavior_component.current_behavior.display_name

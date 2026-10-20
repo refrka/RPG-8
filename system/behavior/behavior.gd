@@ -6,6 +6,7 @@ class_name Behavior extends Resource
 
 @export var required_behavior_state: BehaviorComponent.BehaviorState
 
+@export var priority:= 0
 
 
 var actor: EntityNode

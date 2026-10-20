@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cq4c32yfdsheu" path="res://system/behavior/wander_behavior.gd" id="2_are0r"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_ywn8i"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_1f81s"]
+[ext_resource type="Resource" uid="uid://c6oewvdkbnw4o" path="res://system/player/player_def.tres" id="4_6iu8w"]
+[ext_resource type="Script" uid="uid://dn5ehnshnnql5" path="res://system/behavior/melee_attack_behavior.gd" id="4_are0r"]
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_are0r"]
 [ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="6_um0jx"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_apnh0"]
@@ -15,12 +17,21 @@
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="11_u4c76"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="12_gthq3"]
 
+[sub_resource type="Resource" id="Resource_pinj3"]
+script = ExtResource("4_are0r")
+display_name = "Melee attack behavior"
+required_behavior_state = 1
+
 [sub_resource type="Resource" id="Resource_6exs4"]
 script = ExtResource("2_are0r")
-display_name = "wander"
+display_name = "Wander"
 
 [sub_resource type="Resource" id="Resource_w87oj"]
 script = ExtResource("4_1f81s")
+behaviors = Array[ExtResource("1_1f81s")]([SubResource("Resource_pinj3")])
+baseline_hostility_scores = Dictionary[ExtResource("3_ywn8i"), float]({
+ExtResource("4_6iu8w"): 0.5
+})
 default_behavior = SubResource("Resource_6exs4")
 metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
