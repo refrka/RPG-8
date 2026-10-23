@@ -376,7 +376,9 @@ func _on_attack_input_released() -> void:
 
 func _on_face_dir_updated() -> void:
 
-	entity.combat_root.rotation = movement_component.face_dir.angle()
+	if not entity is Player:
+
+		entity.combat_root.rotation = movement_component.face_dir.angle()
 
 
 

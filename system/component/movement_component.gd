@@ -60,7 +60,21 @@ func _initialize(_entity: EntityNode) -> void:
 
 		entity.nav_agent.navigation_finished.connect(_on_navigation_finished)
 
-		entity.nav_agent.velocity_computed.connect(_on_velocity_computed)
+		if not entity is Player:
+
+			entity.nav_agent.velocity_computed.connect(_on_velocity_computed)
+
+	var input_component = entity.get_component(InputComponent)
+
+	if input_component:
+
+		input_component.dodge_pressed.connect(_on_dodge_input_pressed)
+
+	var dodging_state = entity.state_machine.get_state(BodyDodgingState)
+
+	if dodging_state:
+
+		dodging_state.dodge_complete.connect(_on_dodge_complete)
 
 
 
@@ -126,7 +140,7 @@ func set_move_speed_override(speed: float) -> void:
 
 func get_move_speed() -> float:
 
-	if move_speed_override > 0.0:
+	if move_speed_override >= 0.0:
 
 		return move_speed_override
 
@@ -201,6 +215,8 @@ func _physics_process(delta: float) -> void:
 
 	var move_velocity = current_move_velocity
 
+	var move_speed = get_move_speed()
+
 	match movement_state:
 
 		MovementState.HALT:
@@ -215,7 +231,7 @@ func _physics_process(delta: float) -> void:
 
 			else:
 
-				move_velocity = move_velocity.move_toward(current_move_dir * get_move_speed(), 8000.0 * delta)
+				move_velocity = move_velocity.move_toward(current_move_dir * move_speed, 8000.0 * delta)
 
 		MovementState.TARGET:
 
@@ -243,7 +259,7 @@ func _physics_process(delta: float) -> void:
 
 				var path_dir = entity.global_position.direction_to(next_position)
 
-				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
+				move_velocity = move_velocity.move_toward(path_dir * move_speed, 8000.0 * delta)
 
 		MovementState.POSITION:
 
@@ -257,7 +273,7 @@ func _physics_process(delta: float) -> void:
 
 				var path_dir = entity.global_position.direction_to(next_position)
 
-				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
+				move_velocity = move_velocity.move_toward(path_dir * move_speed, 8000.0 * delta)
 
 	var final_velocity = move_velocity + modifier_handler.get_vector_total()
 
@@ -283,3 +299,17 @@ func _physics_process(delta: float) -> void:
 
 		face_dir_updated.emit()
 
+
+
+
+
+
+func _on_dodge_input_pressed() -> void:
+
+	entity.state_machine.request_state(BodyDodgingState)
+
+
+
+func _on_dodge_complete() -> void:
+
+	entity.state_machine.request_state(BodyIdleState)

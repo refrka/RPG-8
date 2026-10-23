@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dgolaqlur1kg1" path="res://system/component/navigation_component.gd" id="10_dpa2h"]
 [ext_resource type="Texture2D" uid="uid://h7quth5qkg7e" path="res://items/equipment/weapons/short_bow/short_bow_charge_0.png" id="10_viji7"]
 [ext_resource type="Script" uid="uid://djwmq6um80d4a" path="res://system/sensor/sensor.gd" id="10_y7h06"]
+[ext_resource type="Script" uid="uid://c8rmu6ul8idvm" path="res://system/state/body_dodging_state.gd" id="12_h0hoi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a8qsg"]
 radius = 4.0
@@ -26,6 +27,26 @@ radius = 27.018513
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukr2h"]
 radius = 18.0
+
+[sub_resource type="Animation" id="Animation_h0hoi"]
+length = 0.54745436
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0638487, 0.1932499, 0.32147598, 0.3979539, 0.47469956),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 8, 9, 10, 11, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6v7yr"]
+_data = {
+&"dodge": SubResource("Animation_h0hoi")
+}
 
 [sub_resource type="Animation" id="Animation_ukr2h"]
 length = 0.001
@@ -100,6 +121,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h3rsp"]
@@ -278,10 +311,22 @@ tracks/5/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.038997896, 0.07492663),
+"times": PackedFloat32Array(0.038997896, 0.10141471),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("RectangleShape2D_ukr2h"), null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.03503261),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ukr2h"]
@@ -369,6 +414,13 @@ debug_color = Color(0.7, 0.595, 0, 0)
 
 [node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="1" unique_id=1801432227]
 script = ExtResource("8_1hkuc")
+
+[node name="BodyDodgingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(614709305) index="2" unique_id=354539932]
+script = ExtResource("12_h0hoi")
+metadata/_custom_type_script = "uid://c8rmu6ul8idvm"
+
+[node name="BodyAnimationPlayer" parent="." index="11" unique_id=1131495921]
+libraries/player = SubResource("AnimationLibrary_6v7yr")
 
 [node name="CombatAnimationPlayer" parent="." index="12" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_h3rsp")

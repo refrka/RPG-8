@@ -11,12 +11,13 @@
 script = ExtResource("2_btenr")
 metadata/_custom_type_script = "uid://bpdbf5o18qx1d"
 
-[node name="ProjectileNode" type="CharacterBody2D" unique_id=798857217 node_paths=PackedStringArray("component_root", "animated_body_sprite", "hitbox", "on_screen_notifier")]
+[node name="ProjectileNode" type="CharacterBody2D" unique_id=798857217 node_paths=PackedStringArray("component_root", "state_machine", "animated_body_sprite", "hitbox", "on_screen_notifier")]
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_p8c12")
 entity_def = SubResource("Resource_ewsyu")
 component_root = NodePath("ComponentRoot")
+state_machine = NodePath("StateMachine")
 animated_body_sprite = NodePath("CanvasGroup/AnimatedSprite2D")
 hitbox = NodePath("Hitbox")
 on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
@@ -40,11 +41,15 @@ script = ExtResource("3_btenr")
 script = ExtResource("5_btenr")
 metadata/_custom_type_script = "uid://c5se0rbnp4361"
 
-[node name="StateMachine" type="Node" parent="." unique_id=1177146212]
+[node name="StateMachine" type="Node" parent="." unique_id=1177146212 node_paths=PackedStringArray("body_root", "combat_root")]
 script = ExtResource("1_lni4u")
+body_root = NodePath("BodyRoot")
+combat_root = NodePath("CombatRoot")
 metadata/_custom_type_script = "uid://rgx5lh01enbs"
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=824657672]
+
+[node name="CombatRoot" type="Node" parent="StateMachine" unique_id=573199613]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1633559649]
 

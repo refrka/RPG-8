@@ -1,7 +1,12 @@
 class_name Inventory extends Resource
 
 
+
 signal slot_updated(slot_index: int)
+
+signal weapon_updated
+
+signal armor_updated
 
 
 @export var stacks: Array[ItemStack]
@@ -11,6 +16,8 @@ signal slot_updated(slot_index: int)
 @export var loot_table: LootTable
 
 @export var weapon: WeaponData
+
+@export var armor: ArmorData
 
 
 
@@ -184,3 +191,21 @@ func set_slot_stack(index: int, stack: ItemStack) -> void:
 
 
 	
+
+
+
+
+
+func _set_weapon(_weapon: WeaponData) -> void:
+
+	weapon = _weapon
+	
+	weapon_updated.emit()
+
+
+
+func _set_armor(_armor: ArmorData) -> void:
+
+	armor = _armor
+
+	armor_updated.emit()

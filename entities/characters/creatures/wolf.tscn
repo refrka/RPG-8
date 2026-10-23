@@ -187,6 +187,7 @@ metadata/_custom_type_script = "uid://prruy5b51dk5"
 
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1277958252]
 script = ExtResource("5_pinj3")
+disabled = true
 metadata/_custom_type_script = "uid://b1dr455elg62r"
 
 [node name="BodyAnimationPlayer" parent="." index="9" unique_id=1131495921]

@@ -67,8 +67,6 @@ func get_multiplier_total() -> float:
 
 			total *= modifier.float_value
 
-	print("total: ", total)
-
 	return total
 
 

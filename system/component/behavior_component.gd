@@ -40,6 +40,10 @@ var change_cooldown:= 0.0
 
 func _initialize(_entity: EntityNode) -> void:
 
+	if disabled:
+
+		return
+
 	super(_entity)
 
 	behavior_profile = entity.entity_def.behavior_profile.duplicate_deep()
@@ -59,6 +63,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 func _activate() -> void:
+
+	if disabled:
+
+		return
 
 	super()
 
@@ -232,6 +240,10 @@ func _get_visible_hostile_entities() -> Array[EntityNode]:
 
 
 func _physics_process(delta: float) -> void:
+
+	if !active or disabled:
+
+		return
 
 	if current_behavior:
 
