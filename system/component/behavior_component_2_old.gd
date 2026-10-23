@@ -106,8 +106,6 @@ func _evaluate() -> void:
 
 			if chosen_target:
 
-				print("hostile toward: ", chosen_target)
-
 				_change_behavior_target(chosen_target)
 
 				_change_behavior_state(BehaviorState.HOSTILE)
@@ -115,8 +113,6 @@ func _evaluate() -> void:
 		BehaviorState.HOSTILE:
 
 			if chosen_target != current_behavior_target:
-
-				print("changing target to: ", chosen_target)
 
 				_change_behavior_target(chosen_target)
 

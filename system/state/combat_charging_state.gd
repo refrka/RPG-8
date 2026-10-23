@@ -4,7 +4,7 @@ class_name CombatChargingState extends CombatState
 signal charge_complete
 
 
-
+var speed_modifier: Modifier
 
 
 
@@ -16,6 +16,12 @@ func _enter() -> void:
 	
 	animation_component.play_combat_animation(combat_component.current_animation_name)
 
+	var attack_entry = combat_component.get_attack_entry(combat_component.current_attack_index)
+
+	speed_modifier = Modifier.new_multiplier(attack_entry.charge_speed_modifier)
+
+	movement_component.modifier_handler.add_modifier(speed_modifier)
+
 
 
 func _exit() -> void:
@@ -23,6 +29,8 @@ func _exit() -> void:
 	super()
 
 	animation_component.combat_anim_player.play("RESET")
+
+	movement_component.modifier_handler.remove_modifier(speed_modifier)
 
 
 

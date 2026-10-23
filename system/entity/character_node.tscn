@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://ctwivvly8ar6t" path="res://system/state/body_idle_state.gd" id="6_x0k0y"]
 [ext_resource type="Script" uid="uid://c5eoul4lf6mdn" path="res://system/state/combat_idle_state.gd" id="7_c0c35"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="7_upeui"]
+[ext_resource type="Script" uid="uid://c5se0rbnp4361" path="res://system/component/movement_component.gd" id="9_4ly01"]
 [ext_resource type="Script" uid="uid://lhvhd2bifu7k" path="res://system/component/effects_component.gd" id="9_kg6yd"]
-[ext_resource type="Script" uid="uid://cv7l8qmsv5pda" path="res://system/component/movement_component_2.gd" id="9_nhrk4"]
 [ext_resource type="Script" uid="uid://55mmhmjsvaws" path="res://system/state/combat_charging_state.gd" id="11_hrt4h"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
 [ext_resource type="Script" uid="uid://vwvqw0xsi68o" path="res://system/ui/health_progress_bar.gd" id="14_nhrk4"]
@@ -182,12 +182,12 @@ metadata/_custom_type_script = "uid://c20ddxy082c6l"
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=916333699]
 script = ExtResource("7_upeui")
 
-[node name="MovementComponent2" type="Node" parent="ComponentRoot" unique_id=1124290929]
-script = ExtResource("9_nhrk4")
-metadata/_custom_type_script = "uid://cv7l8qmsv5pda"
-
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=1406202850]
 script = ExtResource("9_kg6yd")
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1968542997]
+script = ExtResource("9_4ly01")
+metadata/_custom_type_script = "uid://cv7l8qmsv5pda"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root", "initial_body_state", "initial_combat_state")]
 script = ExtResource("2_h02iy")

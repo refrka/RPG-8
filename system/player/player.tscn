@@ -6,9 +6,7 @@
 [ext_resource type="Resource" uid="uid://c6oewvdkbnw4o" path="res://system/player/player_def.tres" id="3_ukr2h"]
 [ext_resource type="Script" uid="uid://ddb5b7xq2nxr7" path="res://system/component/input_component.gd" id="4_6ripc"]
 [ext_resource type="Texture2D" uid="uid://6d5renbdu5qc" path="res://items/equipment/weapons/short_sword/short_sword_atttack_0.png" id="4_o7suc"]
-[ext_resource type="Script" uid="uid://dscci57lqsjwx" path="res://system/component/movement_component.gd" id="5_6v7yr"]
 [ext_resource type="Script" uid="uid://prruy5b51dk5" path="res://system/component/combat_component.gd" id="6_ssgc2"]
-[ext_resource type="Script" uid="uid://bobpp4mvy8vl4" path="res://system/modifier/modifier_handler.gd" id="6_wkbqe"]
 [ext_resource type="Script" uid="uid://bhnikxv2o67wv" path="res://system/component/interaction_component.gd" id="7_hgc5g"]
 [ext_resource type="Script" uid="uid://b0m7umcx15s02" path="res://system/state/body_interacting_state.gd" id="8_1hkuc"]
 [ext_resource type="Script" uid="uid://uyosww6dddto" path="res://system/player/interaction_area.gd" id="9_h3rsp"]
@@ -332,28 +330,19 @@ shape = SubResource("RectangleShape2D_hgc5g")
 avoidance_layers = 0
 avoidance_mask = 0
 
-[node name="MovementComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="0" unique_id=1855537733 node_paths=PackedStringArray("modifier_handler")]
-script = ExtResource("5_6v7yr")
-modifier_handler = NodePath("ModifierHandler")
-metadata/_custom_type_script = "uid://dscci57lqsjwx"
-
-[node name="ModifierHandler" type="Node" parent="ComponentRoot/MovementComponent" index="0" unique_id=308704185]
-script = ExtResource("6_wkbqe")
-metadata/_custom_type_script = "uid://bobpp4mvy8vl4"
-
-[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="2" unique_id=456831376]
+[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="1" unique_id=456831376]
 script = ExtResource("4_6ripc")
 metadata/_custom_type_script = "uid://ddb5b7xq2nxr7"
 
-[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="3" unique_id=1332381332]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="2" unique_id=1332381332]
 script = ExtResource("6_ssgc2")
 metadata/_custom_type_script = "uid://prruy5b51dk5"
 
-[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=1469470646]
+[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="4" unique_id=1469470646]
 script = ExtResource("7_hgc5g")
 metadata/_custom_type_script = "uid://bhnikxv2o67wv"
 
-[node name="NavigationComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="6" unique_id=12424140]
+[node name="NavigationComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="5" unique_id=12424140]
 script = ExtResource("10_dpa2h")
 metadata/_custom_type_script = "uid://dgolaqlur1kg1"
 
@@ -386,13 +375,13 @@ libraries/ = SubResource("AnimationLibrary_h3rsp")
 libraries/short_bow = SubResource("AnimationLibrary_viji7")
 libraries/short_sword = SubResource("AnimationLibrary_ukr2h")
 
-[node name="DebugOverlay" parent="." index="14" unique_id=1608834270]
+[node name="DebugPanel" parent="." index="14" unique_id=1608834270]
 offset_left = -14.0
 offset_top = -47.0
 offset_right = 13.0
 offset_bottom = 3.0
 
-[node name="PanelContainer" parent="DebugOverlay/VBoxContainer" parent_id_path=PackedInt32Array(1574249897) index="1" unique_id=351654181]
+[node name="PanelContainer" parent="DebugPanel/VBoxContainer" parent_id_path=PackedInt32Array(1574249897) index="1" unique_id=351654181]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4ly01")
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]

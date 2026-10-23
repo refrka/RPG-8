@@ -37,6 +37,8 @@ func _ready() -> void:
 
 	Debug.debug_state_changed.connect(_on_debug_state_changed)
 
+	mouse_filter = MOUSE_FILTER_IGNORE
+
 
 
 
@@ -104,6 +106,14 @@ func _on_gui_input(event: InputEvent) -> void:
 func _on_debug_state_changed(state: bool) -> void:
 
 	active = state
+
+	if active:
+
+		mouse_filter = MOUSE_FILTER_STOP
+
+	else:
+
+		mouse_filter = MOUSE_FILTER_IGNORE
 
 	if !active:
 

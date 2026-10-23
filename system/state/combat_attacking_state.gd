@@ -4,7 +4,7 @@ class_name CombatAttackingState extends CombatState
 signal attack_complete
 
 
-
+var speed_modifier: Modifier
 
 
 
@@ -14,9 +14,23 @@ signal attack_complete
 func _enter() -> void:
 
 	super()
+
+	var attack_entry = combat_component.get_attack_entry(combat_component.current_attack_index)
+
+	speed_modifier = Modifier.new_multiplier(attack_entry.speed_modifier)
+
+	movement_component.modifier_handler.add_modifier(speed_modifier)
 	
 	animation_component.play_combat_animation(combat_component.current_animation_name)
 
+
+
+
+func _exit() -> void:
+
+	super()
+
+	movement_component.modifier_handler.remove_modifier(speed_modifier)
 
 
 

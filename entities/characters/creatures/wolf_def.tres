@@ -82,5 +82,5 @@ entity_id = &"wolf"
 display_name = &"Wolf"
 initial_inventory = SubResource("Resource_ppefn")
 base_health = 4.0
-move_speed = 110.0
+move_speed = 90.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

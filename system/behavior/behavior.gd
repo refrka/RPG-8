@@ -13,6 +13,10 @@ var actor: EntityNode
 
 var behavior_component: BehaviorComponent
 
+var movement_component: MovementComponent
+
+var combat_component: CombatComponent
+
 var target: EntityNode
 
 
@@ -22,6 +26,10 @@ func _initialize(_actor: EntityNode, _behavior_component: BehaviorComponent) -> 
 	actor = _actor
 
 	behavior_component = _behavior_component
+
+	movement_component = actor.get_component(MovementComponent)
+	
+	combat_component = actor.get_component(CombatComponent)
 
 
 

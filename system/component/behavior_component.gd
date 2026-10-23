@@ -48,6 +48,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 	behaviors.append(behavior_profile.default_behavior)
 
+	for behavior in behaviors:
+
+		behavior._initialize(entity, self)
+
 	_set_behavior_state(behavior_profile.default_behavior.required_behavior_state)
 
 
@@ -67,13 +71,15 @@ func _activate() -> void:
 
 func _evaluate() -> void:
 
-	var desired_behavior = _choose_behavior(behavior_state)
+	_update_behavior_state()
 
 	var desired_target = _choose_target()
 
+	var desired_behavior = _choose_behavior(behavior_state)
+
 	if desired_behavior != current_behavior:
 
-		_change_behavior(desired_behavior)
+		_change_behavior(desired_behavior, desired_target)
 
 	# Cases
 
@@ -94,6 +100,18 @@ func _evaluate() -> void:
 		#	d - The actor's condition has changed
 
 	evaluation_timer = 1.0
+
+
+
+
+
+func _update_behavior_state() -> void:
+
+	if !_get_visible_hostile_entities().is_empty():
+
+		_set_behavior_state(BehaviorState.HOSTILE)
+
+	
 
 
 
@@ -140,8 +158,17 @@ func _choose_behavior(_behavior_state: BehaviorState) -> Behavior:
 
 func _choose_target() -> EntityNode:
 
-	return null
+	match behavior_state:
 
+		BehaviorState.HOSTILE:
+
+			var hostile_targets = _get_visible_hostile_entities()
+
+			if !hostile_targets.is_empty():
+
+				return hostile_targets.front()
+
+	return null
 
 
 

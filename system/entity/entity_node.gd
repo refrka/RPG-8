@@ -235,6 +235,10 @@ func get_component(component_script: Script) -> Component:
 
 		if component.get_component_script() == component_script:
 
+			if entity_def.entity_id == "wolf" and component_script == MovementComponent:
+
+				print("found one")
+
 			return component
 
 	return null

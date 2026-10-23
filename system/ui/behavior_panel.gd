@@ -17,7 +17,6 @@ var behavior_component: BehaviorComponent
 
 
 
-
 func select_entity(entity_node: EntityNode) -> void:
 
 	selected_entity = entity_node

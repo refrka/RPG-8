@@ -1,29 +1,48 @@
-class_name MovementComponentOld extends Component
+class_name MovementComponent extends Component
 
 
+
+
+signal navigation_position_reached
 
 signal move_started
 
 signal move_ended
 
+signal face_dir_updated
 
-@export var modifier_handler: ModifierHandler
 
+enum MovementState {
 
-var current_velocity:= Vector2.ZERO
+	HALT,
 
-var move_speed:= 0.0
+	DIRECTION,
 
-var move_speed_override:= 0.0
+	POSITION,
 
-var move_dir:= Vector2.ZERO
+	TARGET,
+
+}
+
+@export var target_position_time:= 0.2
+
+var modifier_handler: ModifierHandler
+
+var movement_state: MovementState
 
 var face_dir:= Vector2.RIGHT
 
-var input_component: InputComponent
+var current_move_dir:= Vector2.ZERO
 
-var first_input_received:= false
+var current_move_velocity:= Vector2.ZERO
 
+var current_navigation_position: Vector2
+
+var current_navigation_target: EntityNode
+
+var move_speed_override:= -1.0
+
+var target_position_timer:= 0.0
 
 
 
@@ -31,75 +50,27 @@ var first_input_received:= false
 
 func _initialize(_entity: EntityNode) -> void:
 
-	if disabled:
-
-		return
-
 	super(_entity)
 
-	input_component = entity.get_component(InputComponent)
+	modifier_handler = ModifierHandler.new()
 
-	if input_component:
+	add_child(modifier_handler)
 
-		input_component.move_input_received.connect(_on_move_input_received)
+	if entity is CharacterNode:
 
-	move_speed = entity.entity_def.move_speed
+		entity.nav_agent.navigation_finished.connect(_on_navigation_finished)
 
-
-
-
-
-
-
-func _activate() -> void:
-
-	if disabled:
-
-		return
-
-	super()
-
-	_clear()
+		entity.nav_agent.velocity_computed.connect(_on_velocity_computed)
 
 
 
 
 
-func _clear() -> void:
+func halt() -> void:
 
-	current_velocity = Vector2.ZERO
-
-	move_dir = Vector2.ZERO
-
-	first_input_received = false
+	_change_movement_state(MovementState.HALT)
 
 
-
-
-
-func halt(immediate:= true) -> void:
-
-	set_move_dir(Vector2.ZERO)
-
-	entity.velocity = Vector2.ZERO
-
-	if immediate:
-
-		current_velocity = Vector2.ZERO
-
-	
-
-
-
-func add_speed_modifier() -> void:
-
-	pass
-
-
-
-func add_velocity_modifier() -> void:
-
-	pass
 
 
 
@@ -113,63 +84,114 @@ func receive_damage_package(damage_package: DamagePackage) -> void:
 
 		modifier_handler.add_modifier(modifier)
 
+		
+
+
+
+func set_navigation_position(position: Vector2) -> void:
+
+	current_navigation_position = position
+
+	_change_movement_state(MovementState.POSITION)
 
 
 
 
-func get_move_dir() -> Vector2:
+func set_navigation_target(target: EntityNode) -> void:
 
-	if not entity is Player:
+	current_navigation_target = target
 
-		return move_dir
+	if is_instance_valid(target):
 
-	if !first_input_received:
-
-		return Vector2.ZERO
-
-	return input_component.input_dir
-	
-
-
-func get_move_speed() -> float:
-
-	if move_speed_override != 0.0:
-
-		return move_speed_override
-
-	var modifier_total = modifier_handler.get_float_total()
-
-	return move_speed + modifier_total
+		_change_movement_state(MovementState.TARGET)
 
 
 
 
 func set_move_dir(dir: Vector2) -> void:
 
-	if dir != move_dir:
+	current_move_dir = dir
 
-		move_dir = dir
-
-
-
-func set_move_speed(speed: float) -> void:
-
-	move_speed = speed
+	_change_movement_state(MovementState.DIRECTION)
 
 
 
 
+func set_move_speed_override(speed: float) -> void:
 
-func _on_move_input_received() -> void:
-
-	first_input_received = true
-
+	move_speed_override = speed
 
 
 
 
+func get_move_speed() -> float:
+
+	if move_speed_override > 0.0:
+
+		return move_speed_override
+
+	return (entity.entity_def.move_speed + modifier_handler.get_float_total()) * modifier_handler.get_multiplier_total()
 
 
+
+
+
+
+
+
+
+func is_navigation_position_valid() -> bool:
+
+	return entity.nav_agent.is_target_reachable()
+
+
+
+
+
+
+func _change_movement_state(new_state: MovementState) -> void:
+
+	movement_state = new_state
+
+	match movement_state:
+
+		MovementState.HALT:
+
+			current_move_dir = Vector2.ZERO
+
+			current_move_velocity = Vector2.ZERO
+			
+		MovementState.POSITION:
+
+			entity.nav_agent.target_position = current_navigation_position
+
+		MovementState.TARGET:
+
+			entity.nav_agent.target_position = current_navigation_target.global_position
+
+			target_position_timer = target_position_time
+
+
+
+
+
+
+func _on_navigation_finished() -> void:
+
+	navigation_position_reached.emit()
+
+
+
+func _on_velocity_computed(velocity: Vector2) -> void:
+
+	entity.velocity = velocity + modifier_handler.get_vector_total()
+
+	current_move_velocity = velocity
+
+	entity.move_and_slide()
+
+
+	
 
 func _physics_process(delta: float) -> void:
 
@@ -177,29 +199,87 @@ func _physics_process(delta: float) -> void:
 
 		return
 
-	var move_velocity = current_velocity
+	var move_velocity = current_move_velocity
 
-	var dir = get_move_dir()
+	match movement_state:
 
-	if dir == Vector2.ZERO:
+		MovementState.HALT:
 
-		move_velocity = move_velocity.move_toward(Vector2.ZERO, 9000.0 * delta)
+			move_velocity = Vector2.ZERO
+
+		MovementState.DIRECTION:
+
+			if current_move_dir == Vector2.ZERO:
+
+				move_velocity = move_velocity.move_toward(Vector2.ZERO, 8000.0 * delta)
+
+			else:
+
+				move_velocity = move_velocity.move_toward(current_move_dir * get_move_speed(), 8000.0 * delta)
+
+		MovementState.TARGET:
+
+			if !is_instance_valid(current_navigation_target):
+
+				_change_movement_state(MovementState.HALT)
+
+				return
+
+			target_position_timer -= delta
+
+			if target_position_timer <= 0.0:
+
+				entity.nav_agent.target_position = current_navigation_target.global_position
+
+				target_position_timer = target_position_time
+
+			if entity.nav_agent.is_navigation_finished():
+
+				move_velocity = move_velocity.move_toward(Vector2.ZERO, 8000.0 * delta)
+
+			else:
+
+				var next_position = entity.nav_agent.get_next_path_position()
+
+				var path_dir = entity.global_position.direction_to(next_position)
+
+				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
+
+		MovementState.POSITION:
+
+			if entity.nav_agent.is_navigation_finished():
+
+				move_velocity = move_velocity.move_toward(Vector2.ZERO, 8000.0 * delta)
+
+			else:
+
+				var next_position = entity.nav_agent.get_next_path_position()
+
+				var path_dir = entity.global_position.direction_to(next_position)
+
+				move_velocity = move_velocity.move_toward(path_dir * get_move_speed(), 8000.0 * delta)
+
+	var final_velocity = move_velocity + modifier_handler.get_vector_total()
+
+	if entity.velocity == Vector2.ZERO and final_velocity != Vector2.ZERO:
+
+		move_started.emit()
+
+	if entity.velocity != Vector2.ZERO and final_velocity == Vector2.ZERO:
+
+		move_ended.emit()
+
+	if (entity is CharacterNode and not entity is Player) and entity.nav_agent.avoidance_enabled:
+
+		entity.nav_agent.set_velocity(move_velocity)
 
 	else:
 
-		move_velocity = move_velocity.move_toward(dir * get_move_speed(), 9000.0 * delta)
+		_on_velocity_computed(move_velocity)
 
-	var modifier_velocity = modifier_handler.get_vector_total()
+	if move_velocity != Vector2.ZERO:
 
-	move_velocity += modifier_velocity
+		face_dir = move_velocity.normalized()
 
-	entity.velocity = move_velocity
-
-	entity.move_and_slide()
-
-	current_velocity = entity.velocity
-
-
-
-
+		face_dir_updated.emit()
 

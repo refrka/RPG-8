@@ -11,6 +11,8 @@ enum ValueType {
 
 	FLOAT,
 
+	MULTIPLIER,
+
 }
 
 
@@ -85,6 +87,21 @@ static func new_modifier(value: Variant, _duration:= -1.0) -> Modifier:
 	modifier.duration = _duration
 
 	return modifier
+
+
+
+static func new_multiplier(value: Variant, _duration:= -1.0) -> Modifier:
+
+	var modifier = Modifier.new()
+
+	modifier.set_value(value)
+
+	modifier.duration = _duration
+
+	modifier.type = Modifier.ValueType.MULTIPLIER
+
+	return modifier
+
 
 
 

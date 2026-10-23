@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://cl6bwfpg14fo4"]
 
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_22blx"]
-[ext_resource type="Script" uid="uid://dlwkos3f6dq52" path="res://system/behavior/behavior.gd" id="1_bj35x"]
+[ext_resource type="Script" uid="uid://dgj1l0qylcu06" path="res://system/behavior/behavior.gd" id="1_bj35x"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_66vjd"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_qwi7p"]
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_b2k2r"]
