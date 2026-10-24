@@ -38,11 +38,9 @@ func set_projectile_def(_projectile_def: ProjectileDef) -> void:
 
 	projectile_def = _projectile_def
 
-	if projectile_def.sprite_frames:
+	body_sprite.texture = projectile_def.sprite_texture
 
-		animated_body_sprite.sprite_frames = projectile_def.sprite_frames
-
-	animated_body_sprite.offset = projectile_def.sprite_offset
+	body_sprite.offset = projectile_def.sprite_offset
 
 	hitbox.collision_shape.shape = projectile_def.projectile_hitbox_collision_shape
 

@@ -112,11 +112,10 @@ border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu7xt"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "health_bar", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor", "on_screen_notifier", "debug_panel")]
-collision_mask = 2
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("nav_agent", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor", "on_screen_notifier", "debug_panel", "health_bar")]
+collision_mask = 1026
 script = ExtResource("1_qxfxo")
 nav_agent = NodePath("NavigationAgent2D")
-health_bar = NodePath("HealthProgressBar")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 body_sprite = NodePath("CanvasGroup/BodySprite")
@@ -127,6 +126,7 @@ vision_sensor = NodePath("VisionSensor")
 combat_melee_sensor = NodePath("CanvasGroup/CombatRoot/CombatMeleeSensor")
 on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 debug_panel = NodePath("DebugPanel")
+health_bar = NodePath("HealthProgressBar")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -187,7 +187,6 @@ script = ExtResource("9_kg6yd")
 
 [node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1968542997]
 script = ExtResource("9_4ly01")
-metadata/_custom_type_script = "uid://cv7l8qmsv5pda"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1384797507 node_paths=PackedStringArray("body_root", "combat_root", "initial_body_state", "initial_combat_state")]
 script = ExtResource("2_h02iy")

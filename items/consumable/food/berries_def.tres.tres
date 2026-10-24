@@ -7,5 +7,6 @@
 [resource]
 script = ExtResource("2_4awgo")
 item_id = &"berries"
+display_name = "Berries"
 sprite_texture = ExtResource("3_4awgo")
 metadata/_custom_type_script = "uid://solcjy8yopbb"

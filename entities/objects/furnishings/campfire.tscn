@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://o4aspyafufwr"]
+
+[ext_resource type="PackedScene" uid="uid://dc1bm40p741r8" path="res://system/entity/object_node.tscn" id="1_vjk74"]
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="2_6x7kd"]
+[ext_resource type="Script" uid="uid://0mgv8t6vk2dy" path="res://system/component/save_component.gd" id="2_707ah"]
+[ext_resource type="Texture2D" uid="uid://du6v46rls2xrm" path="res://entities/objects/furnishings/campfire_sprite.png" id="2_w3o8b"]
+
+[sub_resource type="Resource" id="Resource_8tak1"]
+script = ExtResource("2_6x7kd")
+entity_id = &"campfire"
+display_name = &"Campfire"
+metadata/_custom_type_script = "uid://bpdbf5o18qx1d"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ns8y"]
+radius = 3.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3o8b"]
+radius = 3.0
+height = 18.0
+
+[node name="Campfire" unique_id=744980819 instance=ExtResource("1_vjk74")]
+entity_def = SubResource("Resource_8tak1")
+
+[node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1484650591) index="0" unique_id=433715869]
+texture = ExtResource("2_w3o8b")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=258299850]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0ns8y")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_w3o8b")
+
+[node name="SaveComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="2" unique_id=2005425779]
+script = ExtResource("2_707ah")
+
+[node name="HealthProgressBar" parent="." index="6" unique_id=1857742001]
+visible = false
+
+[editable path="Hurtbox"]

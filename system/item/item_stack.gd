@@ -119,7 +119,7 @@ func remove_amount(amount: int) -> int:
 
 func is_empty() -> bool:
 
-	return !item_def or count <= 0
+	return (!item_def and !item_data) or count <= 0
 
 
 
@@ -144,6 +144,23 @@ func merge_stack(incoming_stack: ItemStack) -> void:
 	var remaining = add_amount(incoming_stack.count)
 
 	incoming_stack.set_count(remaining)
+
+
+
+
+func get_item_def() -> ItemDef:
+
+	var _item_def: ItemDef = null
+
+	if item_def:
+
+		_item_def = item_def
+
+	if item_data:
+
+		_item_def = item_data.item_def
+
+	return _item_def
 
 
 

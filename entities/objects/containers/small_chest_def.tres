@@ -1,17 +1,10 @@
 [gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://cnbosd3spgp2w"]
 
-[ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="1_11yqe"]
 [ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_47ut5"]
-[ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="2_gow3f"]
-
-[sub_resource type="Resource" id="Resource_m60rv"]
-script = ExtResource("1_11yqe")
-metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [resource]
 script = ExtResource("1_47ut5")
 entity_id = &"small_chest"
 display_name = &"Small chest"
-initial_inventory = SubResource("Resource_m60rv")
 base_health = 3.0
 metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

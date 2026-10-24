@@ -66,6 +66,9 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [node name="MouseItemSlot" unique_id=212764444 groups=["mouse_item_slot"] instance=ExtResource("1_psagh")]
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(76, 139)
 mouse_filter = 2
 script = ExtResource("2_axmdg")
 default_stylebox = SubResource("StyleBoxFlat_axmdg")

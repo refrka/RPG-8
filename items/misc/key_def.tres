@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c44crth8ykj0q"]
+
+[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="1_ogufg"]
+[ext_resource type="Texture2D" uid="uid://tiywnfcii2lc" path="res://items/misc/key_sprite.png" id="2_vj5qv"]
+
+[resource]
+script = ExtResource("1_ogufg")
+item_id = &"key"
+display_name = "Key"
+max_stack = 1
+sprite_texture = ExtResource("2_vj5qv")
+metadata/_custom_type_script = "uid://bn7rgf574qily"

@@ -78,6 +78,23 @@ func quit() -> void:
 
 
 
+func save() -> void:
+
+	var save_data = _get_save_data()
+
+	active_save_data = save_data
+
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+
+	file.store_string(JSON.stringify(save_data, " "))
+
+	file.close()
+
+
+
+
+
+
 func load_save() -> void:
 
 	if !FileAccess.file_exists(save_path):
@@ -177,3 +194,17 @@ func is_paused() -> bool:
 
 	return get_tree().paused
 
+
+
+
+
+
+
+
+func _get_save_data() -> Dictionary:
+
+	var save_data = active_save_data
+
+	save_data["spawn_id"] = player.current_spawn_id
+
+	return save_data

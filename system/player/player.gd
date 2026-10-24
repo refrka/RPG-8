@@ -3,6 +3,8 @@ class_name Player extends CharacterNode
 
 @export var interaction_area: InteractionArea
 
+var current_spawn_id: StringName
+
 
 
 func _initialize() -> bool:

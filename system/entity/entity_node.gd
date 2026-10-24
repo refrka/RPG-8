@@ -37,6 +37,8 @@ signal died
 
 @export var debug_panel: EntityDebugPanel
 
+@export var health_bar: HealthProgressBar
+
 
 
 
@@ -54,6 +56,8 @@ var active:= false
 
 
 func _initialize() -> bool:
+
+	assert(entity_def != null, "Missing entity definition")
 
 	if initialized:
 

@@ -61,13 +61,17 @@ func _initialize(_entity: EntityNode) -> void:
 
 	movement_component.face_dir_updated.connect(_on_face_dir_updated)
 
-	if entity.inventory and entity.inventory.weapon:
+	if entity.inventory:
 
-		var weapon_def = entity.inventory.weapon.item_def
+		entity.inventory.weapon_updated.connect(_on_weapon_updated)
+	
+		if entity.inventory.weapon:
 
-		set_attack_config(weapon_def.attack_config)
+			var weapon_def = entity.inventory.weapon.item_def
 
-		current_library_name = weapon_def.item_id
+			set_attack_config(weapon_def.attack_config)
+
+			current_library_name = weapon_def.item_id
 
 	if not current_attack_config:
 
@@ -381,6 +385,28 @@ func _on_face_dir_updated() -> void:
 		entity.combat_root.rotation = movement_component.face_dir.angle()
 
 
+
+
+
+func _on_weapon_updated() -> void:
+
+	var attack_config: AttackConfig = null
+
+	var library_name:= ""
+
+	if entity.inventory.weapon:
+
+		var weapon_def = entity.inventory.weapon.item_def
+
+		attack_config = weapon_def.attack_config
+
+		library_name = weapon_def.item_id
+
+	current_library_name = library_name
+
+	set_attack_config(attack_config)
+
+		
 
 
 

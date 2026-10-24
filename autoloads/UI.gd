@@ -9,6 +9,9 @@ var active_overlays: Array[Overlay]
 
 var mouse_item_slot: MouseItemSlot
 
+var mouse_tooltip: MouseTooltip
+
+
 
 
 
@@ -17,6 +20,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	mouse_item_slot = get_tree().get_first_node_in_group("mouse_item_slot")
+
+	mouse_tooltip = get_tree().get_first_node_in_group("mouse_tooltip")
 
 
 
@@ -71,6 +76,9 @@ func show_overlay(overlay_script: Script) -> Overlay:
 	overlay.show()
 
 	return overlay
+
+
+
 
 
 

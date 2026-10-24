@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://c6cdfwblghmu2"
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=1679150278]
 tile_set = ExtResource("2_6dy87")
 
+[node name="FeatureRoot" type="Node2D" parent="." unique_id=97854264]
+
 [node name="YSortRoot" type="Node2D" parent="." unique_id=593593222]
 y_sort_enabled = true
-
-[node name="FeatureRoot" type="Node2D" parent="." unique_id=97854264]

@@ -196,7 +196,13 @@ func set_slot_stack(index: int, stack: ItemStack) -> void:
 
 
 
-func _set_weapon(_weapon: WeaponData) -> void:
+
+
+func set_weapon(_weapon: WeaponData) -> void:
+
+	if weapon == _weapon:
+
+		return
 
 	weapon = _weapon
 	
@@ -204,7 +210,13 @@ func _set_weapon(_weapon: WeaponData) -> void:
 
 
 
-func _set_armor(_armor: ArmorData) -> void:
+
+
+func set_armor(_armor: ArmorData) -> void:
+
+	if armor == _armor:
+
+		return
 
 	armor = _armor
 

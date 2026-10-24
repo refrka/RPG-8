@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://bstx7ql5kxwh4"
 script = ExtResource("4_hvw3d")
 effects_on_consume = Array[ExtResource("1_e02e1")]([SubResource("Resource_ywn8i")])
 item_id = &"apple"
+display_name = "Apple"
 sprite_texture = ExtResource("4_uob7k")
 metadata/_custom_type_script = "uid://bn7rgf574qily"

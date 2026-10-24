@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://rgx5lh01enbs" path="res://system/state/state_machine.gd" id="2_st2tw"]
 [ext_resource type="Script" uid="uid://c20ddxy082c6l" path="res://system/component/animation_component.gd" id="3_nt2ef"]
 [ext_resource type="Script" uid="uid://lhvhd2bifu7k" path="res://system/component/effects_component.gd" id="4_ytkjt"]
+[ext_resource type="Script" uid="uid://vwvqw0xsi68o" path="res://system/ui/health_progress_bar.gd" id="6_yyhkn"]
 
 [sub_resource type="Animation" id="Animation_ytkjt"]
 resource_name = "RESET"
@@ -20,7 +21,31 @@ _data = {
 &"flash": SubResource("Animation_nt2ef")
 }
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "body_sprite", "hurtbox")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mq3g"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.12941177)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2du2x"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0, 0, 0.5647059)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "body_sprite", "hurtbox", "health_bar")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_gqn7q")
@@ -28,6 +53,7 @@ component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 body_sprite = NodePath("CanvasGroup/BodySprite")
 hurtbox = NodePath("Hurtbox")
+health_bar = NodePath("HealthProgressBar")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1484650591]
 y_sort_enabled = true
@@ -41,6 +67,9 @@ debug_color = Color(0.7166667, 0, 1, 0)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=283233958]
 debug_color = Color(0.7, 0, 0, 0.02745098)
+
+[node name="BodyAnimPlayer" type="AnimationPlayer" parent="." unique_id=975314067]
+libraries/ = SubResource("AnimationLibrary_ytkjt")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=281237021]
 
@@ -57,7 +86,25 @@ metadata/_custom_type_script = "uid://lhvhd2bifu7k"
 script = ExtResource("2_st2tw")
 metadata/_custom_type_script = "uid://rgx5lh01enbs"
 
-[node name="BodyAnimPlayer" type="AnimationPlayer" parent="." unique_id=975314067]
-libraries/ = SubResource("AnimationLibrary_ytkjt")
+[node name="HealthProgressBar" type="ProgressBar" parent="." unique_id=1857742001]
+custom_minimum_size = Vector2(30, 3)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -2.0
+offset_right = 15.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_3mq3g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2du2x")
+value = 50.0
+show_percentage = false
+script = ExtResource("6_yyhkn")
 
 [editable path="Hurtbox"]

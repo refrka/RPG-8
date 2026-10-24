@@ -4,6 +4,8 @@ class_name ItemSlot extends MarginContainer
 signal contents_updated
 
 
+
+
 @export var default_stylebox: StyleBoxFlat
 
 @export var hovered_stylebox: StyleBoxFlat
@@ -111,6 +113,7 @@ func set_hover_enabled(state: bool) -> void:
 
 
 
+
 func set_select_enabled(state: bool) -> void:
 
 	select_enabled = state
@@ -124,6 +127,24 @@ func set_hovered_state(state: bool) -> void:
 	hovered = state
 
 	_update_panel_visuals()
+
+	if hovered and !is_empty():
+
+		var ammunition_def: AmmunitionDef = null
+
+		var ammunition_count:= -1
+
+		if item_stack.item_data is WeaponData and item_stack.item_data.ammunition_stack and !item_stack.item_data.ammunition_stack.is_empty():
+
+			ammunition_def = item_stack.item_data.ammunition_stack.item_def
+
+			ammunition_count = item_stack.item_data.ammunition_stack.count
+
+		UI.mouse_tooltip.show_item_tooltip(item_stack.get_item_def(), ammunition_def, ammunition_count)
+
+	else:
+
+		UI.mouse_tooltip.deactivate()
 
 
 
@@ -169,6 +190,14 @@ func is_empty() -> bool:
 
 
 
+func _can_accept_slot_contents(_incoming_slot: ItemSlot) -> bool:
+
+	return true
+
+
+
+
+
 
 func _update_panel_visuals() -> void:
 
@@ -201,15 +230,19 @@ func _update_panel_visuals() -> void:
 
 func _update_item_visuals() -> void:
 
+	count_label.text = ""
+
 	if item_stack and !item_stack.is_empty():
 
-		count_label.text = str(item_stack.count)
+		var item_def = item_stack.get_item_def()
 
-		texture_rect.texture = item_stack.item_def.sprite_texture
+		if item_stack.count > 1:
+
+			count_label.text = str(item_stack.count)
+
+		texture_rect.texture = item_def.sprite_texture
 
 	else:
-
-		count_label.text = ""
 
 		texture_rect.texture = null
 

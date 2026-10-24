@@ -32,11 +32,19 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
 		[1, true, true, false]: # Left click (down), empty slot, something held
 
+			if !target_slot._can_accept_slot_contents(held_slot):
+
+				return
+
 			target_slot.swap(held_slot)
 
 			drop_slot()
 
 		[1, true, false, false]: # Left click (down), occupied slot, something held
+
+			if !target_slot._can_accept_slot_contents(held_slot) or !held_slot._can_accept_slot_contents(target_slot):
+
+				return
 
 			if target_slot == held_slot:
 

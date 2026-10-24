@@ -60,7 +60,7 @@ func get_feature(feature_id: StringName) -> Feature:
 
 
 
-func spawn_player(spawn_id: StringName) -> void:
+func spawn_player(spawn_id: StringName, make_current:= false) -> void:
 
 	var spawn_point = get_feature(spawn_id)
 
@@ -71,6 +71,10 @@ func spawn_player(spawn_id: StringName) -> void:
 	var player = Game.get_player()
 
 	player.global_position = spawn_point.global_position
+
+	if make_current:
+
+		player.current_spawn_id = spawn_id
 
 	player.reparent(ysort_root)
 
