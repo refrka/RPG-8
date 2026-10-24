@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnjtyqmevjgn" path="res://system/ui/main_menu.gd" id="1_7d3sa"]
 
-[node name="MainMenu" type="Control" unique_id=1723796028 node_paths=PackedStringArray("start_button", "quit_button") groups=["main_menu"]]
+[node name="MainMenu" type="Control" unique_id=1723796028 node_paths=PackedStringArray("start_button", "quit_button", "reset_button") groups=["main_menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ mouse_filter = 2
 script = ExtResource("1_7d3sa")
 start_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton")
 quit_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton")
+reset_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ResetButton")
 metadata/_custom_type_script = "uid://dnjtyqmevjgn"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=73913757]
@@ -48,3 +49,8 @@ text = "START"
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "QUIT"
+
+[node name="ResetButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1340250956]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "RESET"

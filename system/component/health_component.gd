@@ -32,18 +32,26 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func _clear() -> void:
+
+	max_health = entity.entity_def.base_health
+
+	_set_current_health(max_health, 0.0)
+
+
+
 
 func reduce_health(amount: float) -> void:
 
 	var new_health = max(0, current_health - amount)
 
-	_set_current_health(new_health)
+	var amount_changed = current_health - new_health
+
+	_set_current_health(new_health, amount_changed)
 
 	if !is_alive():
 
 		_die()
-
-	health_changed.emit(amount, new_health)
 
 	health_bar.show()
 
@@ -54,9 +62,9 @@ func restore_health(amount: float) -> void:
 
 	var new_health = min(max_health, current_health + amount)
 
-	_set_current_health(new_health)
+	var amount_changed = new_health - current_health
 
-	health_changed.emit(amount, new_health)
+	_set_current_health(new_health, amount_changed)
 
 
 
@@ -101,10 +109,34 @@ func _die() -> void:
 
 
 
-func _set_current_health(new_health: float) -> void:
+func _set_current_health(new_health: float, amount_changed: float) -> void:
 
 	current_health = new_health
 
+	health_changed.emit(amount_changed, new_health)
 
 
 
+
+
+
+
+
+func _to_dict() -> Dictionary:
+
+	var dict = {}
+
+	dict["current_health"] = current_health
+
+	dict["max_health"] = max_health
+
+	return dict
+
+
+
+
+func _load_dict(save_dict: Dictionary) -> void:
+
+	current_health = save_dict["current_health"]
+
+	max_health = save_dict["max_health"]

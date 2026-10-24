@@ -165,6 +165,34 @@ func get_item_def() -> ItemDef:
 
 
 
+
+func to_dict() -> Dictionary:
+
+	if is_empty():
+
+		return {}
+
+	var _item_def = get_item_def()
+
+	var item_data_dict = {}
+
+	if item_data:
+
+		item_data_dict = item_data.to_dict()
+
+	return {
+
+		"item_id": _item_def.item_id,
+
+		"count": count,
+
+		"item_data": item_data_dict,
+
+	}
+
+
+
+
 static func create_new(_item_def: ItemDef, _count: int, _item_data: ItemData = null) -> ItemStack:
 
 	var stack = ItemStack.new()
@@ -174,5 +202,22 @@ static func create_new(_item_def: ItemDef, _count: int, _item_data: ItemData = n
 	stack.count = _count
 
 	stack.item_data = _item_data
+
+	return stack
+
+
+
+
+static func from_dict(dict: Dictionary) -> ItemStack:
+
+	var stack = ItemStack.new()
+
+	stack.item_def = Defs.get_item_def(dict["item_id"])
+
+	stack.count = dict["count"]
+
+	if !dict["item_data"].is_empty():
+
+		stack.item_data = ItemData.from_dict(dict["item_data"])
 
 	return stack

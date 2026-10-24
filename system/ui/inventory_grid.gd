@@ -10,6 +10,8 @@ var inventory: Inventory
 
 
 
+
+
 func load_inventory(_inventory: Inventory) -> void:
 
 	if inventory:
@@ -37,6 +39,26 @@ func load_inventory(_inventory: Inventory) -> void:
 
 
 
+
+func pair_inventory(paired_inventory: Inventory) -> void:
+
+	for i in range(inventory.size):
+
+		var item_slot = get_child(i)
+
+		item_slot.pair_inventory(paired_inventory)
+
+
+
+func unpair_inventory() -> void:
+
+	for i in range(inventory.size):
+
+		var item_slot = get_child(i)
+
+		item_slot.unpair_inventory()
+
+
 	
 func clear() -> void:
 
@@ -49,6 +71,8 @@ func clear() -> void:
 		var child = get_child(i)
 
 		child.queue_free()
+
+	unpair_inventory()
 
 	inventory.slot_updated.disconnect(_on_slot_updated)
 

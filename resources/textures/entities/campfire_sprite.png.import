@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://banmj8yioeoo8"
-path="res://.godot/imported/wolf_sprite.png-b1e527ec7c7874a34f903f135ba715ac.ctex"
+uid="uid://du6v46rls2xrm"
+path="res://.godot/imported/campfire_sprite.png-8e2644eccc123dfa803a2057ad75fe21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/characters/creatures/wolf_sprite.png"
-dest_files=["res://.godot/imported/wolf_sprite.png-b1e527ec7c7874a34f903f135ba715ac.ctex"]
+source_file="res://resources/textures/entities/campfire_sprite.png"
+dest_files=["res://.godot/imported/campfire_sprite.png-8e2644eccc123dfa803a2057ad75fe21.ctex"]
 
 [params]
 

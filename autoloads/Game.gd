@@ -35,13 +35,15 @@ func start() -> void:
 
 	get_player()
 
+	player.load_save_data(active_save_data)
+
 	player.show()
 
 	var location = Scenes.load_location(active_save_data["location_id"])
 
 	location.spawn_player(active_save_data["spawn_id"])
 
-	location._activate.call_deferred()
+	location._activate()
 
 	Events.fire(GameStartedEvent)
 
@@ -59,6 +61,8 @@ func exit() -> void:
 
 	hold_player()
 
+	player.load_template()
+
 	Scenes.clear_location()
 
 	Scenes.main_menu.show()
@@ -74,13 +78,15 @@ func quit() -> void:
 	get_tree().quit()
 
 
-
+ 
 
 
 
 func save() -> void:
 
 	var save_data = _get_save_data()
+
+	save_data["fresh_save"] = false
 
 	active_save_data = save_data
 
@@ -119,7 +125,9 @@ func create_new_save() -> void:
 
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 
-	var data = get_save_template()
+	get_player()
+
+	var data = player.load_template()
 
 	file.store_string(JSON.stringify(data, " "))
 
@@ -150,6 +158,8 @@ func get_player() -> Player:
 		player = load("res://system/player/player.tscn").instantiate()
 
 		add_child(player)
+
+		player.hide()
 
 		player._initialize()
 
@@ -203,8 +213,6 @@ func is_paused() -> bool:
 
 func _get_save_data() -> Dictionary:
 
-	var save_data = active_save_data
-
-	save_data["spawn_id"] = player.current_spawn_id
+	var save_data = player.get_save_data()
 
 	return save_data

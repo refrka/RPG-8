@@ -21,12 +21,19 @@ signal armor_updated
 
 
 
-
-
-
 func _initialize() -> void:
 
 	resize(size)
+
+
+
+func clear() -> void:
+
+	stacks.clear()
+
+	weapon = null
+
+	armor = null
 
 
 
@@ -100,6 +107,13 @@ func add_stack(item_stack: ItemStack) -> void:
 		add_item(item_stack.item_def, item_stack.count)
 
 
+
+
+func add_item_slot_contents(item_slot: ItemSlot) -> void:
+
+	var item_stack = item_slot.item_stack
+
+	add_stack(item_stack)
 
 
 
@@ -221,3 +235,43 @@ func set_armor(_armor: ArmorData) -> void:
 	armor = _armor
 
 	armor_updated.emit()
+
+
+
+
+
+
+func to_dict() -> Dictionary:
+
+	var dict = {}
+
+	dict["size"] = size
+
+	dict["stacks"] = []
+
+	dict["weapon"] = null
+
+	dict["armor"] = null
+
+	if weapon:
+
+		dict["weapon"] = weapon.to_dict()
+		
+	if armor:
+
+		dict["armor"] = armor.to_dict()
+
+	for item_stack in stacks:
+
+		if item_stack:
+
+			dict["stacks"].append(item_stack.to_dict())
+
+		else:
+
+			dict["stacks"].append(null)
+
+	return dict
+
+
+

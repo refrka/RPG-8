@@ -4,6 +4,8 @@ class_name HealthProgressBar extends Overlay
 
 var entity: EntityNode
 
+var health_component: HealthComponent
+
 
 
 
@@ -13,14 +15,26 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity = _entity
 
-	var health_component = entity.get_component(HealthComponent)
+	health_component = entity.get_component(HealthComponent)
 
 	health_component.health_changed.connect(_on_health_changed)
+
+	_load_health()
+
+
+
+
+
+
+
+
+
+
+func _load_health() -> void:
 
 	self.max_value = health_component.max_health
 
 	self.value = health_component.current_health
-
 
 
 

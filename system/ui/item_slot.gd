@@ -30,6 +30,8 @@ signal contents_updated
 
 var parent_inventory: Inventory
 
+var paired_inventory: Inventory
+
 var item_stack: ItemStack
 
 
@@ -100,7 +102,29 @@ func set_stack(_item_stack: ItemStack) -> void:
 
 	contents_updated.emit()
 
+	if is_empty():
+
+		hide_tooltip()
+
+	elif hovered:
+
+		show_tooltip()
+
 	update()
+
+
+
+
+func pair_inventory(inventory: Inventory) -> void:
+
+	paired_inventory = inventory
+
+
+
+
+func unpair_inventory() -> void:
+
+	paired_inventory = null
 
 
 
@@ -130,21 +154,11 @@ func set_hovered_state(state: bool) -> void:
 
 	if hovered and !is_empty():
 
-		var ammunition_def: AmmunitionDef = null
-
-		var ammunition_count:= -1
-
-		if item_stack.item_data is WeaponData and item_stack.item_data.ammunition_stack and !item_stack.item_data.ammunition_stack.is_empty():
-
-			ammunition_def = item_stack.item_data.ammunition_stack.item_def
-
-			ammunition_count = item_stack.item_data.ammunition_stack.count
-
-		UI.mouse_tooltip.show_item_tooltip(item_stack.get_item_def(), ammunition_def, ammunition_count)
+		show_tooltip()
 
 	else:
 
-		UI.mouse_tooltip.deactivate()
+		hide_tooltip()
 
 
 
@@ -155,6 +169,29 @@ func set_selected_state(state: bool) -> void:
 	_update_panel_visuals()
 
 	_update_item_texture()
+
+
+
+
+func show_tooltip() -> void:
+	
+	var ammunition_def: AmmunitionDef = null
+
+	var ammunition_count:= -1
+
+	if item_stack.item_data is WeaponData and item_stack.item_data.ammunition_stack and !item_stack.item_data.ammunition_stack.is_empty():
+
+		ammunition_def = item_stack.item_data.ammunition_stack.item_def
+
+		ammunition_count = item_stack.item_data.ammunition_stack.count
+
+	UI.mouse_tooltip.show_item_tooltip(item_stack.get_item_def(), ammunition_def, ammunition_count)
+
+
+
+func hide_tooltip() -> void:
+
+	UI.mouse_tooltip.deactivate()
 
 
 

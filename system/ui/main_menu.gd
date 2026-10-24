@@ -6,7 +6,7 @@ class_name MainMenu extends Control
 
 @export var quit_button: Button
 
-
+@export var reset_button: Button
 
 
 
@@ -19,6 +19,7 @@ func _ready() -> void:
 
 	quit_button.pressed.connect(_on_quit_pressed)
 
+	reset_button.pressed.connect(_on_reset_pressed)
 
 
 
@@ -33,3 +34,9 @@ func _on_start_pressed() -> void:
 func _on_quit_pressed() -> void:
 
 	Game.quit()
+
+
+
+func _on_reset_pressed() -> void:
+
+	Game.create_new_save()

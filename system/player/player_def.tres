@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="2_u2ucp"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="3_if36m"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="4_337wk"]
+[ext_resource type="Resource" uid="uid://cw3sd5erjs6yy" path="res://items/consumable/food/apple_def.tres" id="5_337wk"]
 [ext_resource type="Resource" uid="uid://vmiqppfcbknh" path="res://items/equipment/weapons/short_sword/short_sword_def.tres" id="6_22f47"]
 [ext_resource type="Script" uid="uid://bm6wwvskg5d1i" path="res://system/item/weapon_data.gd" id="6_sa8tt"]
 
@@ -19,9 +20,15 @@ item_data = SubResource("Resource_bfjvu")
 count = 1
 metadata/_custom_type_script = "uid://wbgpq46tveo5"
 
+[sub_resource type="Resource" id="Resource_8tak1"]
+script = ExtResource("4_337wk")
+item_def = ExtResource("5_337wk")
+count = 1
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
 [sub_resource type="Resource" id="Resource_u2ucp"]
 script = ExtResource("1_rcknn")
-stacks = Array[ExtResource("4_337wk")]([SubResource("Resource_lhuql")])
+stacks = Array[ExtResource("4_337wk")]([SubResource("Resource_lhuql"), SubResource("Resource_8tak1")])
 size = 12
 metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 

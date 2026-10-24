@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvt0hknkk4gda"
-path="res://.godot/imported/wood_arrow_sprite.png-dd2fe355e946697cc4d0157ab73f3b8f.ctex"
+uid="uid://cph64f43h8aps"
+path="res://.godot/imported/small_chest_sprite.png-74a527d318fd7afe945a7b254e4880c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/ammunition/wood_arrow_sprite.png"
-dest_files=["res://.godot/imported/wood_arrow_sprite.png-dd2fe355e946697cc4d0157ab73f3b8f.ctex"]
+source_file="res://resources/textures/entities/small_chest_sprite.png"
+dest_files=["res://.godot/imported/small_chest_sprite.png-74a527d318fd7afe945a7b254e4880c1.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dc1bm40p741r8" path="res://system/entity/object_node.tscn" id="1_g44ch"]
 [ext_resource type="Resource" uid="uid://cnbosd3spgp2w" path="res://entities/objects/containers/small_chest_def.tres" id="2_die06"]
-[ext_resource type="Texture2D" uid="uid://cph64f43h8aps" path="res://entities/objects/containers/small_chest_sprite.png" id="2_rx4kd"]
+[ext_resource type="Texture2D" uid="uid://cph64f43h8aps" path="res://resources/textures/entities/small_chest_sprite.png" id="2_rx4kd"]
 [ext_resource type="Script" uid="uid://iea0jh1d8qa5" path="res://system/component/container_component.gd" id="4_m60rv"]
 [ext_resource type="Script" uid="uid://dsasjc47aw65v" path="res://system/component/health_component.gd" id="5_8wjft"]
 

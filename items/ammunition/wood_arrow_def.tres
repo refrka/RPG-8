@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmunitionDef" format=3 uid="uid://ch2qvog42j5qj"]
 
 [ext_resource type="Script" uid="uid://c018dj228ylrm" path="res://system/item/ammunition_def.gd" id="1_3fa8g"]
-[ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://items/ammunition/wood_arrow_sprite.png" id="2_3fa8g"]
+[ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://resources/textures/items/wood_arrow_sprite.png" id="2_3fa8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fa8g"]
 size = Vector2(3, 6)

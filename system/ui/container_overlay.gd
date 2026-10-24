@@ -13,13 +13,17 @@ class_name ContainerOverlay extends Overlay
 
 
 
-func load_container_inventory(inventory: Inventory) -> void:
+func load_container_inventory(container_inventory: Inventory) -> void:
 
-	container_inventory_grid.load_inventory(inventory)
+	container_inventory_grid.load_inventory(container_inventory)
 
 	var player = Game.get_player()
 
 	player_inventory_grid.load_inventory(player.inventory)
+
+	container_inventory_grid.pair_inventory(player.inventory)
+
+	player_inventory_grid.pair_inventory(container_inventory)
 
 
 

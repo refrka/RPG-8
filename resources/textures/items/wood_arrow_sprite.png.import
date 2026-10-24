@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d30fhnsjpjo6l"
-path="res://.godot/imported/short_bow_sprite.png-cdb874b74f5a5ff3f68afc5d9217413c.ctex"
+uid="uid://dvt0hknkk4gda"
+path="res://.godot/imported/wood_arrow_sprite.png-e72ff8650a7ac97dd3dfd49fdcb07bd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/equipment/weapons/short_bow/short_bow_sprite.png"
-dest_files=["res://.godot/imported/short_bow_sprite.png-cdb874b74f5a5ff3f68afc5d9217413c.ctex"]
+source_file="res://resources/textures/items/wood_arrow_sprite.png"
+dest_files=["res://.godot/imported/wood_arrow_sprite.png-e72ff8650a7ac97dd3dfd49fdcb07bd3.ctex"]
 
 [params]
 

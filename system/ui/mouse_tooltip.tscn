@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mysuesmnujp4" path="res://system/ui/mouse_tooltip.gd" id="1_6rn6l"]
 [ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="2_dmmxf"]
-[ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://items/ammunition/wood_arrow_sprite.png" id="3_x2830"]
+[ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://resources/textures/items/wood_arrow_sprite.png" id="3_x2830"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aajxx"]
 bg_color = Color(0.17, 0.17, 0.17, 0.74509805)

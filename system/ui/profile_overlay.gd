@@ -16,7 +16,9 @@ func _ready() -> void:
 
 	super()
 
-	Events.subscribe(PlayerInitializedEvent, _on_player_initialized)
+	Events.subscribe(PlayerSaveLoadedEvent, _on_player_save_loaded)
+
+	Events.subscribe(GameExitedEvent, _on_game_exited)
 
 	weapon_slot.contents_updated.connect(_on_weapon_slot_contents_updated)
 
@@ -25,7 +27,7 @@ func _ready() -> void:
 
 
 
-func _on_player_initialized(_event: Event) -> void:
+func _on_player_save_loaded(_event: Event) -> void:
 
 	var player = Game.get_player()
 
@@ -59,3 +61,14 @@ func _on_weapon_slot_contents_updated() -> void:
 		weapon_data = weapon_slot.item_stack.item_data
 
 	player.inventory.set_weapon(weapon_data)
+
+
+
+
+func _on_game_exited(_event: Event) -> void:
+
+	weapon_slot.clear()
+
+	armor_slot.clear()
+
+	player_inventory_grid.clear()

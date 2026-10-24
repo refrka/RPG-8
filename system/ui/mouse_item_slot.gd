@@ -70,7 +70,17 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
 		[1, true, false, true]: # Left click (down), occupied slot, nothing held
 
-			hold_slot(target_slot)
+			if Input.is_action_pressed("lctrl"):
+
+				if target_slot.paired_inventory:
+
+					target_slot.paired_inventory.add_item_slot_contents(target_slot)
+
+					target_slot.clear()
+
+			else:
+			
+				hold_slot(target_slot)
 
 		[2, true, true, false]: # Right click (down), empty slot, something held
 

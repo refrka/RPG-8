@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dc1bm40p741r8" path="res://system/entity/object_node.tscn" id="1_vjk74"]
 [ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="2_6x7kd"]
 [ext_resource type="Script" uid="uid://0mgv8t6vk2dy" path="res://system/component/save_component.gd" id="2_707ah"]
-[ext_resource type="Texture2D" uid="uid://du6v46rls2xrm" path="res://entities/objects/furnishings/campfire_sprite.png" id="2_w3o8b"]
+[ext_resource type="Texture2D" uid="uid://du6v46rls2xrm" path="res://resources/textures/entities/campfire_sprite.png" id="2_w3o8b"]
 
 [sub_resource type="Resource" id="Resource_8tak1"]
 script = ExtResource("2_6x7kd")

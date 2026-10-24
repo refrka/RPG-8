@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ce5et63pssfhr" path="res://system/item/weapon_def.gd" id="1_gqrsf"]
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="1_tlojb"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="2_7mnxe"]
-[ext_resource type="Texture2D" uid="uid://d30fhnsjpjo6l" path="res://items/equipment/weapons/short_bow/short_bow_sprite.png" id="4_7mnxe"]
+[ext_resource type="Texture2D" uid="uid://d30fhnsjpjo6l" path="res://resources/textures/items/short_bow_sprite.png" id="4_7mnxe"]
 
 [sub_resource type="Resource" id="Resource_tlojb"]
 script = ExtResource("1_tlojb")

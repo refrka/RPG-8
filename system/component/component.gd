@@ -75,3 +75,17 @@ func get_component_script() -> Script:
 func get_component_name() -> StringName:
 
 	return name.trim_suffix("Component")
+
+
+
+
+
+func _to_dict() -> Dictionary:
+
+	return {}
+
+
+
+func _load_dict(_save_dict: Dictionary) -> void:
+
+	pass
