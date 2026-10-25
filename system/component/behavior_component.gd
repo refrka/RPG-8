@@ -174,7 +174,9 @@ func _choose_target() -> EntityNode:
 
 			if !hostile_targets.is_empty():
 
-				return hostile_targets.front()
+				var hostile_target = hostile_targets.front()
+
+				return hostile_target
 
 	return null
 

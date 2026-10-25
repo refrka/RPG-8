@@ -1,1 +1,0 @@
-class_name NotificationContentPanel extends MarginContainer

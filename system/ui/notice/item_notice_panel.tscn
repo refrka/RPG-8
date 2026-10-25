@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b0hcvyww16iid"]
+
+[ext_resource type="PackedScene" uid="uid://b3hakkwn3phwa" path="res://system/ui/notice/notice_panel.tscn" id="1_j56ao"]
+[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/inventory/item_slot.tscn" id="2_ol5p6"]
+
+[sub_resource type="Animation" id="Animation_j56ao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ol5p6"]
+resource_name = "drop"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07289286, 0.102140516),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-40.0, 10.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o7ur8"]
+_data = {
+&"RESET": SubResource("Animation_j56ao"),
+&"drop": SubResource("Animation_ol5p6")
+}
+
+[node name="ItemNoticePanel" unique_id=1416131627 instance=ExtResource("1_j56ao")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_right = 0.0
+offset_bottom = 38.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" parent_id_path=PackedInt32Array(739123713) index="0" unique_id=1313208492]
+layout_mode = 2
+
+[node name="ItemSlot" parent="PanelContainer/MarginContainer/HBoxContainer" index="0" unique_id=212764444 instance=ExtResource("2_ol5p6")]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" index="1" unique_id=2137178038]
+layout_mode = 2
+text = "Notice text"
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=185910366]
+libraries/ = SubResource("AnimationLibrary_o7ur8")

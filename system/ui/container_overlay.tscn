@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c70ovvphl6a34"]
 
 [ext_resource type="Script" uid="uid://6eswqijc3ppo" path="res://system/ui/container_overlay.gd" id="1_64klf"]
-[ext_resource type="PackedScene" uid="uid://sfc25eghxe0k" path="res://system/ui/inventory_grid.tscn" id="2_nqqrh"]
+[ext_resource type="PackedScene" uid="uid://sfc25eghxe0k" path="res://system/ui/inventory/inventory_grid.tscn" id="2_nqqrh"]
 
 [node name="ContainerOverlay" type="Control" unique_id=1437819695 node_paths=PackedStringArray("container_inventory_grid", "player_inventory_grid")]
 process_mode = 3

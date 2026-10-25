@@ -10,6 +10,8 @@ func _initialize(_actor: EntityNode, _behavior_component: BehaviorComponent) -> 
 
 	actor.combat_melee_sensor.entity_entered.connect(_on_entity_entered_combat_melee_sensor)
 
+	movement_component.navigation_position_reached.connect(_on_navigation_position_reached)
+
 
 
 
@@ -30,3 +32,10 @@ func _on_entity_entered_combat_melee_sensor(entity: EntityNode) -> void:
 	if entity == target:
 
 		combat_component._try_attack()
+
+
+
+
+func _on_navigation_position_reached() -> void:
+
+	combat_component._try_attack()

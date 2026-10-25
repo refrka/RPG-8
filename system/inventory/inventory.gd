@@ -12,6 +12,10 @@ signal weapon_updated
 
 signal armor_updated
 
+signal accessory_updated
+
+signal tool_updated
+
 
 @export var stacks: Array[ItemStack]
 
@@ -22,6 +26,10 @@ signal armor_updated
 @export var weapon: WeaponData
 
 @export var armor: ArmorData
+
+@export var accessory: EquipmentData
+
+@export var tool_equipment: EquipmentData
 
 
 
@@ -89,10 +97,6 @@ func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null, with_not
 			stack.set_item_data(item_data)
 
 			set_slot_stack(index, stack)
-
-	if with_notif:
-
-		Notifications.new_inventory_notification(item_def, count - remaining, true)
 		
 	return remaining
 
@@ -250,6 +254,66 @@ func set_armor(_armor: ArmorData) -> void:
 	armor = _armor
 
 	armor_updated.emit()
+
+
+
+
+
+func set_accessory(_accessory: EquipmentData) -> void:
+
+	if accessory == _accessory:
+
+		return
+
+	accessory = _accessory
+
+	accessory_updated.emit()
+
+
+
+
+
+func set_tool(_tool: EquipmentData) -> void:
+
+	if tool_equipment == _tool:
+
+		return
+
+	tool_equipment = _tool
+
+	tool_updated.emit()
+
+
+
+
+
+
+
+func is_equipment_equipped(equipment_def: EquipmentDef) -> bool:
+
+	match equipment_def.get_script():
+
+		WeaponDef:
+
+			if !weapon or weapon.item_def != equipment_def:
+
+				return false
+
+		ArmorDef:
+
+			if !armor or armor.item_def != equipment_def:
+
+				return false
+
+		ToolDef:
+
+			print("its a tool we are cheking")
+
+			if !tool_equipment or tool_equipment.item_def != equipment_def:
+
+				return false
+
+	return true
 
 
 

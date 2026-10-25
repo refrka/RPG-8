@@ -41,6 +41,10 @@ static func from_dict(dict: Dictionary) -> ItemData:
 
 		item_data = ArmorData.new()
 
+	elif def is EquipmentDef:
+
+		item_data = EquipmentData.new()
+
 	item_data.item_def = Defs.get_item_def(dict["item_id"])
 
 	item_data.durability = dict["durability"]

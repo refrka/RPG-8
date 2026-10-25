@@ -113,6 +113,10 @@ func _initialize() -> bool:
 
 func _activate() -> void:
 
+	if active:
+
+		return
+
 	_connect_signals()
 
 	active = true
@@ -150,7 +154,13 @@ func _activate() -> void:
 
 
 
+
+
 func _deactivate() -> void:
+
+	if !active:
+
+		return
 
 	active = false
 

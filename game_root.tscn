@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch2m5s11vute6" path="res://system/ui/profile_overlay.tscn" id="3_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://c70ovvphl6a34" path="res://system/ui/container_overlay.tscn" id="4_0o8ui"]
 [ext_resource type="Script" uid="uid://iuavs48mowyf" path="res://system/ui/hud.gd" id="5_8gxew"]
-[ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/mouse_item_slot.tscn" id="5_wd1uf"]
+[ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/inventory/mouse_item_slot.tscn" id="5_wd1uf"]
 [ext_resource type="Script" uid="uid://frkul2fktkgw" path="res://system/ui/player_health_bar.gd" id="6_ledqy"]
 [ext_resource type="Script" uid="uid://dqbmuk2yx6jfc" path="res://system/ui/debug_panel_controls.gd" id="9_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://b4rjontlo1o3m" path="res://system/ui/mouse_tooltip.tscn" id="9_krhou"]
@@ -160,9 +160,9 @@ layout_mode = 1
 
 [node name="MainMenu" parent="MenuCanvas" unique_id=1723796028 instance=ExtResource("2_pjpa4")]
 
-[node name="NotificationCanvas" type="CanvasLayer" parent="." unique_id=929247704]
+[node name="NoticeCanvas" type="CanvasLayer" parent="." unique_id=1164446228]
 
-[node name="NotificationRoot" type="Control" parent="NotificationCanvas" unique_id=180310178 groups=["notification_root"]]
+[node name="NoticeRoot" type="Control" parent="NoticeCanvas" unique_id=814303766 groups=["notice_root"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

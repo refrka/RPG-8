@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b3hakkwn3phwa"]
+
+[ext_resource type="Script" uid="uid://djolnbrm2qugh" path="res://system/ui/notice/notice_panel.gd" id="1_dmmu7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtbp1"]
+bg_color = Color(0.17, 0.17, 0.17, 0.8352941)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.39, 0.39, 0.39, 0.79607844)
+
+[node name="NoticePanel" type="MarginContainer" unique_id=1416131627]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_dmmu7")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=323542151]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xtbp1")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=739123713]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=185910366]

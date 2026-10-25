@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_yt7p2"]
 [ext_resource type="Resource" uid="uid://dmra6iliwh07g" path="res://items/consumable/food/berries_def.tres.tres" id="6_d1fse"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_88dn5"]
+[ext_resource type="Resource" uid="uid://dmw7cdd18biwl" path="res://items/equipment/tools/wood_axe_def.tres" id="8_d1fse"]
 
 [sub_resource type="Resource" id="Resource_ejgd5"]
 script = ExtResource("2_o60e0")
@@ -50,6 +51,7 @@ shape = SubResource("CapsuleShape2D_pinj3")
 [node name="HarvestComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="2" unique_id=76951804]
 script = ExtResource("4_o60e0")
 harvest_loot_table = SubResource("Resource_o60e0")
+required_tool = ExtResource("8_d1fse")
 interaction_duration = 1.2
 metadata/_custom_type_script = "uid://dd2nyxngd7yxu"
 

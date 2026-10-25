@@ -1,0 +1,1 @@
+class_name ItemNoticePanel extends NoticePanel

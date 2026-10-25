@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b4rjontlo1o3m"]
 
 [ext_resource type="Script" uid="uid://mysuesmnujp4" path="res://system/ui/mouse_tooltip.gd" id="1_6rn6l"]
-[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="2_dmmxf"]
+[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/inventory/item_slot.tscn" id="2_dmmxf"]
 [ext_resource type="Texture2D" uid="uid://dvt0hknkk4gda" path="res://resources/textures/items/wood_arrow_sprite.png" id="3_x2830"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krhou"]
@@ -12,7 +12,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.53, 0.53, 0.53, 0.4862745)
 
-[node name="MouseTooltip" type="MarginContainer" unique_id=836463760 node_paths=PackedStringArray("primary_label", "ammunition_count_label", "ammunition_section", "ammunition_slot") groups=["mouse_tooltip"]]
+[node name="MouseTooltip" type="MarginContainer" unique_id=836463760 node_paths=PackedStringArray("primary_label", "secondary_label", "ammunition_count_label", "ammunition_section", "ammunition_slot") groups=["mouse_tooltip"]]
 process_mode = 3
 offset_right = 88.0
 offset_bottom = 40.0
@@ -21,7 +21,8 @@ size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 10
 script = ExtResource("1_6rn6l")
-primary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/Label")
+primary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Label")
+secondary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2")
 ammunition_count_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2")
 ammunition_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer")
 ammunition_slot = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/ItemSlot")
@@ -43,10 +44,17 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=403410308]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1151050792]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=403410308]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "A Label"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1238791794]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.64, 0.64, 0.64, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1221675432]
 layout_mode = 2

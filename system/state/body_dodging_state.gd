@@ -30,7 +30,7 @@ func _enter() -> void:
 
 	animation_component.play_body_animation("%s/dodge" % entity.entity_def.entity_id)
 
-	movement_component.set_move_speed_override(400.0)
+	movement_component.set_move_speed_override(250.0)
 
 
 

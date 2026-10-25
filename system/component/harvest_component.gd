@@ -8,6 +8,8 @@ class_name HarvestComponent extends TimedInteractableComponent
 
 @export var harvested_texture_frame:= 0
 
+@export var required_tool: ToolDef
+
 
 var harvested:= false
 
@@ -27,6 +29,12 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 func _can_interact() -> bool:
+
+	var player = Game.get_player()
+
+	if required_tool and !player.inventory.is_equipment_equipped(required_tool):
+
+		return false
 
 	return not harvested
 

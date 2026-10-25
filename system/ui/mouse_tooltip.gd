@@ -5,6 +5,8 @@ class_name MouseTooltip extends MarginContainer
 
 @export var primary_label: Label
 
+@export var secondary_label: Label
+
 @export var ammunition_count_label: Label
 
 @export var ammunition_section: MarginContainer
@@ -51,6 +53,18 @@ func show_item_tooltip(item_def: ItemDef, _ammunition_def: AmmunitionDef = null,
 	activate()
 
 	primary_label.text = item_def.display_name
+
+	secondary_label.text = ""
+
+	secondary_label.visible = false
+
+	if item_def is EquipmentDef:
+
+		var equipment_type_text = EquipmentDef.EquipmentType.keys()[item_def.equipment_type].capitalize()
+
+		secondary_label.text = "( %s )" % equipment_type_text
+
+		secondary_label.visible = true
 
 	if _ammunition_def:
 
