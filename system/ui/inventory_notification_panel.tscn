@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://nt6yxq3n42ww"]
+
+[ext_resource type="PackedScene" uid="uid://b0747dhsshaw6" path="res://system/ui/notification_panel.tscn" id="1_2a2pq"]
+[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="2_l2ux3"]
+
+[node name="InventoryNotificationPanel" unique_id=220213091 instance=ExtResource("1_2a2pq")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/NotificationContent" parent_id_path=PackedInt32Array(413385595) index="0" unique_id=1526463951]
+layout_mode = 2
+
+[node name="ItemSlot" parent="MarginContainer/PanelContainer/NotificationContent/HBoxContainer" index="0" unique_id=212764444 instance=ExtResource("2_l2ux3")]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+disabled = true
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/NotificationContent/HBoxContainer" index="1" unique_id=562897427]
+layout_mode = 2

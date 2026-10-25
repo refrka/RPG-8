@@ -43,21 +43,23 @@ func _initialize(_entity: EntityNode) -> void:
 
 func start_interaction(target_entity: EntityNode) -> void:
 
-	entity.state_machine.request_state(BodyInteractingState)
-
-	current_interactable_entity = target_entity
-
 	var interactable_component = target_entity.get_interactable_component()
 
-	if interactable_component:
+	if interactable_component and interactable_component._can_interact():
 
-		interactable_component.interaction_overlay_closed.connect(_on_interaction_overlay_closed)
+		if !interactable_component._start():
 
-		interactable_component._start()
+			current_interactable_entity = target_entity
 
-	else:
+			entity.state_machine.request_state(BodyInteractingState)
 
-		pass
+			interactable_component.interaction_overlay_closed.connect(_on_interaction_overlay_closed)
+
+			interactable_component.interaction_complete.connect(_on_interaction_complete)
+
+			interactable_component.interaction_cancelled.connect(_on_interaction_cancelled)
+
+		
 
 
 
@@ -70,6 +72,10 @@ func end_interaction() -> void:
 
 	interactable_component.interaction_overlay_closed.disconnect(_on_interaction_overlay_closed)
 
+	interactable_component.interaction_complete.disconnect(_on_interaction_complete)
+
+	interactable_component.interaction_cancelled.disconnect(_on_interaction_cancelled)
+
 	interactable_component._end()
 
 	current_interactable_entity = null
@@ -77,15 +83,24 @@ func end_interaction() -> void:
 
 
 
+func cancel_interaction() -> void:
+
+	end_interaction()
+
+
+
+
 func complete_interaction() -> void:
 
-	pass
+	end_interaction()
+
 
 
 
 func is_interacting() -> bool:
 
 	return entity.state_machine.current_body_state is BodyInteractingState
+
 
 
 
@@ -112,11 +127,17 @@ func _on_interact_input_pressed() -> void:
 
 func _on_interact_input_released() -> void:
 
-	pass
+	if is_interacting():
+
+		var interactable_component = current_interactable_entity.get_interactable_component()
+
+		if interactable_component is TimedInteractableComponent:
+
+			interactable_component._cancel()
 
 
 
-func _on_interactable_entity_entered_area(entity_node: EntityNode) -> void:
+func _on_interactable_entity_entered_area(_entity_node: EntityNode) -> void:
 
 	pass
 
@@ -133,3 +154,15 @@ func _on_interactable_entity_exited_area(entity_node: EntityNode) -> void:
 func _on_interaction_overlay_closed() -> void:
 
 	end_interaction()
+
+
+
+func _on_interaction_complete() -> void:
+
+	complete_interaction()
+	
+
+
+func _on_interaction_cancelled() -> void:
+
+	cancel_interaction()

@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://b0747dhsshaw6"]
+
+[ext_resource type="Script" uid="uid://birle7xxmkrvr" path="res://system/ui/notification_panel.gd" id="1_vu0lm"]
+
+[sub_resource type="Animation" id="Animation_7ycem"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c72i7"]
+resource_name = "drop"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.086546846, 0.11270637),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, -40), Vector2(640, 15), Vector2(640, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sm7jg"]
+resource_name = "fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00094442884, 0.1520592),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.27956226),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ycem"]
+_data = {
+&"RESET": SubResource("Animation_7ycem"),
+&"drop": SubResource("Animation_c72i7"),
+&"fade": SubResource("Animation_sm7jg")
+}
+
+[node name="NotificationPanel" type="Control" unique_id=220213091 node_paths=PackedStringArray("content_panel")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+script = ExtResource("1_vu0lm")
+content_panel = NodePath("MarginContainer/PanelContainer/NotificationContent")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=212648268]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -33.0
+offset_bottom = 28.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1019690893]
+layout_mode = 2
+
+[node name="NotificationContent" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=413385595]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1084005660]
+libraries/ = SubResource("AnimationLibrary_7ycem")

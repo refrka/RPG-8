@@ -7,10 +7,12 @@ class_name SaveComponent extends InteractableComponent
 
 
 
-func _start() -> void:
+func _start() -> bool:
 
 	var player = Game.get_player()
 
 	player.current_spawn_id = spawn_id
 
 	Game.save()
+
+	return true

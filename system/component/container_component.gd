@@ -6,13 +6,15 @@ class_name ContainerComponent extends InteractableComponent
 
 
 
-func _start() -> void:
+func _start() -> bool:
 
 	var overlay = UI.show_overlay(ContainerOverlay)
 
 	overlay.overlay_deactivated.connect(_on_overlay_deactivated, CONNECT_ONE_SHOT)
 
 	overlay.load_container_inventory(entity.inventory)
+
+	return false
 
 
 

@@ -160,6 +160,17 @@ layout_mode = 1
 
 [node name="MainMenu" parent="MenuCanvas" unique_id=1723796028 instance=ExtResource("2_pjpa4")]
 
+[node name="NotificationCanvas" type="CanvasLayer" parent="." unique_id=929247704]
+
+[node name="NotificationRoot" type="Control" parent="NotificationCanvas" unique_id=180310178 groups=["notification_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MouseCanvas" type="CanvasLayer" parent="." unique_id=241222124]
 
 [node name="MouseItemSlot" parent="MouseCanvas" unique_id=212764444 instance=ExtResource("5_wd1uf")]

@@ -6,6 +6,10 @@ signal contents_updated
 
 
 
+@export var disabled:= false
+
+
+
 @export var default_stylebox: StyleBoxFlat
 
 @export var hovered_stylebox: StyleBoxFlat
@@ -13,6 +17,7 @@ signal contents_updated
 @export var selected_stylebox: StyleBoxFlat
 
 @export var hovered_selected_stylebox: StyleBoxFlat
+
 
 
 
@@ -63,6 +68,10 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered_slot)
 
 	mouse_exited.connect(_on_mouse_exited_slot)
+
+	if disabled:
+
+		return
 
 	gui_input.connect(_on_slot_gui_input)
 

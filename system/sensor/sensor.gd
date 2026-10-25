@@ -141,8 +141,6 @@ func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
 
 	if body is EntityNode and body != entity:
 
-		print(body, " entered sensor of ", entity)
-
 		entities.append(body)
 
 		entity_entered.emit(body)

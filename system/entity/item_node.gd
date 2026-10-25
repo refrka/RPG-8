@@ -9,11 +9,24 @@ var item_stack: ItemStack
 
 
 
+
+func _ready() -> void:
+
+	await Game.get_timer(0.2).timeout
+
+	body_collision.disabled = false
+
+
+
+
+
 func load_item_def(_item_def: ItemDef) -> void:
 
 	item_def = _item_def
 
 	body_sprite.texture = item_def.sprite_texture
+
+	@warning_ignore("integer_division")
 
 	body_sprite.offset.y = -item_def.sprite_texture.get_height() / 2
 

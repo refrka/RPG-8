@@ -4,6 +4,10 @@ class_name Inventory extends Resource
 
 signal slot_updated(slot_index: int)
 
+signal items_added(item_def: ItemDef, amount: int)
+
+signal items_removed(item_def: ItemDef, amount: int)
+
 signal weapon_updated
 
 signal armor_updated
@@ -48,7 +52,7 @@ func resize(_size:= -1) -> void:
 
 
 
-func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
+func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null, with_notif:= false) -> int:
 
 	var remaining = count
 
@@ -86,13 +90,24 @@ func add_item(item_def: ItemDef, count:= 1, item_data: ItemData = null) -> int:
 
 			set_slot_stack(index, stack)
 
+	if with_notif:
+
+		Notifications.new_inventory_notification(item_def, count - remaining, true)
+		
 	return remaining
 
 
 
 
+func remove_item(item_def: ItemDef, count:= 1, _item_data: ItemData = null) -> void:
 
-func add_stack(item_stack: ItemStack) -> void:
+	items_removed.emit(item_def, count)
+
+
+
+
+
+func add_stack(item_stack: ItemStack, with_notif:= false) -> void:
 
 	if item_stack.item_data:
 
@@ -104,16 +119,16 @@ func add_stack(item_stack: ItemStack) -> void:
 
 	else:
 
-		add_item(item_stack.item_def, item_stack.count)
+		add_item(item_stack.item_def, item_stack.count, null, with_notif)
 
 
 
 
-func add_item_slot_contents(item_slot: ItemSlot) -> void:
+func add_item_slot_contents(item_slot: ItemSlot, with_notif:= false) -> void:
 
 	var item_stack = item_slot.item_stack
 
-	add_stack(item_stack)
+	add_stack(item_stack, with_notif)
 
 
 

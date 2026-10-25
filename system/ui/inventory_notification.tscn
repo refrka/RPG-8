@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://caiuu282865w"]
+
+[ext_resource type="PackedScene" uid="uid://d1bcakrqa8fhp" path="res://system/ui/notification.tscn" id="1_frbkl"]
+[ext_resource type="Script" uid="uid://brba31n18lt7h" path="res://system/ui/inventory_notification.gd" id="2_e121w"]
+[ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/item_slot.tscn" id="3_e121w"]
+
+[node name="InventoryNotification" unique_id=1148681824 node_paths=PackedStringArray("item_slot", "message_label", "panel") instance=ExtResource("1_frbkl")]
+mouse_filter = 2
+script = ExtResource("2_e121w")
+item_slot = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/ItemSlot")
+message_label = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Label")
+panel = NodePath("MarginContainer/PanelContainer")
+
+[node name="MarginContainer" parent="." index="0" unique_id=322687933]
+mouse_filter = 2
+
+[node name="MarginContainer" parent="MarginContainer/PanelContainer" parent_id_path=PackedInt32Array(967274091) index="0" unique_id=1291854837]
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0" unique_id=1849648481]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemSlot" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" index="0" unique_id=212764444 instance=ExtResource("3_e121w")]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2
+disabled = true
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" index="1" unique_id=788259899]
+layout_mode = 2

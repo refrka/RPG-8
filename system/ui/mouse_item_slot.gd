@@ -74,7 +74,7 @@ func handle_slot_input(target_slot: ItemSlot, event: InputEvent) -> void:
 
 				if target_slot.paired_inventory:
 
-					target_slot.paired_inventory.add_item_slot_contents(target_slot)
+					target_slot.paired_inventory.add_item_slot_contents(target_slot, false)
 
 					target_slot.clear()
 

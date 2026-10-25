@@ -21,6 +21,8 @@ signal died
 
 @export var body_sprite: Sprite2D
 
+@export var body_collision: CollisionShape2D
+
 @export var combat_root: Node2D
 
 @export var hitbox: Hitbox
@@ -354,6 +356,6 @@ func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
 
 	if body is ItemNode:
 
-		inventory.add_stack(body.item_stack)
+		inventory.add_stack(body.item_stack, true)
 
 		body.queue_free.call_deferred()
