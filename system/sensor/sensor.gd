@@ -27,7 +27,7 @@ var sensors: Array[Sensor]
 
 
 
-func _initialize(_entity: EntityNode) -> void:
+func _initialize(_entity: EntityNode = null) -> void:
 
 	entity = _entity
 

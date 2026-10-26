@@ -79,8 +79,21 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func _deactivate() -> void:
+
+	halt()
+	
+	super()
+
+
+
+
+
+
 
 func halt() -> void:
+
+	entity.velocity = Vector2.ZERO
 
 	_change_movement_state(MovementState.HALT)
 
@@ -171,6 +184,10 @@ func _change_movement_state(new_state: MovementState) -> void:
 
 		MovementState.HALT:
 
+			set_navigation_target(null)
+
+			entity.velocity = Vector2.ZERO
+
 			current_move_dir = Vector2.ZERO
 
 			current_move_velocity = Vector2.ZERO
@@ -197,6 +214,12 @@ func _on_navigation_finished() -> void:
 
 
 func _on_velocity_computed(velocity: Vector2) -> void:
+
+	if !active:
+
+		entity.velocity = Vector2.ZERO
+
+		return
 
 	entity.velocity = velocity + modifier_handler.get_vector_total()
 

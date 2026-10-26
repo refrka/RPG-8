@@ -1,7 +1,7 @@
 class_name InventoryGrid extends GridContainer
 
 
-@onready var item_slot_scene = preload("res://system/ui/item_slot.tscn")
+@onready var item_slot_scene = preload("res://system/ui/inventory/item_slot.tscn")
 
 
 

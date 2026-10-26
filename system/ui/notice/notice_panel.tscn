@@ -10,10 +10,47 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.39, 0.39, 0.39, 0.79607844)
 
-[node name="NoticePanel" type="MarginContainer" unique_id=1416131627]
+[sub_resource type="Animation" id="Animation_dmmu7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uwadg"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dx62q"]
+_data = {
+&"RESET": SubResource("Animation_dmmu7"),
+&"fade": SubResource("Animation_uwadg")
+}
+
+[node name="NoticePanel" type="MarginContainer" unique_id=1416131627 node_paths=PackedStringArray("anim_player")]
 offset_right = 8.0
 offset_bottom = 8.0
 script = ExtResource("1_dmmu7")
+anim_player = NodePath("AnimationPlayer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=323542151]
 layout_mode = 2
@@ -27,3 +64,4 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=185910366]
+libraries/ = SubResource("AnimationLibrary_dx62q")

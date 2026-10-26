@@ -18,7 +18,7 @@ var combat_component: CombatComponent
 
 
 
-func _initialize(_entity: EntityNode) -> void:
+func _initialize(_entity: EntityNode = null) -> void:
 
 	super(_entity)
 

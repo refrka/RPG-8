@@ -6,6 +6,7 @@ signal died
 
 
 
+
 @export var entity_def: EntityDef
 
 @export var inventory: Inventory
@@ -357,6 +358,12 @@ func _die() -> void:
 
 			Scenes.current_location.drop_item(item_def, target_position, count)
 
+	var movement_component = get_component(MovementComponent)
+	
+	if movement_component:
+
+		movement_component.halt()
+
 	died.emit()
 
 
@@ -367,5 +374,9 @@ func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
 	if body is ItemNode:
 
 		inventory.add_stack(body.item_stack, true)
+
+		if self is Player:
+
+			Events.fire(InventoryNoticeEvent, {"item_stack": body.item_stack, "added": true,})
 
 		body.queue_free.call_deferred()

@@ -104,6 +104,8 @@ func _die() -> void:
 
 	entity._die()
 
+	# entity.queue_free.call_deferred()
+
 
 
 

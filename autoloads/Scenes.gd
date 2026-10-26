@@ -25,11 +25,6 @@ func _ready() -> void:
 
 
 
-
-
-
-
-
 func load_location(location_id: StringName) -> Location:
 
 	if current_location:
