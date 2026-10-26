@@ -29,6 +29,7 @@ func _load_notice(_notice: Notice) -> void:
 
 	var primary_text = notice.item_def.display_name
 
+
 	primary_label.text = primary_text
 
 	_update_secondary_text()

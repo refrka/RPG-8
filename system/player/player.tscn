@@ -337,6 +337,7 @@ _data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ly01"]
 
 [node name="Player" unique_id=2016177718 node_paths=PackedStringArray("interaction_area", "pick_up_area") instance=ExtResource("1_o3wy1")]
+collision_layer = 5
 script = ExtResource("2_ho6qo")
 interaction_area = NodePath("InteractionArea")
 entity_def = ExtResource("3_ukr2h")

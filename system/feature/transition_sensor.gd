@@ -9,6 +9,8 @@ class_name TransitionSensor extends Feature
 
 
 
+
+
 func _initialize() -> void:
 
 	super()
@@ -40,4 +42,6 @@ func _deactivate() -> void:
 
 func _on_entity_entered_sensor(entity: EntityNode) -> void:
 
-	print(entity)
+	_deactivate()
+
+	Scenes.transition_to(transition_location_id, transition_spawn_id)

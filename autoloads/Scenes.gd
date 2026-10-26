@@ -46,6 +46,19 @@ func load_location(location_id: StringName) -> Location:
 
 
 
+
+func transition_to(location_id: StringName, spawn_id: StringName) -> void:
+
+	Game.hold_player()
+
+	var location = load_location(location_id)
+
+	location.spawn_player(spawn_id)
+
+
+
+
+
 func clear_location() -> void:
 
 	if !current_location:
