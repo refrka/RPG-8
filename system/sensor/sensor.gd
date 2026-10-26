@@ -35,6 +35,16 @@ func _initialize(_entity: EntityNode = null) -> void:
 
 
 
+func get_overlapping_entities() -> void:
+
+	for body in get_overlapping_bodies():
+
+		if body is EntityNode:
+
+			entities.append(body)
+
+			
+
 
 
 func _activate() -> void:
@@ -42,6 +52,8 @@ func _activate() -> void:
 	_connect_signals()
 
 	active = true
+
+	get_overlapping_entities()
 
 
 

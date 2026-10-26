@@ -124,3 +124,5 @@ func _on_item_notice_panel_expired(item_notice_panel: ItemNoticePanel) -> void:
 		if !pending_item_notices.is_empty():
 
 			_next_item_notice()
+
+

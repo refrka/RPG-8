@@ -70,11 +70,13 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.dodge_pressed.connect(_on_dodge_input_pressed)
 
-	var dodging_state = entity.state_machine.get_state(BodyDodgingState)
+	if entity.state_machine:
 
-	if dodging_state:
+		var dodging_state = entity.state_machine.get_state(BodyDodgingState)
 
-		dodging_state.dodge_complete.connect(_on_dodge_complete)
+		if dodging_state:
+
+			dodging_state.dodge_complete.connect(_on_dodge_complete)
 
 
 

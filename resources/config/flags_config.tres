@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FlagsConfig" format=3 uid="uid://5bkj557h7max"]
+
+[ext_resource type="Script" uid="uid://bwc3gg2i7b4gt" path="res://system/misc/flags_config.gd" id="1_ti6rd"]
+
+[resource]
+script = ExtResource("1_ti6rd")
+metadata/_custom_type_script = "uid://bwc3gg2i7b4gt"

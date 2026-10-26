@@ -55,6 +55,8 @@ func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
 	location.spawn_player(spawn_id)
 
+	location._activate()
+
 
 
 
@@ -90,6 +92,14 @@ func get_location(location_id: StringName) -> Location:
 
 
 
+
 func get_location_path(location_id: StringName) -> String:
 
 	return "res://locations/%s.scn" % location_id
+
+
+
+
+func get_location_id() -> StringName:
+
+	return current_location.scene_file_path.trim_prefix("res://locations/").trim_suffix(".scn")

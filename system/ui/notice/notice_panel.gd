@@ -4,6 +4,10 @@ class_name NoticePanel extends MarginContainer
 
 signal expired
 
+signal dismissed
+
+
+@export var panel: PanelContainer
 
 @export var anim_player: AnimationPlayer
 
@@ -28,6 +32,12 @@ func _ready() -> void:
 
 	anim_player.animation_finished.connect(_on_animation_finished)
 
+	panel.mouse_entered.connect(_on_mouse_entered)
+
+	panel.mouse_exited.connect(_on_mouse_exited)
+
+	panel.gui_input.connect(_on_gui_input)
+
 
 
 
@@ -44,8 +54,6 @@ func _load_notice(_notice: Notice) -> void:
 func _activate() -> void:
 
 	active = true
-
-	print("play drop")
 
 	anim_player.play("drop")
 
@@ -105,6 +113,30 @@ func _on_animation_finished(anim_name: String) -> void:
 	elif anim_name == "fade":
 
 		_expire()
+
+
+
+func _on_mouse_entered() -> void:
+
+	_stop_timer()
+
+
+
+func _on_mouse_exited() -> void:
+
+	_reset_timer()
+
+	_start_timer()
+
+
+
+func _on_gui_input(event: InputEvent) -> void:
+
+	if active and event is InputEventMouseButton and event.is_pressed():
+
+		_stop_timer()
+
+		_fade()
 
 
 

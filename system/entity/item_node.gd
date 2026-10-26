@@ -6,6 +6,8 @@ class_name ItemNode extends EntityNode
 
 var item_stack: ItemStack
 
+var floating_to_entity: EntityNode
+
 
 
 
@@ -32,6 +34,12 @@ func load_item_def(_item_def: ItemDef) -> void:
 
 
 
+func float_to_entity(entity_node: EntityNode) -> void:
+
+	floating_to_entity = entity_node
+
+
+
 
 static func create_new(_item_def: ItemDef, count:= 1) -> ItemNode:
 
@@ -42,3 +50,28 @@ static func create_new(_item_def: ItemDef, count:= 1) -> ItemNode:
 	item_node.item_stack = ItemStack.create_new(_item_def, count)
 
 	return item_node
+
+
+
+
+func _on_floating_to_entity_reached() -> void:
+
+	queue_free.call_deferred()
+
+
+
+
+func _physics_process(delta: float) -> void:
+
+	if floating_to_entity != null:
+
+		var target_position = global_position + (get_distance(floating_to_entity) - 8) * get_direction(floating_to_entity)
+
+		global_position = global_position.move_toward(target_position, 10.0)
+
+		if global_position.distance_to(target_position) <= 1.0:
+
+			queue_free.call_deferred()
+
+
+

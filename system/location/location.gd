@@ -78,6 +78,8 @@ func spawn_player(spawn_id: StringName, make_current:= false) -> void:
 
 	player.reparent(ysort_root)
 
+	player.show()
+
 
 
 
@@ -87,6 +89,10 @@ func drop_item(item_def: ItemDef, target_position: Vector2, count:= 1) -> void:
 	var node = ItemNode.create_new(item_def, count)
 	
 	Scenes.current_location.add_entity_node(node, target_position)
+
+	node._initialize()
+
+	node._activate()
 
 
 

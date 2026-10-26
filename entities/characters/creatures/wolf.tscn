@@ -87,7 +87,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_6wlex"]
 resource_name = "attack_0"
-length = 0.59834576
+length = 0.53333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,7 +95,7 @@ tracks/0/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.28484952, 0.51617146),
+"times": PackedFloat32Array(0.21512264, 0.44644457),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("CircleShape2D_6ogyw"), null]
@@ -107,7 +107,7 @@ tracks/1/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:positio
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.28362364),
+"times": PackedFloat32Array(0.21389675),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(12, -3)]
@@ -131,7 +131,7 @@ tracks/3/path = NodePath("CanvasGroup/BodySprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.027272344, 0.27377683, 0.41579312, 0.4939527, 0.5697269),
+"times": PackedFloat32Array(0.027272344, 0.20404994, 0.34606624, 0.4242258, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [9, 10, 6, 7, 8]

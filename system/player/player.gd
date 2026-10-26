@@ -89,6 +89,8 @@ func get_save_data() -> Dictionary:
 
 	var save_dict = Game.active_save_data
 
+	save_dict["location_id"] = Scenes.get_location_id()
+
 	save_dict["spawn_id"] = current_spawn_id
 
 	save_dict["inventory"] = inventory.to_dict()

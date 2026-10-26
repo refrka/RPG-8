@@ -12,13 +12,15 @@ metadata/_custom_type_script = "uid://8n74u5nmtfah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tswgu"]
 
-[node name="ItemNode" type="StaticBody2D" unique_id=339184861 node_paths=PackedStringArray("body_sprite", "body_collision")]
+[node name="ItemNode" type="StaticBody2D" unique_id=339184861 node_paths=PackedStringArray("component_root", "body_sprite", "body_collision", "nav_agent")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_tswgu")
 entity_def = SubResource("Resource_aicu3")
+component_root = NodePath("")
 body_sprite = NodePath("CanvasGroup/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
+nav_agent = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1454013400]
 modulate = Color(1, 1, 1, 0.3254902)

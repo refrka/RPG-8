@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_are0r"]
 [ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="6_um0jx"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_apnh0"]
+[ext_resource type="Resource" uid="uid://bhm7uip81a6cj" path="res://items/material/wolf_fur_def.tres" id="8_1f81s"]
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="8_diwo1"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="9_q78kr"]
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="10_jpkyo"]
@@ -33,8 +34,15 @@ ExtResource("4_6iu8w"): 0.5
 default_behavior = SubResource("Resource_6exs4")
 metadata/_custom_type_script = "uid://bmjkbrb8bcimj"
 
+[sub_resource type="Resource" id="Resource_h8bvh"]
+script = ExtResource("5_are0r")
+item_def = ExtResource("8_1f81s")
+count_range = Vector2i(10, 10)
+metadata/_custom_type_script = "uid://dd5nur0tqmxp5"
+
 [sub_resource type="Resource" id="Resource_feft3"]
 script = ExtResource("7_apnh0")
+entries = Array[ExtResource("5_are0r")]([SubResource("Resource_h8bvh")])
 metadata/_custom_type_script = "uid://cxk2pjyg8l41k"
 
 [sub_resource type="Resource" id="Resource_a78n4"]

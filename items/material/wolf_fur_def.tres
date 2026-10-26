@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bhm7uip81a6cj"]
+
+[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="1_h8bvh"]
+[ext_resource type="Texture2D" uid="uid://nu5wqttgsj7l" path="res://resources/textures/items/wolf_fur_sprite.png" id="2_v1b4k"]
+
+[resource]
+script = ExtResource("1_h8bvh")
+item_id = &"wolf_fur"
+display_name = "Wolf fur"
+sprite_texture = ExtResource("2_v1b4k")
+sprite_offset = Vector2(0, -4)
+metadata/_custom_type_script = "uid://bn7rgf574qily"

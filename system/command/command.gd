@@ -34,7 +34,9 @@ func _execute(_data:= {}) -> Result:
 
 	data = _data
 
-	actor = data["actor"]
+	if data.has("actor"):
+
+		actor = data["actor"]
 
 	return Result.SUCCESS
 

@@ -46,10 +46,13 @@ _data = {
 &"fade": SubResource("Animation_uwadg")
 }
 
-[node name="NoticePanel" type="MarginContainer" unique_id=1416131627 node_paths=PackedStringArray("anim_player")]
+[node name="NoticePanel" type="MarginContainer" unique_id=1416131627 node_paths=PackedStringArray("panel", "anim_player")]
+process_mode = 3
 offset_right = 8.0
 offset_bottom = 8.0
+mouse_filter = 2
 script = ExtResource("1_dmmu7")
+panel = NodePath("PanelContainer")
 anim_player = NodePath("AnimationPlayer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=323542151]
@@ -58,6 +61,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xtbp1")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=739123713]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4

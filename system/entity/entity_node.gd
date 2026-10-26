@@ -42,6 +42,8 @@ signal died
 
 @export var health_bar: HealthProgressBar
 
+@export var nav_agent: NavigationAgent2D
+
 
 
 
@@ -354,9 +356,11 @@ func _die() -> void:
 
 			var count = item_list[item_def]
 
-			var target_position = global_position + Vector2(randf_range(-30.0, 30.0), randf_range(-30.0, 30.0))
+			for i in range(count):
 
-			Scenes.current_location.drop_item(item_def, target_position, count)
+				var target_position = global_position + Vector2(randf_range(-15.0, 15.0), randf_range(-15.0, 15.0))
+
+				Scenes.current_location.drop_item(item_def, target_position, 1)
 
 	var movement_component = get_component(MovementComponent)
 	
@@ -379,4 +383,4 @@ func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
 
 			Events.fire(InventoryNoticeEvent, {"item_stack": body.item_stack, "added": true,})
 
-		body.queue_free.call_deferred()
+		body.float_to_entity(self)

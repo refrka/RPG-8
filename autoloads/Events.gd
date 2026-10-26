@@ -6,8 +6,6 @@ extends Node
 
 var subscriptions: Dictionary[Script, Array]
 
-var type_subscriptions: Dictionary[Script, Array]
-
 
 
 
@@ -24,23 +22,18 @@ func subscribe(event_script: Script, callback: Callable) -> void:
 
 
 
-func subscribe_type(event_script: Script, callback: Callable) -> void:
-
-	if !type_subscriptions.has(event_script):
-
-		type_subscriptions[event_script] = []
-
-	if !type_subscriptions[event_script].has(callback):
-
-		type_subscriptions[event_script].append(callback)
-
-
 
 
 
 func unsubscribe(event_script: Script, callback: Callable) -> void:
 
-	pass
+	if subscriptions.has(event_script) and subscriptions[event_script].has(callback):
+
+		subscriptions[event_script].erase(callback)
+
+		if subscriptions[event_script].is_empty():
+
+			subscriptions.erase(event_script)
 
 
 
