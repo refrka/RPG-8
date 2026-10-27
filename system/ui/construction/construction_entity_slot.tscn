@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://ymelc8vo8wcx"]
+
+[ext_resource type="Script" uid="uid://b66ryolnw1aks" path="res://system/ui/construction/construction_entity_slot.gd" id="1_noheq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_noheq"]
+bg_color = Color(0.19076231, 0.19076234, 0.19076225, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.30323282, 0.30323282, 0.30323282, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcwdq"]
+bg_color = Color(0.2231029, 0.22310287, 0.22310293, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.30323282, 0.30323282, 0.30323282, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78fdu"]
+bg_color = Color(0.2231029, 0.2231029, 0.22310284, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.51718444, 0.5171845, 0.5171844, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxlnm"]
+bg_color = Color(0.2231029, 0.22310287, 0.22310293, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.51718444, 0.5171845, 0.5171844, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="ConstructionEntitySlot" type="MarginContainer" unique_id=1670770900 node_paths=PackedStringArray("texture_rect", "panel")]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 4.0
+offset_bottom = 4.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_noheq")
+texture_rect = NodePath("PanelContainer/MarginContainer/TextureRect")
+panel = NodePath("PanelContainer")
+default_stylebox = SubResource("StyleBoxFlat_noheq")
+hovered_stylebox = SubResource("StyleBoxFlat_hcwdq")
+selected_stylebox = SubResource("StyleBoxFlat_78fdu")
+hovered_selected_stylebox = SubResource("StyleBoxFlat_nxlnm")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=184856918]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_noheq")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1571872344]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer" unique_id=672367595]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

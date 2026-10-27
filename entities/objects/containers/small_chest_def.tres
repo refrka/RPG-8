@@ -1,10 +1,15 @@
 [gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://cnbosd3spgp2w"]
 
 [ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_47ut5"]
+[ext_resource type="Texture2D" uid="uid://pyffk8tnhn3d" path="res://resources/textures/icons/small_chest_icon.png" id="1_qc5w1"]
+[ext_resource type="Texture2D" uid="uid://cph64f43h8aps" path="res://resources/textures/entities/small_chest_sprite.png" id="2_hgsir"]
 
 [resource]
 script = ExtResource("1_47ut5")
 entity_id = &"small_chest"
 display_name = &"Small chest"
+scene_path = "res://entities/objects/containers/small_chest.tscn"
 base_health = 3.0
+sprite_texture = ExtResource("2_hgsir")
+icon_texture = ExtResource("1_qc5w1")
 metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

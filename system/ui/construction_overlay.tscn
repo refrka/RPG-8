@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cy7nvd43jrg5j"]
+
+[ext_resource type="Script" uid="uid://b0hpcj4qssudx" path="res://system/ui/construction_overlay.gd" id="1_0g760"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g760"]
+bg_color = Color(0.19793722, 0.19793725, 0.19793713, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.46229053, 0.46229064, 0.46229035, 1)
+
+[node name="ConstructionOverlay" type="Control" unique_id=1806290263 node_paths=PackedStringArray("entity_grid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0g760")
+entity_grid = NodePath("MarginContainer/PanelContainer/MarginContainer/GridContainer")
+metadata/_custom_type_script = "uid://bey0mr5gq1a57"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=563793100]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1181853699]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_0g760")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=578626051]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1547806240]
+layout_mode = 2
+columns = 8

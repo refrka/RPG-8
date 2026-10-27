@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://cw3sd5erjs6yy" path="res://items/consumable/food/apple_def.tres" id="5_337wk"]
 [ext_resource type="Resource" uid="uid://vmiqppfcbknh" path="res://items/equipment/weapons/short_sword/short_sword_def.tres" id="6_22f47"]
 [ext_resource type="Script" uid="uid://bm6wwvskg5d1i" path="res://system/item/weapon_data.gd" id="6_sa8tt"]
+[ext_resource type="Resource" uid="uid://ch2qvog42j5qj" path="res://items/ammunition/wood_arrow_def.tres" id="6_tnhtq"]
+[ext_resource type="Resource" uid="uid://bx3lfl5v2lkvq" path="res://items/equipment/weapons/short_bow/short_bow_def.tres" id="7_sa8tt"]
 
 [sub_resource type="Resource" id="Resource_bfjvu"]
 script = ExtResource("6_sa8tt")
@@ -26,10 +28,23 @@ item_def = ExtResource("5_337wk")
 count = 1
 metadata/_custom_type_script = "uid://wbgpq46tveo5"
 
+[sub_resource type="Resource" id="Resource_nknqk"]
+script = ExtResource("4_337wk")
+item_def = ExtResource("6_tnhtq")
+count = 99
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[sub_resource type="Resource" id="Resource_0pxas"]
+script = ExtResource("6_sa8tt")
+ammunition_stack = SubResource("Resource_nknqk")
+item_def = ExtResource("7_sa8tt")
+metadata/_custom_type_script = "uid://bm6wwvskg5d1i"
+
 [sub_resource type="Resource" id="Resource_u2ucp"]
 script = ExtResource("1_rcknn")
 stacks = Array[ExtResource("4_337wk")]([SubResource("Resource_lhuql"), SubResource("Resource_8tak1")])
 size = 12
+weapon = SubResource("Resource_0pxas")
 metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_h3rsp"]

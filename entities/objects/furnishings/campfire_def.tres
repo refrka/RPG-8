@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://bh2dkwotx0qyp"]
+
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_2r4fw"]
+[ext_resource type="Texture2D" uid="uid://dvu3fuxt1p0wq" path="res://resources/textures/icons/campfire_icon.png" id="1_jvag0"]
+[ext_resource type="Texture2D" uid="uid://du6v46rls2xrm" path="res://resources/textures/entities/campfire_sprite.png" id="2_jvag0"]
+
+[resource]
+script = ExtResource("1_2r4fw")
+entity_id = &"campfire"
+display_name = &"Campfire"
+scene_path = "res://entities/objects/furnishings/campfire.tscn"
+sprite_texture = ExtResource("2_jvag0")
+icon_texture = ExtResource("1_jvag0")
+metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

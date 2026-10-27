@@ -14,9 +14,8 @@ var data = {
 
 	},
 
-	"components": {
+	"components": {	},
 
-
-	}
+	"locations": { },
 
 }

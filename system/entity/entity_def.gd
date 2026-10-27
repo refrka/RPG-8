@@ -16,6 +16,7 @@ enum EntityType {
 
 @export var display_name: StringName
 
+@export var scene_path: String
 
 
 @export var initial_inventory: Inventory
@@ -24,6 +25,12 @@ enum EntityType {
 
 @export var sprite_frames: SpriteFrames
 
-@export var sprite_y_offset:= 0.0
+@export var sprite_texture: Texture2D
+
+@export var icon_texture: Texture2D
+
+@export var sprite_coords:= Vector2i(1,1)
+
+@export var sprite_offset:= Vector2.ZERO
 
 @export var move_speed:= 150.0

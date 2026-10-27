@@ -50,3 +50,7 @@ func _end() -> void:
 func _on_overlay_deactivated() -> void:
 
 	interaction_overlay_closed.emit()
+
+
+
+

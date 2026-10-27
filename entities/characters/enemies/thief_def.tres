@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="1_5i12c"]
 [ext_resource type="Script" uid="uid://dgj1l0qylcu06" path="res://system/behavior/behavior.gd" id="1_iar3o"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="2_iar3o"]
+[ext_resource type="Texture2D" uid="uid://niiobpqsnvll" path="res://entities/characters/enemies/thief_sprite.png" id="5_5to2l"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="5_himam"]
 
 [sub_resource type="Resource" id="Resource_11yqe"]
@@ -14,4 +15,6 @@ script = ExtResource("1_5i12c")
 behavior_profile = SubResource("Resource_11yqe")
 entity_id = &"thief"
 display_name = &"Thief"
+sprite_texture = ExtResource("5_5to2l")
+sprite_coords = Vector2i(4, 2)
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

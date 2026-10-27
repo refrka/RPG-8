@@ -80,11 +80,6 @@ func get_component_name() -> StringName:
 
 
 
-func _to_dict() -> Dictionary:
-
-	return {}
-
-
 
 func _load_dict(_save_dict: Dictionary) -> void:
 

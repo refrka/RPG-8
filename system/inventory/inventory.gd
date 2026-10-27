@@ -37,6 +37,22 @@ func _initialize() -> void:
 
 	resize(size)
 
+	if weapon:
+
+		set_weapon(weapon)
+	
+	if armor:
+		
+		set_armor(armor)
+
+	if accessory:
+
+		set_accessory(accessory)
+
+	if tool_equipment:
+
+		set_tool(tool_equipment)
+
 
 
 func clear() -> void:
@@ -233,10 +249,6 @@ func set_slot_stack(index: int, stack: ItemStack) -> void:
 
 func set_weapon(_weapon: WeaponData) -> void:
 
-	if weapon == _weapon:
-
-		return
-
 	weapon = _weapon
 	
 	weapon_updated.emit()
@@ -246,10 +258,6 @@ func set_weapon(_weapon: WeaponData) -> void:
 
 
 func set_armor(_armor: ArmorData) -> void:
-
-	if armor == _armor:
-
-		return
 
 	armor = _armor
 
@@ -261,10 +269,6 @@ func set_armor(_armor: ArmorData) -> void:
 
 func set_accessory(_accessory: EquipmentData) -> void:
 
-	if accessory == _accessory:
-
-		return
-
 	accessory = _accessory
 
 	accessory_updated.emit()
@@ -274,10 +278,6 @@ func set_accessory(_accessory: EquipmentData) -> void:
 
 
 func set_tool(_tool: EquipmentData) -> void:
-
-	if tool_equipment == _tool:
-
-		return
 
 	tool_equipment = _tool
 
@@ -352,3 +352,28 @@ func to_dict() -> Dictionary:
 
 
 
+func load_dict(save_dict: Dictionary) -> void:
+	
+	resize(int(save_dict["size"]))
+
+	for i in range(size):
+
+		var item_stack_dict = save_dict["stacks"][i]
+
+		if item_stack_dict == null:
+
+			set_slot_stack(i, null)
+
+		else:
+
+			var stack = ItemStack.from_dict(item_stack_dict)
+
+			set_slot_stack(i, stack)
+
+	if save_dict["weapon"] != null:
+
+		set_weapon(ItemData.from_dict(save_dict["weapon"]))
+
+	if save_dict["armor"] != null:
+
+		set_armor(ItemData.from_dict(save_dict["armor"]))

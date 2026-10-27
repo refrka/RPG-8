@@ -236,13 +236,11 @@ func _generate_projectile() -> void:
 
 		projectile_node.hitbox.current_damage_package = get_damage_package()
 
-		Scenes.current_location.add_entity_node(projectile_node, entity.combat_root.global_position)
-
 		projectile_node.rotation = current_attack_dir.angle()
 
-		projectile_node._activate()
-
 		weapon_data.ammunition_stack.remove_amount(1)
+
+		Scenes.current_location.add_entity_node(projectile_node, entity.combat_root.global_position)
 
 
 

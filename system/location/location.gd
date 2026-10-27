@@ -106,14 +106,18 @@ func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
 
 	entity_node.global_position = target_position
 
+	entity_node._initialize()
+
+	if active:
+
+		entity_node._activate()
+
 
 
 
 func _activate() -> void:
 
 	await get_tree().physics_frame
-
-	_connect_signals()
 
 	active = true
 
@@ -129,8 +133,6 @@ func _activate() -> void:
 
 
 func _deactivate() -> void:
-
-	_disconnect_signals()
 
 	active = false
 
@@ -149,22 +151,50 @@ func _deactivate() -> void:
 
 
 
+func to_dict() -> Dictionary:
+
+	var save_dict:= {}
+
+	save_dict["entities"] = []
+
+	for entity_node in ysort_root.get_children():
+
+		if not entity_node.save_enabled or entity_node is Player:
+
+			continue
+
+		save_dict["entities"].append(entity_node._to_dict())
+
+	return save_dict
 
 
 
 
 
+func load_dict(save_dict: Dictionary) -> void:
 
+	if save_dict.has("entities"):
 
+		for entity_dict in save_dict["entities"]:
 
+			var index = int(entity_dict["index"])
 
-func _connect_signals() -> void:
+			if ysort_root.get_children().size() < index:
 
-	pass
+				var entity_id = entity_dict["entity_id"]
 
+				var entity_node = Entities.get_entity_node(entity_id)
 
+				var target_position = Vector2(entity_dict["global_position_x"], entity_dict["global_position_y"])
 
+				add_entity_node(entity_node, target_position)
 
-func _disconnect_signals() -> void:
+				ysort_root.move_child.call_deferred(entity_node, index)
 
-	pass
+				entity_node._load_dict(entity_dict)
+
+			else:
+			
+				var entity_node = ysort_root.get_child(index)
+
+				entity_node._load_dict(entity_dict)

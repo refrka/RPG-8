@@ -35,6 +35,10 @@ func load_location(location_id: StringName) -> Location:
 
 	if location:
 
+		if Game.active_save_data["locations"].has(location_id):
+
+			location.load_dict(Game.active_save_data["locations"][location_id])
+
 		current_location = location
 
 		location_root.add_child(current_location)
@@ -103,3 +107,22 @@ func get_location_path(location_id: StringName) -> String:
 func get_location_id() -> StringName:
 
 	return current_location.scene_file_path.trim_prefix("res://locations/").trim_suffix(".scn")
+
+
+
+
+func get_location_save_data() -> Dictionary:
+
+	var location_dict = Game.active_save_data["locations"]
+
+	if current_location:
+
+		var location_id = get_location_id()
+
+		if not location_dict.has(location_id):
+
+			location_dict[location_id] = {}
+
+		location_dict[location_id] = current_location.to_dict()
+
+	return location_dict

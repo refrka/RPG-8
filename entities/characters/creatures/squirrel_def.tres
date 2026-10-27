@@ -35,6 +35,7 @@ script = ExtResource("1_22blx")
 behavior_profile = SubResource("Resource_8tak1")
 entity_id = &"squirrel"
 display_name = &"Squirrel"
+scene_path = "res://entities/characters/creatures/squirrel.tscn"
 initial_inventory = SubResource("Resource_uhdua")
 base_health = 3.0
 move_speed = 25.0
