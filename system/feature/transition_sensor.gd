@@ -7,8 +7,6 @@ class_name TransitionSensor extends Feature
 
 @export var transition_spawn_id: StringName
 
-@export var transition_command_conditions: Array[Condition]
-
 @export var transition_commands: Array[Command]
 
 
@@ -55,21 +53,9 @@ func _transition() -> void:
 
 	if !transition_commands.is_empty():
 
-		var passed:= true
+		for command in transition_commands:
 
-		for condition in transition_command_conditions:
-
-			if !condition._evaluate():
-
-				passed = false
-
-			if !passed:
-
-				break
-		
-		if passed:
-
-			for command in transition_commands:
+			if command._can_execute():
 
 				command._execute()
 

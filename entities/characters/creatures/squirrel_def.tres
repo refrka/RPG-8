@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dgj1l0qylcu06" path="res://system/behavior/behavior.gd" id="1_bj35x"]
 [ext_resource type="Script" uid="uid://8n74u5nmtfah" path="res://system/entity/entity_def.gd" id="3_66vjd"]
 [ext_resource type="Script" uid="uid://bmjkbrb8bcimj" path="res://system/behavior/behavior_profile.gd" id="4_qwi7p"]
+[ext_resource type="Script" uid="uid://chj7x0jqc3ri0" path="res://system/condition/condition.gd" id="5_7hkeu"]
 [ext_resource type="Script" uid="uid://dd5nur0tqmxp5" path="res://system/loot/loot_entry.gd" id="5_b2k2r"]
 [ext_resource type="Resource" uid="uid://bffhu07ey68e3" path="res://items/material/leather_def.tres" id="6_7hkeu"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="7_005b7"]

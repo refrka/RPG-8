@@ -8,5 +8,7 @@ class_name LootEntry extends Resource
 
 @export var base_chance:= 1.0
 
+@export var disabled:= false
 
+@export var one_time:= true
 

@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 
 		var target_position = global_position + (get_distance(floating_to_entity) - 8) * get_direction(floating_to_entity)
 
-		global_position = global_position.move_toward(target_position, 10.0)
+		global_position = global_position.move_toward(target_position, 2.0)
 
 		if global_position.distance_to(target_position) <= 1.0:
 

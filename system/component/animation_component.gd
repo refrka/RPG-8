@@ -11,6 +11,10 @@ signal combat_animation_finished(anim_name: StringName)
 @export var combat_anim_player: AnimationPlayer
 
 
+var movement_component: MovementComponent
+
+
+
 
 func _initialize(_entity: EntityNode) -> void:
 
@@ -19,6 +23,12 @@ func _initialize(_entity: EntityNode) -> void:
 		return
 
 	super(_entity)
+
+	movement_component = entity.get_component(MovementComponent)
+
+	if movement_component:
+
+		movement_component.face_dir_updated.connect(_on_face_dir_updated)
 
 	if body_anim_player:
 
@@ -75,6 +85,10 @@ func get_combat_animation_node() -> CombatAnimationNode:
 
 func _on_body_animation_finished(anim_name: String) -> void:
 
+	if anim_name == "flash":
+
+		body_anim_player.play("%s/idle" % entity.entity_def.entity_id)
+
 	body_animation_finished.emit(anim_name)
 
 
@@ -82,4 +96,20 @@ func _on_body_animation_finished(anim_name: String) -> void:
 func _on_combat_animation_finished(anim_name: String) -> void:
 
 	combat_animation_finished.emit(anim_name)
+
+
+
+func _on_face_dir_updated() -> void:
+
+	if movement_component.face_dir.x < 0:
+
+		entity.body_sprite.flip_h = true
+
+		entity.hurtbox.scale.x = -1
+
+	else:
+
+		entity.body_sprite.flip_h = false
+
+		entity.hurtbox.scale.x = 1
 

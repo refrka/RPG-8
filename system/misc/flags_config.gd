@@ -5,4 +5,6 @@ class_name FlagsConfig extends Resource
 
 	"player_first_spawn": 0,
 
+	"saved_campfire": 0,
+
 }

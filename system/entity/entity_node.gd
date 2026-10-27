@@ -57,6 +57,8 @@ var active:= false
 
 
 
+var damage_package_log: Array[DamagePackage]
+
 
 
 
@@ -238,6 +240,8 @@ func load_entity_def(_entity_def: EntityDef) -> void:
 
 
 func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	damage_package_log.append(damage_package)
 
 	for component in component_root.get_children():
 

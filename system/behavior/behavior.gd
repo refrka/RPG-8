@@ -38,7 +38,7 @@ func _initialize(_actor: EntityNode, _behavior_component: BehaviorComponent) -> 
 
 func _start(_target: EntityNode = null) -> void:
 
-	target = _target
+	_set_target(_target)
 
 
 
@@ -54,9 +54,16 @@ func _stop() -> void:
 
 # Compare a new target to the current one
 
-func _evaluate_new_target(new_target: EntityNode) -> bool:
+func _evaluate_new_target(_new_target: EntityNode) -> void:
 
-	return true
+	return
+
+
+
+
+func _set_target(_target: EntityNode) -> void:
+
+	target = _target
 
 
 
@@ -68,6 +75,13 @@ func _get_valid_targets() -> Array[EntityNode]:
 	var valid_targets: Array[EntityNode] = actor.vision_sensor.entities
 
 	return valid_targets
+
+
+
+
+func _receive_damage_package(_damage_package: DamagePackage) -> void:
+
+	pass
 
 
 

@@ -44,6 +44,8 @@ var move_speed_override:= -1.0
 
 var target_position_timer:= 0.0
 
+var dodge_cooldown:= 0.0
+
 
 
 
@@ -331,10 +333,29 @@ func _physics_process(delta: float) -> void:
 
 func _on_dodge_input_pressed() -> void:
 
-	entity.state_machine.request_state(BodyDodgingState)
+	if dodge_cooldown <= 0.0:
+
+		entity.state_machine.request_state(BodyDodgingState)
+
+		dodge_cooldown = 0.6
 
 
 
 func _on_dodge_complete() -> void:
 
 	entity.state_machine.request_state(BodyIdleState)
+
+
+
+
+
+func _process(delta: float) -> void:
+
+	if !active or disabled:
+
+		return
+
+	if dodge_cooldown > 0.0:
+
+		dodge_cooldown -= delta
+

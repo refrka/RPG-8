@@ -60,6 +60,16 @@ func _is_expired() -> bool:
 
 		return _time_alive >= duration
 
+	elif decay > 0.0:
+
+		if float_value != -1.0:
+
+			return float_value == 0.0
+
+		else:
+
+			return vector_value.length() <= 0.001
+
 	return false
 
 
@@ -69,6 +79,14 @@ func _is_expired() -> bool:
 func _tick(delta: float) -> void:
 
 	_time_alive += delta
+
+	if decay > 0.0:
+
+		if duration != -1.0 and _time_alive >= duration:
+
+			float_value *= clampf(1.0 - decay * delta, 0.0, 1.0)
+
+			vector_value *= clampf(1.0 - decay * delta, 0.0, 1.0)
 
 	if _is_expired():
 
@@ -105,6 +123,16 @@ static func new_multiplier(value: Variant, _duration:= -1.0) -> Modifier:
 
 
 
-static func new_decay(value: Variant, _decay: float) -> Modifier:
+static func new_decay_vector(value: Vector2, _decay: float, _duration:= -1.0) -> Modifier:
 
-	return null
+	var modifier = Modifier.new()
+
+	modifier.set_value(value)
+
+	modifier.duration = _duration
+
+	modifier.decay = _decay
+
+	modifier.type = Modifier.ValueType.VECTOR_2
+
+	return modifier

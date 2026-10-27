@@ -38,6 +38,8 @@ var change_cooldown:= 0.0
 
 
 
+
+
 func _initialize(_entity: EntityNode) -> void:
 
 	if disabled:
@@ -88,6 +90,10 @@ func _evaluate() -> void:
 	if desired_behavior != current_behavior:
 
 		_change_behavior(desired_behavior, desired_target)
+
+	else:
+
+		current_behavior._evaluate_new_target(desired_target)
 
 	# Cases
 
@@ -217,7 +223,16 @@ func _get_hostility_score(target_entity: EntityNode) -> float:
 
 		score = behavior_profile.baseline_hostility_scores[target_entity.entity_def]
 
+	var target_damage_packages = entity.damage_package_log.filter(func(d): return d.source_entity_def == target_entity.entity_def)
+
+	if !target_damage_packages.is_empty():
+
+		score = 1.0
+
 	return score
+
+
+
 
 
 
@@ -237,6 +252,23 @@ func _get_visible_hostile_entities() -> Array[EntityNode]:
 			visible_hostiles.append(entity_node)
 
 	return visible_hostiles
+
+
+
+
+
+
+
+
+func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	if current_behavior:
+
+		current_behavior._receive_damage_package(damage_package)
+
+
+
+
 
 
 

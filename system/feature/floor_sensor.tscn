@@ -1,10 +1,38 @@
 [gd_scene format=3 uid="uid://bfx53xn2fyybs"]
 
-[ext_resource type="Script" uid="uid://c40vbmtlin7v6" path="res://system/feature/floor_sensor.gd" id="1_hbx07"]
 [ext_resource type="Script" uid="uid://djwmq6um80d4a" path="res://system/sensor/sensor.gd" id="2_jhvij"]
 
+[sub_resource type="GDScript" id="GDScript_8e6cr"]
+script/source = "class_name FloorSensor extends Feature
+
+
+signal entity_entered(entity_node: EntityNode)
+
+
+@export var sensor: Sensor
+
+
+var last_detected_entity: EntityNode
+
+
+
+func _initialize() -> void:
+
+	sensor.entity_entered.connect(_on_entity_entered_sensor)
+
+
+
+
+
+func _on_entity_entered_sensor(entity: EntityNode) -> void:
+
+	last_detected_entity = entity
+
+	entity_entered.emit(entity)
+"
+
 [node name="FloorSensor" type="Node2D" unique_id=1743073047 node_paths=PackedStringArray("sensor")]
-script = ExtResource("1_hbx07")
+script = SubResource("GDScript_8e6cr")
 sensor = NodePath("Sensor")
 
 [node name="Sensor" type="Area2D" parent="." unique_id=5041919]

@@ -77,8 +77,28 @@ _data = {
 &"attack_0": SubResource("Animation_6ogyw")
 }
 
+[sub_resource type="Animation" id="Animation_pinj3"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6exs4"]
+_data = {
+&"idle": SubResource("Animation_pinj3")
+}
+
 [sub_resource type="Animation" id="Animation_3lhe6"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn6f7"]
 _data = {
@@ -87,7 +107,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_6wlex"]
 resource_name = "attack_0"
-length = 0.53333336
+length = 0.718635
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -162,13 +182,13 @@ position = Vector2(10, -1)
 shape = SubResource("CapsuleShape2D_6hc1j")
 debug_color = Color(0, 0.5950001, 0.7, 0)
 
-[node name="CollisionShape2D" parent="." index="2" unique_id=549181237]
+[node name="CollisionShape2D" parent="." index="3" unique_id=549181237]
 position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_3unts")
 
 [node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
-position = Vector2(0, -8)
+position = Vector2(-2, -14)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="1" unique_id=1095765785]
 polygon = PackedVector2Array(-16, -16, -16, 0, -11, 0, -11, -5, 11, -5, 11, 0, 16, 0, 16, -22, 3, -22, 3, -16, -13, -16)
@@ -176,7 +196,7 @@ polygon = PackedVector2Array(-16, -16, -16, 0, -11, 0, -11, -5, 11, -5, 11, 0, 1
 [node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
 shape = SubResource("CircleShape2D_vjujl")
 
-[node name="NavigationAgent2D" parent="." index="5" unique_id=780391334]
+[node name="NavigationAgent2D" parent="." index="6" unique_id=780391334]
 target_desired_distance = 12.0
 radius = 5.0
 debug_enabled = true
@@ -189,18 +209,19 @@ metadata/_custom_type_script = "uid://prruy5b51dk5"
 script = ExtResource("5_pinj3")
 metadata/_custom_type_script = "uid://b1dr455elg62r"
 
-[node name="BodyAnimationPlayer" parent="." index="9" unique_id=1131495921]
+[node name="BodyAnimationPlayer" parent="." index="10" unique_id=1131495921]
 libraries/unarmed = SubResource("AnimationLibrary_ku6ha")
+libraries/wolf = SubResource("AnimationLibrary_6exs4")
 
-[node name="CombatAnimationPlayer" parent="." index="10" unique_id=487937974]
+[node name="CombatAnimationPlayer" parent="." index="11" unique_id=487937974]
 libraries/ = SubResource("AnimationLibrary_kn6f7")
 libraries/unarmed = SubResource("AnimationLibrary_se3qs")
 
-[node name="HealthProgressBar" parent="." index="11" unique_id=1011421391]
+[node name="HealthProgressBar" parent="." index="12" unique_id=1011421391]
 offset_top = -31.0
 offset_bottom = -27.0
 
-[node name="DebugPanel" parent="." index="12" unique_id=1608834270]
+[node name="DebugPanel" parent="." index="13" unique_id=1608834270]
 offset_bottom = 3.0
 
 [node name="PanelContainer" parent="DebugPanel/VBoxContainer" parent_id_path=PackedInt32Array(1574249897) index="1" unique_id=351654181]

@@ -19,3 +19,5 @@ class_name AttackEntry extends Resource
 @export var speed_modifier:= 1.0
 
 @export var charge_speed_modifier:= 1.0
+
+@export var cooldown_duration:= 0.0

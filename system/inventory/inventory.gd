@@ -307,8 +307,6 @@ func is_equipment_equipped(equipment_def: EquipmentDef) -> bool:
 
 		ToolDef:
 
-			print("its a tool we are cheking")
-
 			if !tool_equipment or tool_equipment.item_def != equipment_def:
 
 				return false

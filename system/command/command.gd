@@ -18,6 +18,7 @@ enum Result {
 }
 
 
+@export var conditions: Array[Condition]
 
 
 var data:= {}
@@ -40,6 +41,21 @@ func _execute(_data:= {}) -> Result:
 
 	return Result.SUCCESS
 
+
+
+
+
+func _can_execute() -> bool:
+
+	var passed:= true
+
+	for condition in conditions:
+
+		if !condition._evaluate(data):
+
+			passed = false
+
+	return passed
 
 
 

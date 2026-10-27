@@ -2,11 +2,25 @@ class_name ContainerComponent extends InteractableComponent
 
 
 
+@export var container_loot_table: LootTable
+
+
+var opened:= false
 
 
 
 
 func _start() -> bool:
+
+	opened = true
+
+	var loot = container_loot_table.get_loot(randf())
+
+	for item_def in loot:
+
+		var count = loot[item_def]
+
+		entity.inventory.add_item(item_def, count)
 
 	var overlay = UI.show_overlay(ContainerOverlay)
 

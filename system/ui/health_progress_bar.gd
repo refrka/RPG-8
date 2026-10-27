@@ -44,4 +44,4 @@ func _load_health() -> void:
 
 func _on_health_changed(_amount: float, new_health: float) -> void:
 
-	self.value = new_health
+	self.value = max(self.max_value / 100.0, new_health)

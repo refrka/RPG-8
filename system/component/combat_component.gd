@@ -23,6 +23,8 @@ var buffered:= false
 
 var charged:= false
 
+var cooldown_timer:= 0.0
+
 
 
 var movement_component: MovementComponent
@@ -50,8 +52,6 @@ func _initialize(_entity: EntityNode) -> void:
 	var input_component = entity.get_component(InputComponent)
 
 	if input_component:
-
-		input_component.dodge_pressed.connect(_on_dodge_input_pressed)
 
 		input_component.attack_pressed.connect(_on_attack_input_pressed)
 
@@ -86,13 +86,17 @@ func _initialize(_entity: EntityNode) -> void:
 
 func _try_attack() -> void:
 
-	if is_attacking():
+	if is_dodging():
+
+		return
+
+	if is_attacking() or cooldown_timer > 0.0:
 
 		if buffer_enabled:
 
 			buffered = true
 
-			return
+		return
 
 	if !current_attack_config:
 
@@ -146,11 +150,15 @@ func _complete_attack() -> void:
 
 	attack_completed.emit()
 
+	var attack_entry = get_attack_entry(current_attack_index)
+
+	if attack_entry.cooldown_duration > 0.0:
+
+		cooldown_timer = attack_entry.cooldown_duration
+
 	if buffered:
 
 		var next_index = current_attack_index + 1
-
-		var attack_entry = get_attack_entry(next_index)
 
 		if attack_entry:
 
@@ -258,6 +266,9 @@ func is_charging() -> bool:
 
 
 
+func is_dodging() -> bool:
+
+	return entity.state_machine.current_body_state is BodyDodgingState
 
 
 
@@ -306,6 +317,10 @@ func get_damage_package() -> DamagePackage:
 
 	var damage_package = DamagePackage.new()
 
+	damage_package.source_entity_def = entity.entity_def
+
+	damage_package.source_entity_node = entity
+
 	damage_package.damage_vector = current_attack_dir
 
 	var attack_entry = get_attack_entry(current_attack_index)
@@ -346,14 +361,6 @@ func _on_attack_complete() -> void:
 func _on_charge_complete() -> void:
 
 	_complete_charge()
-
-
-
-func _on_dodge_input_pressed() -> void:
-
-	var modifier = Modifier.new_modifier(900.0, 0.1)
-
-	movement_component.modifier_handler.add_modifier(modifier)
 
 
 
@@ -411,7 +418,7 @@ func _on_weapon_updated() -> void:
 
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 
 	if !active or disabled:
 
@@ -426,3 +433,7 @@ func _process(_delta: float) -> void:
 			current_attack_dir = get_attack_dir()
 
 			entity.combat_root.rotation = current_attack_dir.angle()
+
+	if !is_attacking() and cooldown_timer > 0.0:
+
+		cooldown_timer -= delta

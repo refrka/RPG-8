@@ -24,7 +24,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 	health_bar = entity.health_bar
 
-	if health_bar:
+	if health_bar and not entity is Player:
 	
 		health_bar._initialize(entity)
 
@@ -53,7 +53,9 @@ func reduce_health(amount: float) -> void:
 
 		_die()
 
-	health_bar.show()
+	if not entity is Player:
+
+		health_bar.show()
 
 
 

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b883jw1p24r3o"]
+
+[ext_resource type="PackedScene" uid="uid://ctjnd5u7m5haw" path="res://system/entity/character_node.tscn" id="1_ogwvo"]
+[ext_resource type="Texture2D" uid="uid://bat8oc4omv2o8" path="res://resources/textures/entities/the_princess_sprite.png" id="2_eymap"]
+[ext_resource type="Resource" uid="uid://dtyhdqixhmkal" path="res://entities/characters/npcs/the_princess_def.tres" id="2_plwdb"]
+
+[node name="ThePrincess" unique_id=2016177718 instance=ExtResource("1_ogwvo")]
+entity_def = ExtResource("2_plwdb")
+
+[node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1227938032) index="0" unique_id=1734593589]
+texture = ExtResource("2_eymap")
+offset = Vector2(0, -24)
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
+position = Vector2(-2, -14)
+
+[editable path="CanvasGroup/CombatRoot/Hitbox"]
+[editable path="Hurtbox"]

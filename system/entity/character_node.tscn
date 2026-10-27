@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
 [ext_resource type="Script" uid="uid://vwvqw0xsi68o" path="res://system/ui/health_progress_bar.gd" id="14_nhrk4"]
 [ext_resource type="Script" uid="uid://tm8tfq81rqpv" path="res://system/ui/entity_debug_panel.gd" id="16_4ly01"]
+[ext_resource type="Texture2D" uid="uid://bdj6dwwiwl346" path="res://resources/textures/entities/entity_shadow.png" id="17_tu7xt"]
 
 [sub_resource type="Animation" id="Animation_fnjhg"]
 resource_name = "RESET"
@@ -67,6 +68,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -14)]
 }
 
 [sub_resource type="Animation" id="Animation_upeui"]
@@ -130,6 +143,10 @@ nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=96535994]
+modulate = Color(0, 0, 0, 0.27058825)
+texture = ExtResource("17_tu7xt")
+
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1227938032]
 y_sort_enabled = true
 
@@ -145,6 +162,8 @@ y_sort_enabled = true
 debug_color = Color(0.5, 0, 0.1583333, 0.24705882)
 
 [node name="CombatMeleeSensor" type="Area2D" parent="CanvasGroup/CombatRoot" unique_id=1821677152]
+collision_layer = 0
+collision_mask = 515
 script = ExtResource("5_kg6yd")
 metadata/_custom_type_script = "uid://djwmq6um80d4a"
 
@@ -156,6 +175,7 @@ debug_color = Color(0.7166667, 0, 1, 0)
 [node name="Hurtbox" parent="." unique_id=809095005 instance=ExtResource("3_upeui")]
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=283233958]
+position = Vector2(-2, -14)
 debug_color = Color(0.7, 0, 0, 0.02745098)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1210573016]

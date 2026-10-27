@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://jmcornawxe8y"]
+
+[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="1_68o5m"]
+[ext_resource type="Texture2D" uid="uid://lq0y602io0r7" path="res://resources/textures/items/biter_eye_sprite.png" id="2_buhdb"]
+
+[resource]
+script = ExtResource("1_68o5m")
+item_id = &"biter_eye"
+display_name = "Biter eye"
+sprite_texture = ExtResource("2_buhdb")
+metadata/_custom_type_script = "uid://bn7rgf574qily"

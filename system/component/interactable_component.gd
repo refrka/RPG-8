@@ -13,7 +13,19 @@ signal interaction_complete
 
 
 
+
+@export var interaction_commands: Array[Command]
+
+
+
+
 func _start() -> bool:
+
+	for command in interaction_commands:
+
+		if command._can_execute():
+
+			command._execute()
 
 	return false
 

@@ -9,6 +9,7 @@ var animation_component: AnimationComponent
 
 var movement_component: MovementComponent
 
+var dodge_modifier: Modifier
 
 
 
@@ -30,7 +31,15 @@ func _enter() -> void:
 
 	animation_component.play_body_animation("%s/dodge" % entity.entity_def.entity_id)
 
-	movement_component.set_move_speed_override(250.0)
+	entity.hurtbox.monitorable = false
+
+	movement_component.set_move_speed_override(0.0)
+
+	if !dodge_modifier:
+
+		dodge_modifier = Modifier.new_decay_vector(movement_component.face_dir * 200.0, 10.0, 0.4) 
+
+		movement_component.modifier_handler.add_modifier(dodge_modifier)
 
 
 
@@ -38,7 +47,13 @@ func _exit() -> void:
 
 	super()
 
+	entity.hurtbox.monitorable = true
+
 	movement_component.set_move_speed_override(-1.0)
+
+	movement_component.modifier_handler.remove_modifier(dodge_modifier)
+
+	dodge_modifier = null
 
 
 

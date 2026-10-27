@@ -25,6 +25,8 @@ func load_container_inventory(container_inventory: Inventory) -> void:
 
 	player_inventory_grid.pair_inventory(container_inventory)
 
+	
+
 
 
 

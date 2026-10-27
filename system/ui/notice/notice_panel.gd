@@ -30,6 +30,8 @@ var timer:= 0.0
 
 func _ready() -> void:
 
+	hide()
+
 	anim_player.animation_finished.connect(_on_animation_finished)
 
 	panel.mouse_entered.connect(_on_mouse_entered)

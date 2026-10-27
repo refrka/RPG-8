@@ -28,7 +28,6 @@ var current_combat_state: CombatState
 
 
 
-
 func _initialize(entity: EntityNode) -> void:
 
 	var states = []
