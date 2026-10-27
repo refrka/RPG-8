@@ -9,7 +9,9 @@ signal died
 
 @export var entity_def: EntityDef
 
-@export var inventory: Inventory
+@export var inventory:= Inventory.new()
+
+@export var save_enabled:= false
 
 
 @export_group("Node Exports")
@@ -261,6 +263,19 @@ func get_component(component_script: Script) -> Component:
 
 
 
+func get_component_by_name(component_name: StringName) -> Component:
+
+	for component in component_root.get_children():
+
+		if component.get_component_name() == component_name:
+
+			return component
+
+	return null
+
+
+
+
 func get_interactable_component() -> InteractableComponent:
 
 	for component in component_root.get_children():
@@ -384,3 +399,61 @@ func _on_body_entered_pick_up_area(body: PhysicsBody2D) -> void:
 			Events.fire(InventoryNoticeEvent, {"item_stack": body.item_stack, "added": true,})
 
 		body.float_to_entity(self)
+
+
+
+
+
+
+
+
+
+func _to_dict() -> Dictionary:
+
+	var save_dict:= {}
+
+	save_dict["index"] = get_index()
+
+	save_dict["entity_id"] = entity_def.entity_id
+
+	save_dict["global_position_x"] = global_position.x
+
+	save_dict["global_position_y"] = global_position.y
+
+	if inventory:
+
+		save_dict["inventory"] = inventory.to_dict()
+
+	save_dict["components"] = {}
+
+	for component in component_root.get_children():
+
+		if component.has_method("to_dict"):
+
+			save_dict["components"][component.get_component_name()] = component.to_dict()
+
+	return save_dict 
+
+
+
+
+
+func _load_dict(save_dict: Dictionary) -> void:
+
+	global_position = Vector2(save_dict["global_position_x"], save_dict["global_position_y"])
+
+	for component_name in save_dict["components"]:
+
+		var component_dict = save_dict["components"][component_name]
+
+		var component = get_component_by_name(component_name)
+		
+		if component:
+
+			component._load_dict(component_dict)
+
+	if save_dict.has("inventory"):
+
+		inventory.load_dict(save_dict["inventory"])
+
+		

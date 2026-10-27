@@ -77,7 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 				move_input_received.emit()
 
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") and not Constructor.construction_mode_enabled:
 
 		attack_pressed.emit()
 
@@ -96,6 +96,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("interact"):
 
 		interact_released.emit()
+
 
 
 

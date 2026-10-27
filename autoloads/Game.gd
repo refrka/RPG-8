@@ -88,7 +88,7 @@ func save() -> void:
 
 	save_data["fresh_save"] = false
 
-	active_save_data = save_data
+	active_save_data = save_data.duplicate()
 
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 
@@ -210,5 +210,7 @@ func is_paused() -> bool:
 func _get_save_data() -> Dictionary:
 
 	var save_data = player.get_save_data()
+
+	save_data["locations"] = Scenes.get_location_save_data()
 
 	return save_data

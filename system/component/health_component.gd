@@ -122,7 +122,7 @@ func _set_current_health(new_health: float, amount_changed: float) -> void:
 
 
 
-func _to_dict() -> Dictionary:
+func to_dict() -> Dictionary:
 
 	var dict = {}
 
@@ -135,7 +135,7 @@ func _to_dict() -> Dictionary:
 
 
 
-func _load_dict(save_dict: Dictionary) -> void:
+func load_dict(save_dict: Dictionary) -> void:
 
 	current_health = save_dict["current_health"]
 

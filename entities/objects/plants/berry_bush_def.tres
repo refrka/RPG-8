@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://dpuo52e2vd6qm"]
+
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_0af48"]
+[ext_resource type="Texture2D" uid="uid://c2jv2nexu4q8r" path="res://resources/textures/icons/berry_bush_icon.png" id="1_jg3ga"]
+[ext_resource type="Texture2D" uid="uid://s0ueukr2fyr0" path="res://resources/textures/entities/bush_sprite.png" id="2_va5lb"]
+
+[resource]
+script = ExtResource("1_0af48")
+entity_id = &"berry_bush"
+display_name = &"Berry bush"
+scene_path = "res://entities/objects/plants/berry_bush.tscn"
+sprite_texture = ExtResource("2_va5lb")
+icon_texture = ExtResource("1_jg3ga")
+sprite_coords = Vector2i(2, 1)
+metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

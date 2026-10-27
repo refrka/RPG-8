@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://iuavs48mowyf" path="res://system/ui/hud.gd" id="5_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/inventory/mouse_item_slot.tscn" id="5_wd1uf"]
 [ext_resource type="Script" uid="uid://frkul2fktkgw" path="res://system/ui/player_health_bar.gd" id="6_ledqy"]
+[ext_resource type="PackedScene" uid="uid://cy7nvd43jrg5j" path="res://system/ui/construction_overlay.tscn" id="7_0pxas"]
 [ext_resource type="Script" uid="uid://dqbmuk2yx6jfc" path="res://system/ui/debug_panel_controls.gd" id="9_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://b4rjontlo1o3m" path="res://system/ui/mouse_tooltip.tscn" id="9_krhou"]
+[ext_resource type="Script" uid="uid://caplxqpptskas" path="res://system/ui/construction/mouse_constructor.gd" id="10_8tlgu"]
 [ext_resource type="Script" uid="uid://blvhavomf7l6k" path="res://system/ui/behavior_panel.gd" id="10_aiwur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o8ui"]
@@ -151,9 +153,13 @@ mouse_filter = 2
 layout_mode = 1
 
 [node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1437819695 instance=ExtResource("4_0o8ui")]
+visible = false
 layout_mode = 1
 
 [node name="ProfileOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1384271334 instance=ExtResource("3_lkrbl")]
+layout_mode = 1
+
+[node name="ConstructionOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1806290263 instance=ExtResource("7_0pxas")]
 layout_mode = 1
 
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
@@ -177,9 +183,32 @@ mouse_filter = 2
 
 [node name="MouseTooltip" parent="MouseCanvas" unique_id=836463760 instance=ExtResource("9_krhou")]
 
+[node name="MouseConstructor" type="MarginContainer" parent="MouseCanvas" unique_id=874965113 node_paths=PackedStringArray("texture_rect") groups=["mouse_constructor"]]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+script = ExtResource("10_8tlgu")
+texture_rect = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="MouseCanvas/MouseConstructor" unique_id=252801449]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1412821183]
 
 [node name="DebugRoot" type="Control" parent="DebugCanvas" unique_id=1275871152 groups=["debug_root"]]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

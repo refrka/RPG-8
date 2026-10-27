@@ -14,6 +14,7 @@ size = Vector2(24, 20)
 
 [node name="SmallChest" unique_id=744980819 instance=ExtResource("1_g44ch")]
 entity_def = ExtResource("2_die06")
+save_enabled = true
 
 [node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1484650591) index="0" unique_id=433715869]
 texture = ExtResource("2_rx4kd")

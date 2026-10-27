@@ -47,39 +47,19 @@ func _deactivate() -> void:
 
 func load_save_data(dict: Dictionary) -> void:
 
-	inventory.clear()
+	if dict["fresh_save"] == false:
 
-	inventory.resize(dict["inventory"]["size"])
+		inventory.clear()
 
-	for i in range(dict["inventory"]["size"]):
-
-		var item_stack_dict = dict["inventory"]["stacks"][i]
-
-		if item_stack_dict == null:
-
-			inventory.set_slot_stack(i, null)
-
-		else:
-
-			var stack = ItemStack.from_dict(item_stack_dict)
-
-			inventory.set_slot_stack(i, stack)
-
-	if dict["inventory"]["weapon"] != null:
-
-		inventory.set_weapon(ItemData.from_dict(dict["inventory"]["weapon"]))
-
-	if dict["inventory"]["armor"] != null:
-
-		inventory.set_armor(ItemData.from_dict(dict["inventory"]["armor"]))
+	inventory.load_dict(dict["inventory"])
 
 	for component in component_root.get_children():
 
 		var component_name = component.get_component_name()
 
-		if dict["components"].has(component_name):
+		if dict["components"].has(component_name) and component.has_method("load_dict"):
 
-			component._load_dict(dict["components"][component_name])
+			component.load_dict(dict["components"][component_name])
 
 	Events.fire(PlayerSaveLoadedEvent)
 
@@ -87,7 +67,7 @@ func load_save_data(dict: Dictionary) -> void:
 
 func get_save_data() -> Dictionary:
 
-	var save_dict = Game.active_save_data
+	var save_dict = Game.active_save_data.duplicate()
 
 	save_dict["location_id"] = Scenes.get_location_id()
 
@@ -97,7 +77,11 @@ func get_save_data() -> Dictionary:
 
 	for component in component_root.get_children():
 
-		save_dict["components"][component.get_component_name()] = component._to_dict()
+		if not component.has_method("to_dict"):
+
+			continue
+
+		save_dict["components"][component.get_component_name()] = component.to_dict()
 
 	return save_dict
 			
