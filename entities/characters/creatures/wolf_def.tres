@@ -62,7 +62,7 @@ metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_y7h06"]
 script = ExtResource("11_u4c76")
-damage_range = Vector2(1, 1.5)
+damage_range = Vector2(2, 2)
 knockback_force = 50.0
 speed_modifier = 0.0
 metadata/_custom_type_script = "uid://dbmx2jm7n75c0"

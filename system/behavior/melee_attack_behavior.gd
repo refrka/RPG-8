@@ -10,7 +10,24 @@ func _initialize(_actor: EntityNode, _behavior_component: BehaviorComponent) -> 
 
 	actor.combat_melee_sensor.sensor_entered.connect(_on_sensor_entered_combat_melee_sensor)
 
+
+
+
+
+func _start(_target: EntityNode = null) -> void:
+
+	super(_target)
+
 	movement_component.navigation_position_reached.connect(_on_navigation_position_reached)
+
+
+
+
+func _stop() -> void:
+
+	super()
+
+	movement_component.navigation_position_reached.disconnect(_on_navigation_position_reached)
 
 
 
@@ -46,13 +63,9 @@ func _evaluate_new_target(new_target: EntityNode) -> void:
 
 func _receive_damage_package(damage_package: DamagePackage) -> void:
 
-	print("receiving damage to ", actor)
-
 	if is_instance_valid(damage_package.source_entity_node) and damage_package.source_entity_node != target:
 
 		_set_target(damage_package.source_entity_node)
-
-		print("setting target")
 		
 
 

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3 uid="uid://delemm6crqa4k"]
+
+[ext_resource type="Resource" uid="uid://bbjo7xkfb0e0" path="res://items/consumable/food/cooked_meat.tres" id="1_pgcvt"]
+[ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="2_u4wq5"]
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="3_asu3n"]
+[ext_resource type="Script" uid="uid://bn7rgf574qily" path="res://system/item/item_def.gd" id="4_rw6gh"]
+[ext_resource type="Resource" uid="uid://xikxto6hqtoo" path="res://items/material/raw_meat_def.tres" id="5_oxlta"]
+[ext_resource type="Script" uid="uid://d3lxlbinjxdm3" path="res://system/crafting/crafting_recipe.gd" id="6_ewe2i"]
+
+[sub_resource type="Resource" id="Resource_2noia"]
+script = ExtResource("2_u4wq5")
+item_def = ExtResource("1_pgcvt")
+count = 1
+metadata/_custom_type_script = "uid://wbgpq46tveo5"
+
+[resource]
+script = ExtResource("6_ewe2i")
+required_item_list = Dictionary[ExtResource("4_rw6gh"), int]({
+ExtResource("5_oxlta"): 1
+})
+product_stack = SubResource("Resource_2noia")

@@ -13,12 +13,35 @@ height = 18.0
 radius = 3.0
 height = 18.0
 
+[sub_resource type="Animation" id="Animation_w3o8b"]
+length = 0.6579789
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0071461275, 0.1817584, 0.35498637, 0.5518837),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6x7kd"]
+_data = {
+&"idle": SubResource("Animation_w3o8b")
+}
+
 [node name="Campfire" unique_id=744980819 instance=ExtResource("1_vjk74")]
 entity_def = ExtResource("2_6x7kd")
 
 [node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1484650591) index="0" unique_id=433715869]
 texture = ExtResource("2_w3o8b")
-offset = Vector2(0, -8)
+offset = Vector2(0, -16)
+hframes = 2
+vframes = 2
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=258299850]
 position = Vector2(0, -4)
@@ -29,6 +52,10 @@ shape = SubResource("CapsuleShape2D_0ns8y")
 position = Vector2(0, -4)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_w3o8b")
+
+[node name="BodyAnimPlayer" parent="." index="3" unique_id=975314067]
+libraries/campfire = SubResource("AnimationLibrary_6x7kd")
+autoplay = &"campfire/idle"
 
 [node name="SaveComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="2" unique_id=2005425779]
 script = ExtResource("2_707ah")

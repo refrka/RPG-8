@@ -177,6 +177,12 @@ func is_navigation_position_valid() -> bool:
 
 
 
+func is_dodging() -> bool:
+
+	return entity.state_machine.current_body_state is BodyDodgingState
+
+
+
 
 
 
@@ -333,11 +339,20 @@ func _physics_process(delta: float) -> void:
 
 func _on_dodge_input_pressed() -> void:
 
+	var combat_component = entity.get_component(CombatComponent)
+
+	if combat_component and (combat_component.is_attacking() or combat_component.is_charging()):
+
+		return
+
 	if dodge_cooldown <= 0.0:
 
 		entity.state_machine.request_state(BodyDodgingState)
 
 		dodge_cooldown = 0.6
+
+
+
 
 
 

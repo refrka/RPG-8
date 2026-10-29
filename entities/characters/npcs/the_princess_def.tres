@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dtyhdqixhmkal"]
 
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="1_8jipm"]
+[ext_resource type="Texture2D" uid="uid://nl0vnnjh2wlr" path="res://resources/textures/icons/princess_icon.png" id="1_upadh"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="2_xtokr"]
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="3_upadh"]
+[ext_resource type="Texture2D" uid="uid://bat8oc4omv2o8" path="res://resources/textures/entities/the_princess_sprite.png" id="5_xnee4"]
 
 [sub_resource type="Resource" id="Resource_iovgs"]
 script = ExtResource("1_8jipm")
@@ -12,8 +14,10 @@ metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 script = ExtResource("3_upadh")
 entity_id = &"the_princess"
 display_name = &"The Princess"
+scene_path = "res://entities/characters/npcs/the_princess.tscn"
 initial_inventory = SubResource("Resource_iovgs")
 base_health = 50.0
-sprite_y_offset = -24.0
+sprite_texture = ExtResource("5_xnee4")
+icon_texture = ExtResource("1_upadh")
 move_speed = 80.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

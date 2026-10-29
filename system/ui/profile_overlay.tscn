@@ -5,6 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/inventory/item_slot.tscn" id="3_ey723"]
 [ext_resource type="Script" uid="uid://bo20n27xt2026" path="res://system/ui/inventory/equipment_slot.gd" id="3_lhuql"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhuql"]
+bg_color = Color(0.19076231, 0.19076234, 0.19076225, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj1xw"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -52,6 +64,8 @@ theme_override_constants/margin_bottom = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1494826153]
 layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lhuql")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=492762216]
 layout_mode = 2

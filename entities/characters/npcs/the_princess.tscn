@@ -4,6 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bat8oc4omv2o8" path="res://resources/textures/entities/the_princess_sprite.png" id="2_eymap"]
 [ext_resource type="Resource" uid="uid://dtyhdqixhmkal" path="res://entities/characters/npcs/the_princess_def.tres" id="2_plwdb"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_plwdb"]
+radius = 5.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eymap"]
+size = Vector2(19, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eymap"]
+radius = 232.00215
+
 [node name="ThePrincess" unique_id=2016177718 instance=ExtResource("1_ogwvo")]
 entity_def = ExtResource("2_plwdb")
 
@@ -11,8 +21,16 @@ entity_def = ExtResource("2_plwdb")
 texture = ExtResource("2_eymap")
 offset = Vector2(0, -24)
 
+[node name="CollisionShape2D" parent="." index="3" unique_id=549181237]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_plwdb")
+
 [node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
-position = Vector2(-2, -14)
+shape = SubResource("RectangleShape2D_eymap")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1210573016) index="0" unique_id=1251574029]
+shape = SubResource("CircleShape2D_eymap")
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

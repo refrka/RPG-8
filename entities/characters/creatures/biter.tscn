@@ -105,8 +105,8 @@ _data = {
 &"RESET": SubResource("Animation_hmuqq")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_53rto"]
-radius = 4.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmuqq"]
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_53rto"]
 resource_name = "attack_0"
@@ -118,10 +118,10 @@ tracks/0/path = NodePath("CanvasGroup/BodySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.001395351, 0.10859362, 0.23502788, 0.34087414, 0.6100429, 0.72744715),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.001395351, 0.10859362, 0.3611952, 0.47859943),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [2, 3, 2, 3, 4, 2]
+"values": [2, 3, 4, 2]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,10 +142,10 @@ tracks/2/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:shape")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.6080439, 0.73872435),
+"times": PackedFloat32Array(0.3591962, 0.48987663),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [SubResource("CircleShape2D_53rto"), null]
+"values": [SubResource("CircleShape2D_hmuqq"), null]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -154,7 +154,7 @@ tracks/3/path = NodePath("CanvasGroup/CombatRoot/Hitbox/CollisionShape2D:positio
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.58842963),
+"times": PackedFloat32Array(0.3395819),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(7, 4)]

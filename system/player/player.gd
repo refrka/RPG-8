@@ -110,6 +110,8 @@ func load_template() -> Dictionary:
 
 func _die() -> void:
 
+	Events.fire(PlayerDyingEvent)
+
 	super()
 
 	Game.exit()

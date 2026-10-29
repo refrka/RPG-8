@@ -4,15 +4,21 @@ class_name Effect extends Resource
 signal expired
 
 
+@export var display_name: String
+
 @export var duration:= -1.0
 
 @export var event_trigger: Script
+
+@export var animation: Animation
 
 var entity: EntityNode
 
 var triggering_event: Event
 
 var _time_alive:= 0.0
+
+var effect_animation_node: EffectAnimation
 
 
 
@@ -45,8 +51,22 @@ func is_expired() -> bool:
 
 func _apply() -> void:
 
-	pass
+	if animation:
+
+		effect_animation_node = Scenes.add_effect_animation(entity, animation)
+
+
+
+
+
+func _remove() -> void:
+
+	if animation and effect_animation_node:
+		
+		entity.remove_child(effect_animation_node)
 	
+
+
 
 
 func _expire() -> void:

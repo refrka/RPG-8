@@ -50,6 +50,18 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvlpp"]
+bg_color = Color(0.16954473, 0.16954485, 0.16954482, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.99999994, 0.08255618, 0.28428724, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [node name="ConstructionEntitySlot" type="MarginContainer" unique_id=1670770900 node_paths=PackedStringArray("texture_rect", "panel")]
 custom_minimum_size = Vector2(32, 32)
 offset_right = 4.0
@@ -63,6 +75,7 @@ default_stylebox = SubResource("StyleBoxFlat_noheq")
 hovered_stylebox = SubResource("StyleBoxFlat_hcwdq")
 selected_stylebox = SubResource("StyleBoxFlat_78fdu")
 hovered_selected_stylebox = SubResource("StyleBoxFlat_nxlnm")
+disabled_stylebox = SubResource("StyleBoxFlat_fvlpp")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=184856918]
 layout_mode = 2

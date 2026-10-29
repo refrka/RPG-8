@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://blm8thhy3wlcy"]
+
+[ext_resource type="PackedScene" uid="uid://dc1bm40p741r8" path="res://system/entity/object_node.tscn" id="1_3g52u"]
+[ext_resource type="Resource" uid="uid://dbqx52yke7rao" path="res://entities/objects/furnishings/crafting_table_def.tres" id="2_bwhjl"]
+[ext_resource type="Texture2D" uid="uid://b77h8gjmdbqyx" path="res://resources/textures/entities/crafting_table_sprite.png" id="2_xnkbn"]
+[ext_resource type="Script" uid="uid://c8r0ku30luhim" path="res://system/component/crafting_component.gd" id="4_d6lx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57v2q"]
+size = Vector2(34, 16)
+
+[node name="CraftingTable" unique_id=744980819 instance=ExtResource("1_3g52u")]
+entity_def = ExtResource("2_bwhjl")
+
+[node name="BodySprite" parent="CanvasGroup" parent_id_path=PackedInt32Array(1484650591) index="0" unique_id=433715869]
+texture = ExtResource("2_xnkbn")
+offset = Vector2(0, -24)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=258299850]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_57v2q")
+
+[node name="CraftingComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(281237021) index="2" unique_id=200998732]
+script = ExtResource("4_d6lx1")
+metadata/_custom_type_script = "uid://c8r0ku30luhim"
+
+[editable path="Hurtbox"]

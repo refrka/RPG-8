@@ -46,7 +46,15 @@ func load_entity(_entity_def: EntityDef) -> void:
 
 	entity_def = _entity_def
 
-	texture_rect.texture = entity_def.sprite_texture
+	size = Vector2.ZERO
+
+	texture_rect.size = Vector2.ZERO
+
+	if entity_def != null:
+
+		texture_rect.set("texture", entity_def.icon_texture)
+
+		size = entity_def.icon_texture.get_size()
 
 
 
@@ -60,9 +68,11 @@ func _on_construction_mode_state_updated(state: bool) -> void:
 
 
 
+
+
 func _on_construction_entity_updated() -> void:
 
-	entity_def = Constructor.construction_entity
+	load_entity(Constructor.construction_entity)
 
 	if !Constructor.construction_entity:
 
@@ -79,6 +89,7 @@ func _on_construction_entity_updated() -> void:
 
 
 
+
 func _unhandled_input(event: InputEvent) -> void:
 
 	if !active:
@@ -90,6 +101,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == 1:
 
 			var entity_node = load(entity_def.scene_path).instantiate()
+
+			entity_node.save_enabled = true
 
 			Scenes.current_location.add_entity_node(entity_node, get_global_mouse_position())
 
@@ -107,6 +120,8 @@ func _process(_delta: float) -> void:
 
 	if active:
 
-		global_position = get_global_mouse_position()
+		global_position = get_global_mouse_position() - Vector2(get_rect().size.x / 2, get_rect().size.y)
 
 	
+
+

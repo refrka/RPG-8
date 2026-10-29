@@ -2,6 +2,10 @@ extends Node
 
 
 
+
+@onready var effect_animation_node_scene:= preload("res://system/effect/effect_animation.tscn")
+
+
 var location_root: Node2D
 
 var main_menu: MainMenu
@@ -28,6 +32,10 @@ func _ready() -> void:
 func load_location(location_id: StringName) -> Location:
 
 	if current_location:
+
+		var location_dict = current_location.to_dict()
+
+		Game.active_save_data["locations"][get_location_id()] = location_dict
 
 		clear_location()
 
@@ -113,7 +121,7 @@ func get_location_id() -> StringName:
 
 func get_location_save_data() -> Dictionary:
 
-	var location_dict = Game.active_save_data["locations"]
+	var location_dict = Game.active_save_data["locations"].duplicate()
 
 	if current_location:
 
@@ -126,3 +134,18 @@ func get_location_save_data() -> Dictionary:
 		location_dict[location_id] = current_location.to_dict()
 
 	return location_dict
+
+
+
+
+func add_effect_animation(entity: EntityNode, effect_animation: Animation) -> EffectAnimation:
+
+	var effect_animation_node = effect_animation_node_scene.instantiate() as EffectAnimation
+
+	entity.add_child(effect_animation_node)
+
+	effect_animation_node.anim_player.get_animation_library("").add_animation(effect_animation.resource_name, effect_animation)
+
+	effect_animation_node.anim_player.play(effect_animation.resource_name)
+
+	return effect_animation_node

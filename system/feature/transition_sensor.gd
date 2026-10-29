@@ -59,7 +59,7 @@ func _transition() -> void:
 
 				command._execute()
 
-	_deactivate()
+	_deactivate.call_deferred()
 
 	Scenes.transition_to.call_deferred(transition_location_id, transition_spawn_id)
 

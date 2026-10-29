@@ -61,7 +61,7 @@ func _wander() -> void:
 
 	var distance = randf_range(wander_distance_range.x, wander_distance_range.y)
 
-	movement_component.set_navigation_position(dir * distance)
+	movement_component.set_navigation_position(actor.global_position + (dir * distance))
 
 
 

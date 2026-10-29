@@ -9,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://bfoc7685mg7dm" path="res://system/ui/inventory/mouse_item_slot.tscn" id="5_wd1uf"]
 [ext_resource type="Script" uid="uid://frkul2fktkgw" path="res://system/ui/player_health_bar.gd" id="6_ledqy"]
 [ext_resource type="PackedScene" uid="uid://cy7nvd43jrg5j" path="res://system/ui/construction_overlay.tscn" id="7_0pxas"]
+[ext_resource type="PackedScene" uid="uid://diteetokye274" path="res://system/ui/crafting_overlay.tscn" id="8_nknqk"]
 [ext_resource type="Script" uid="uid://dqbmuk2yx6jfc" path="res://system/ui/debug_panel_controls.gd" id="9_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://b4rjontlo1o3m" path="res://system/ui/mouse_tooltip.tscn" id="9_krhou"]
 [ext_resource type="Script" uid="uid://caplxqpptskas" path="res://system/ui/construction/mouse_constructor.gd" id="10_8tlgu"]
 [ext_resource type="Script" uid="uid://blvhavomf7l6k" path="res://system/ui/behavior_panel.gd" id="10_aiwur"]
+[ext_resource type="Script" uid="uid://b8a733pwg1fkg" path="res://system/misc/game_camera.gd" id="14_0pxas"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o8ui"]
 content_margin_left = 2.0
@@ -95,7 +97,7 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 
-[node name="GameRoot" type="Node" unique_id=91091552]
+[node name="GameRoot" type="Node" unique_id=91091552 groups=["game_root"]]
 script = ExtResource("1_xj5yv")
 
 [node name="LocationCanvas" type="CanvasLayer" parent="." unique_id=438543936]
@@ -163,6 +165,9 @@ layout_mode = 1
 [node name="ConstructionOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1806290263 instance=ExtResource("7_0pxas")]
 layout_mode = 1
 
+[node name="CraftingOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=308790442 instance=ExtResource("8_nknqk")]
+layout_mode = 1
+
 [node name="MenuCanvas" type="CanvasLayer" parent="." unique_id=250839886]
 
 [node name="MainMenu" parent="MenuCanvas" unique_id=1723796028 instance=ExtResource("2_pjpa4")]
@@ -179,6 +184,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MouseCanvas" type="CanvasLayer" parent="." unique_id=241222124]
+follow_viewport_enabled = true
 
 [node name="MouseItemSlot" parent="MouseCanvas" unique_id=212764444 instance=ExtResource("5_wd1uf")]
 
@@ -196,8 +202,8 @@ offset_right = -640.0
 offset_bottom = -360.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("10_8tlgu")
 texture_rect = NodePath("TextureRect")
@@ -205,6 +211,7 @@ texture_rect = NodePath("TextureRect")
 [node name="TextureRect" type="TextureRect" parent="MouseCanvas/MouseConstructor" unique_id=252801449]
 layout_mode = 2
 mouse_filter = 2
+stretch_mode = 2
 
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1412821183]
 
@@ -330,3 +337,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "[ no behavior ]"
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=107517368]
+script = ExtResource("14_0pxas")

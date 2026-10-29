@@ -38,6 +38,14 @@ func _initialize(_entity: EntityNode) -> void:
 
 		combat_anim_player.animation_finished.connect(_on_combat_animation_finished)
 
+	if body_anim_player.current_animation == "%s/idle" % entity.entity_def.entity_id:
+
+		var animation_length = body_anim_player.current_animation_length
+
+		var random_position = randf_range(0.0, animation_length)
+
+		body_anim_player.seek(random_position)
+
 
 
 

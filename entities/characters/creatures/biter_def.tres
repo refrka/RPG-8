@@ -11,11 +11,13 @@
 [ext_resource type="Script" uid="uid://chj7x0jqc3ri0" path="res://system/condition/condition.gd" id="6_kbpkn"]
 [ext_resource type="Resource" uid="uid://jmcornawxe8y" path="res://items/material/biter_eye_def.tres" id="7_c7pp6"]
 [ext_resource type="Script" uid="uid://cxk2pjyg8l41k" path="res://system/loot/loot_table.gd" id="8_6cwqq"]
+[ext_resource type="Texture2D" uid="uid://v7c5v74w5vo3" path="res://resources/textures/icons/biter_icon.png" id="8_27kq3"]
 [ext_resource type="Script" uid="uid://b3jjp3ux5q3wb" path="res://system/inventory/inventory.gd" id="9_27kq3"]
 [ext_resource type="Script" uid="uid://wbgpq46tveo5" path="res://system/item/item_stack.gd" id="10_kdgl5"]
 [ext_resource type="Script" uid="uid://bqy5pfm8psxlk" path="res://system/entity/character_def.gd" id="11_1o6tk"]
 [ext_resource type="Script" uid="uid://dbmx2jm7n75c0" path="res://system/combat/attack_entry.gd" id="14_c7pp6"]
 [ext_resource type="Script" uid="uid://burdq3rfoe5k3" path="res://system/combat/attack_config.gd" id="15_6cwqq"]
+[ext_resource type="Texture2D" uid="uid://c82jwqgl75whk" path="res://resources/textures/entities/biter_sprite.png" id="15_c7pp6"]
 
 [sub_resource type="Resource" id="Resource_icnp5"]
 script = ExtResource("4_kbpkn")
@@ -54,6 +56,7 @@ metadata/_custom_type_script = "uid://b3jjp3ux5q3wb"
 
 [sub_resource type="Resource" id="Resource_hmuqq"]
 script = ExtResource("14_c7pp6")
+damage_range = Vector2(1, 2)
 cooldown_duration = 0.5
 metadata/_custom_type_script = "uid://dbmx2jm7n75c0"
 
@@ -68,7 +71,10 @@ behavior_profile = SubResource("Resource_k6dh1")
 unarmed_attack_config = SubResource("Resource_53rto")
 entity_id = &"biter"
 display_name = &"Biter"
+scene_path = "res://entities/characters/creatures/biter.tscn"
 initial_inventory = SubResource("Resource_lr5j5")
-base_health = 200.0
+base_health = 3.0
+sprite_texture = ExtResource("15_c7pp6")
+icon_texture = ExtResource("8_27kq3")
 move_speed = 200.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

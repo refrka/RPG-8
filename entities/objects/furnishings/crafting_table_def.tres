@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://dbqx52yke7rao"]
+
+[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_57v2q"]
+[ext_resource type="Texture2D" uid="uid://6jlumb6mlc8w" path="res://resources/textures/icons/crafting_table_icon.png" id="1_vf1yh"]
+[ext_resource type="Texture2D" uid="uid://b77h8gjmdbqyx" path="res://resources/textures/entities/crafting_table_sprite.png" id="3_q2xg3"]
+
+[resource]
+script = ExtResource("1_57v2q")
+entity_id = &"crafting_table"
+display_name = &"Crafting table"
+scene_path = "res://entities/objects/furnishings/crafting_table.tscn"
+sprite_texture = ExtResource("3_q2xg3")
+icon_texture = ExtResource("1_vf1yh")
+sprite_offset = Vector2(0, -24)
+metadata/_custom_type_script = "uid://bpdbf5o18qx1d"

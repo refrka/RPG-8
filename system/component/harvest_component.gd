@@ -24,6 +24,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity.body_sprite.frame = ready_texture_frame
 
+	harvest_loot_table = harvest_loot_table.duplicate(true)
+
 
 
 

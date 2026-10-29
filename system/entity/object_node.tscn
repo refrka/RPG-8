@@ -45,15 +45,17 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("component_root", "state_machine", "body_sprite", "hurtbox", "health_bar")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=744980819 node_paths=PackedStringArray("body_canvas_group", "component_root", "state_machine", "body_sprite", "hurtbox", "health_bar", "center_marker")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_gqn7q")
+body_canvas_group = NodePath("CanvasGroup")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 body_sprite = NodePath("CanvasGroup/BodySprite")
 hurtbox = NodePath("Hurtbox")
 health_bar = NodePath("HealthProgressBar")
+center_marker = NodePath("CenterMarker")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1484650591]
 y_sort_enabled = true
@@ -106,5 +108,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2du2x")
 value = 50.0
 show_percentage = false
 script = ExtResource("6_yyhkn")
+
+[node name="CenterMarker" type="Marker2D" parent="." unique_id=1312277921]
 
 [editable path="Hurtbox"]

@@ -22,6 +22,14 @@ func _ready() -> void:
 
 		entity_grid.add_child(entity_slot)
 
+		if entity_def.scene_path == "" or not FileAccess.file_exists(entity_def.scene_path):
+
+			entity_slot.set_disabled(true)
+
+
+
+
+
 
 
 func _on_construction_mode_state_updated(state: bool) -> void:

@@ -14,9 +14,11 @@
 [ext_resource type="Script" uid="uid://lhvhd2bifu7k" path="res://system/component/effects_component.gd" id="9_kg6yd"]
 [ext_resource type="Script" uid="uid://55mmhmjsvaws" path="res://system/state/combat_charging_state.gd" id="11_hrt4h"]
 [ext_resource type="Script" uid="uid://cqwio6bxg7hj" path="res://system/state/combat_attacking_state.gd" id="12_657qq"]
+[ext_resource type="Script" uid="uid://b0543u64f0fa5" path="res://system/state/body_restrained_state.gd" id="13_lrdxv"]
 [ext_resource type="Script" uid="uid://vwvqw0xsi68o" path="res://system/ui/health_progress_bar.gd" id="14_nhrk4"]
 [ext_resource type="Script" uid="uid://tm8tfq81rqpv" path="res://system/ui/entity_debug_panel.gd" id="16_4ly01"]
 [ext_resource type="Texture2D" uid="uid://bdj6dwwiwl346" path="res://resources/textures/entities/entity_shadow.png" id="17_tu7xt"]
+[ext_resource type="PackedScene" uid="uid://butfm0m6pg8ke" path="res://system/effect/effect_animation.tscn" id="19_tecqc"]
 
 [sub_resource type="Animation" id="Animation_fnjhg"]
 resource_name = "RESET"
@@ -125,9 +127,10 @@ border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu7xt"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor", "on_screen_notifier", "debug_panel", "health_bar", "nav_agent")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=2016177718 node_paths=PackedStringArray("body_canvas_group", "component_root", "state_machine", "body_sprite", "combat_root", "hitbox", "hurtbox", "vision_sensor", "combat_melee_sensor", "on_screen_notifier", "debug_panel", "health_bar", "nav_agent", "center_marker")]
 collision_mask = 1026
 script = ExtResource("1_qxfxo")
+body_canvas_group = NodePath("CanvasGroup")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 body_sprite = NodePath("CanvasGroup/BodySprite")
@@ -140,6 +143,7 @@ on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 debug_panel = NodePath("DebugPanel")
 health_bar = NodePath("HealthProgressBar")
 nav_agent = NodePath("NavigationAgent2D")
+center_marker = NodePath("CenterMarker")
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1440807016]
 
@@ -222,6 +226,10 @@ metadata/_custom_type_script = "uid://rgx5lh01enbs"
 script = ExtResource("6_x0k0y")
 metadata/_custom_type_script = "uid://ctwivvly8ar6t"
 
+[node name="BodyRestrainedState" type="Node" parent="StateMachine/BodyRoot" unique_id=1523228380]
+script = ExtResource("13_lrdxv")
+metadata/_custom_type_script = "uid://b0543u64f0fa5"
+
 [node name="CombatRoot" type="Node" parent="StateMachine" unique_id=569723837]
 
 [node name="CombatIdleState" type="Node" parent="StateMachine/CombatRoot" unique_id=1968663588]
@@ -294,6 +302,8 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tu7xt")
 metadata/_edit_lock_ = true
+
+[node name="EffectAnimation" parent="." unique_id=47131695 instance=ExtResource("19_tecqc")]
 
 [editable path="CanvasGroup/CombatRoot/Hitbox"]
 [editable path="Hurtbox"]

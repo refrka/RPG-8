@@ -18,4 +18,10 @@ var data = {
 
 	"locations": { },
 
+	"recipes": [ 
+
+		"cooked_meat",
+
+	],
+
 }

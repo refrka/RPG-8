@@ -13,6 +13,8 @@ class_name ConstructionEntitySlot extends MarginContainer
 
 @export var hovered_selected_stylebox: StyleBoxFlat
 
+@export var disabled_stylebox: StyleBoxFlat
+
 
 
 var entity_def: EntityDef
@@ -31,6 +33,8 @@ var hovered:= false
 
 var selected:= false
 
+var disabled:= false
+
 
 
 
@@ -42,6 +46,16 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited_slot)
 
 	gui_input.connect(_on_gui_input)
+
+
+
+
+func set_disabled(state: bool) -> void:
+
+	disabled = state
+
+	_update_panel_visuals()
+
 
 
 
@@ -104,23 +118,29 @@ func _update_panel_visuals() -> void:
 
 	var chosen_stylebox:= default_stylebox
 
-	match [selected, hovered]:
+	if disabled:
 
-		[true, true]:
+		chosen_stylebox = disabled_stylebox
+		
+	else:
 
-			chosen_stylebox = hovered_selected_stylebox
+		match [selected, hovered]:
 
-		[true, false]:
+			[true, true]:
 
-			chosen_stylebox = selected_stylebox
+				chosen_stylebox = hovered_selected_stylebox
 
-		[false, true]:
+			[true, false]:
 
-			chosen_stylebox = hovered_stylebox
+				chosen_stylebox = selected_stylebox
 
-		[false, false]:
+			[false, true]:
 
-			chosen_stylebox = default_stylebox
+				chosen_stylebox = hovered_stylebox
+
+			[false, false]:
+
+				chosen_stylebox = default_stylebox
 
 	panel.add_theme_stylebox_override("panel", chosen_stylebox)
 
@@ -132,7 +152,7 @@ func _update_panel_visuals() -> void:
 
 func _on_mouse_entered_slot() -> void:
 
-	if hover_enabled:
+	if hover_enabled and not disabled:
 
 		set_hovered_state(true)
 
@@ -141,7 +161,7 @@ func _on_mouse_entered_slot() -> void:
 
 func _on_mouse_exited_slot() -> void:
 
-	if hover_enabled:
+	if hover_enabled and not disabled:
 
 		set_hovered_state(false)
 
@@ -150,9 +170,13 @@ func _on_mouse_exited_slot() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 
+	if disabled:
+
+		return
+
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 
-		if !selected:
+		if not selected:
 
 			set_selected_state(true)
 

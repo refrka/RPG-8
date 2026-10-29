@@ -57,6 +57,6 @@ unarmed_attack_config = SubResource("Resource_h3rsp")
 entity_id = &"player"
 display_name = &"Player"
 initial_inventory = SubResource("Resource_u2ucp")
-base_health = 200.0
+base_health = 5.0
 move_speed = 100.0
 metadata/_custom_type_script = "uid://bqy5pfm8psxlk"

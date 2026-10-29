@@ -47,7 +47,9 @@ func _exit() -> void:
 
 	super()
 
-	entity.hurtbox.monitorable = true
+	animation_component.body_anim_player.play("RESET")
+
+	entity.hurtbox.set.call_deferred("monitorable", true)
 
 	movement_component.set_move_speed_override(-1.0)
 

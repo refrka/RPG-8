@@ -330,6 +330,10 @@ func to_dict() -> Dictionary:
 
 	dict["armor"] = null
 
+	if loot_table:
+
+		dict["loot_table"] = loot_table.to_dict()
+
 	if weapon:
 
 		dict["weapon"] = weapon.to_dict()
@@ -377,3 +381,7 @@ func load_dict(save_dict: Dictionary) -> void:
 	if save_dict["armor"] != null:
 
 		set_armor(ItemData.from_dict(save_dict["armor"]))
+
+	if save_dict.has("loot_table"):
+
+		loot_table.load_dict(save_dict["loot_table"])

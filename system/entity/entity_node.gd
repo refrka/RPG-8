@@ -13,8 +13,12 @@ signal died
 
 @export var save_enabled:= false
 
+@export var disabled:= false
+
 
 @export_group("Node Exports")
+
+@export var body_canvas_group: CanvasGroup
 
 @export var component_root: Node
 
@@ -46,6 +50,8 @@ signal died
 
 @export var nav_agent: NavigationAgent2D
 
+@export var center_marker: Marker2D
+
 
 
 
@@ -64,9 +70,16 @@ var damage_package_log: Array[DamagePackage]
 
 
 
+
+
+
 func _initialize() -> bool:
 
 	assert(entity_def != null, "Missing entity definition")
+
+	if disabled:
+
+		return false
 
 	if initialized:
 
@@ -120,7 +133,7 @@ func _initialize() -> bool:
 
 func _activate() -> void:
 
-	if active:
+	if active or disabled:
 
 		return
 
@@ -165,7 +178,7 @@ func _activate() -> void:
 
 func _deactivate() -> void:
 
-	if !active:
+	if !active or disabled:
 
 		return
 
@@ -307,30 +320,41 @@ func get_mouse_dir(from_combat_root:= false) -> Vector2:
 
 
 
-func get_direction(target_entity: EntityNode, invert:= false) -> Vector2:
+func get_direction(target_entity: EntityNode, center:= false, invert:= false) -> Vector2:
+
+	var target_position:= target_entity.global_position
+
+	if center:
+
+		target_position = target_entity.center_marker.global_position
 
 	if !invert:
 
-		return global_position.direction_to(target_entity.global_position)
-
+		return global_position.direction_to(target_position)
 	else:
 
-		return target_entity.global_position.direction_to(global_position)
+		return target_entity.global_position.direction_to(target_position)
 
 
 
 
 
 
-func get_distance(target_entity: EntityNode, squared:= false) -> float:
+func get_distance(target_entity: EntityNode, center:= false, squared:= false) -> float:
+
+	var target_position:= target_entity.global_position
+
+	if center:
+
+		target_position = target_entity.center_marker.global_position
 
 	if !squared:
 
-		return global_position.distance_to(target_entity.global_position)
+		return global_position.distance_to(target_position)
 
 	else:
 
-		return global_position.distance_squared_to(target_entity.global_position)
+		return global_position.distance_squared_to(target_position)
 
 
 
@@ -424,6 +448,10 @@ func _to_dict() -> Dictionary:
 
 	save_dict["global_position_y"] = global_position.y
 
+	save_dict["disabled"] = disabled
+
+	save_dict["save_enabled"] = save_enabled
+
 	if inventory:
 
 		save_dict["inventory"] = inventory.to_dict()
@@ -446,6 +474,10 @@ func _load_dict(save_dict: Dictionary) -> void:
 
 	global_position = Vector2(save_dict["global_position_x"], save_dict["global_position_y"])
 
+	disabled = save_dict["disabled"]
+
+	save_enabled = save_dict["save_enabled"]
+
 	for component_name in save_dict["components"]:
 
 		var component_dict = save_dict["components"][component_name]
@@ -454,7 +486,7 @@ func _load_dict(save_dict: Dictionary) -> void:
 		
 		if component:
 
-			component._load_dict(component_dict)
+			component.load_dict(component_dict)
 
 	if save_dict.has("inventory"):
 

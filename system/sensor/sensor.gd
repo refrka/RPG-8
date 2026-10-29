@@ -31,6 +31,10 @@ func _initialize(_entity: EntityNode = null) -> void:
 
 	entity = _entity
 
+	monitoring = false
+
+	monitorable = false
+
 
 
 
@@ -53,6 +57,10 @@ func _activate() -> void:
 
 	active = true
 
+	monitoring = true
+
+	monitorable = true
+
 	get_overlapping_entities()
 
 
@@ -61,6 +69,10 @@ func _activate() -> void:
 func _deactivate() -> void:
 
 	active = false
+
+	monitoring = false
+
+	monitorable = false
 
 	_disconnect_signals()
 

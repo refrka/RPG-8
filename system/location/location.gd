@@ -6,6 +6,12 @@ class_name Location extends Node2D
 
 @export var feature_root: Node2D
 
+@export var top_left_marker: Marker2D
+
+@export var bottom_right_marker: Marker2D
+
+
+
 
 var initialized:= false
 
@@ -80,6 +86,8 @@ func spawn_player(spawn_id: StringName, make_current:= false) -> void:
 
 	player.show()
 
+	Events.fire(PlayerSpawnedInLocationEvent, {"location": self, "spawn_id": spawn_id})
+
 
 
 
@@ -150,7 +158,6 @@ func _deactivate() -> void:
 
 
 
-
 func to_dict() -> Dictionary:
 
 	var save_dict:= {}
@@ -179,7 +186,7 @@ func load_dict(save_dict: Dictionary) -> void:
 
 			var index = int(entity_dict["index"])
 
-			if ysort_root.get_children().size() < index:
+			if ysort_root.get_children().size() - 1 < index:
 
 				var entity_id = entity_dict["entity_id"]
 

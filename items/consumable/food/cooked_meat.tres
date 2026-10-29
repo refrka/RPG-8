@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://bbjo7xkfb0e0"]
+
+[ext_resource type="Script" uid="uid://dixfk76l3q44i" path="res://system/effect/effect.gd" id="1_ol8tf"]
+[ext_resource type="Script" uid="uid://solcjy8yopbb" path="res://system/item/consumable_def.gd" id="2_2b51p"]
+[ext_resource type="Texture2D" uid="uid://d277i7rjxf5po" path="res://resources/textures/items/cooked_meat_sprite.png" id="3_2b51p"]
+
+[resource]
+script = ExtResource("2_2b51p")
+item_id = &"cooked_meat"
+display_name = "Cooked meat"
+sprite_texture = ExtResource("3_2b51p")
+metadata/_custom_type_script = "uid://solcjy8yopbb"

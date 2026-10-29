@@ -14,13 +14,15 @@ func _start() -> bool:
 
 	opened = true
 
-	var loot = container_loot_table.get_loot(randf())
+	if container_loot_table:
 
-	for item_def in loot:
+		var loot = container_loot_table.get_loot(randf())
 
-		var count = loot[item_def]
+		for item_def in loot:
 
-		entity.inventory.add_item(item_def, count)
+			var count = loot[item_def]
+
+			entity.inventory.add_item(item_def, count)
 
 	var overlay = UI.show_overlay(ContainerOverlay)
 
@@ -54,3 +56,23 @@ func _on_overlay_deactivated() -> void:
 
 
 
+
+
+func to_dict() -> Dictionary:
+
+	var save_dict:= {}
+
+	if container_loot_table:
+
+		save_dict["loot_table"] = container_loot_table.to_dict()
+
+	return save_dict
+
+
+
+
+func load_dict(save_dict: Dictionary) -> void:
+
+	if save_dict.has("loot_table"):
+
+		container_loot_table.load_dict(save_dict["loot_table"])

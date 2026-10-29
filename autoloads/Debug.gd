@@ -67,6 +67,10 @@ func deselect_entity(entity: EntityNode) -> void:
 
 func _set_debug_state(state:= false) -> void:
 
+	if !debug_root:
+
+		return
+
 	active = state
 
 	if active:

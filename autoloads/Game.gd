@@ -7,6 +7,8 @@ var player: Player
 
 var active:= false
 
+var last_save_data: Dictionary
+
 var active_save_data: Dictionary
 
 var save_path:= "user://save_1.json"
@@ -42,6 +44,8 @@ func start() -> void:
 	var location = Scenes.load_location(active_save_data["location_id"])
 
 	location.spawn_player(active_save_data["spawn_id"])
+
+	await get_tree().physics_frame
 
 	location._activate()
 
@@ -89,6 +93,8 @@ func save() -> void:
 	save_data["fresh_save"] = false
 
 	active_save_data = save_data.duplicate()
+
+	last_save_data = save_data.duplicate()
 
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 

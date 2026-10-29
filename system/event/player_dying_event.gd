@@ -1,0 +1,1 @@
+class_name PlayerDyingEvent extends GameEvent

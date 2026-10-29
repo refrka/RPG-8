@@ -32,11 +32,15 @@ func load_item_def(_item_def: ItemDef) -> void:
 
 	body_sprite.offset.y = -item_def.sprite_texture.get_height() / 2
 
+	center_marker.position.y = body_sprite.offset.y
+
 
 
 func float_to_entity(entity_node: EntityNode) -> void:
 
 	floating_to_entity = entity_node
+
+	body_canvas_group.y_sort_enabled = false
 
 
 
@@ -61,13 +65,13 @@ func _on_floating_to_entity_reached() -> void:
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
 	if floating_to_entity != null:
 
-		var target_position = global_position + (get_distance(floating_to_entity) - 8) * get_direction(floating_to_entity)
+		var target_position = global_position + (get_distance(floating_to_entity, true) - 8) * get_direction(floating_to_entity, true)
 
-		global_position = global_position.move_toward(target_position, 2.0)
+		global_position = global_position.move_toward(target_position, 0.5)
 
 		if global_position.distance_to(target_position) <= 1.0:
 

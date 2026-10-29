@@ -187,9 +187,6 @@ position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_3unts")
 
-[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="0" unique_id=283233958]
-position = Vector2(-2, -14)
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" parent_id_path=PackedInt32Array(809095005) index="1" unique_id=1095765785]
 polygon = PackedVector2Array(-16, -16, -16, 0, -11, 0, -11, -5, 11, -5, 11, 0, 16, 0, 16, -22, 3, -22, 3, -16, -13, -16)
 
@@ -199,7 +196,6 @@ shape = SubResource("CircleShape2D_vjujl")
 [node name="NavigationAgent2D" parent="." index="6" unique_id=780391334]
 target_desired_distance = 12.0
 radius = 5.0
-debug_enabled = true
 
 [node name="CombatComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(9866386) index="3" unique_id=2020302319]
 script = ExtResource("5_cq8lg")

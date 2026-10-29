@@ -78,3 +78,46 @@ func get_loot(roll: float) -> Dictionary[ItemDef, int]:
 						entry.disabled = true
 
 	return loot
+
+
+
+
+
+func to_dict() -> Dictionary:
+
+	var save_dict:= {}
+
+	save_dict["entries"] = []
+
+	save_dict["conditional_entries"] = []
+
+	for entry in entries:
+
+		save_dict["entries"].append(entry.disabled)
+
+	for entry in conditional_entries:
+
+		save_dict["conditional_entries"].append(entry.disabled)
+
+	return save_dict
+
+
+
+
+func load_dict(save_dict: Dictionary) -> void:
+
+	for i in range(save_dict["entries"].size()):
+
+		var entry = entries.get(i)
+
+		var disabled = save_dict["entries"][i]
+
+		entry.disabled = disabled
+
+	for i in range(save_dict["conditional_entries"].size()):
+
+		var entry = conditional_entries.get(i)
+
+		var disabled = save_dict["conditional_entries"][i]
+
+		entry.disabled = disabled

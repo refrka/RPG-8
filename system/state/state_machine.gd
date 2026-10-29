@@ -143,6 +143,17 @@ func get_state(state_script: Script) -> State:
 
 
 
+func _physics_process(delta: float) -> void:
+
+	if current_body_state:
+
+		current_body_state._tick(delta)
+
+	if current_combat_state:
+
+		current_combat_state._tick(delta)
+
+
 
 
 
