@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://dbqx52yke7rao"]
+[gd_resource type="Resource" script_class="CraftingSourceDef" format=3 uid="uid://dbqx52yke7rao"]
 
-[ext_resource type="Script" uid="uid://bpdbf5o18qx1d" path="res://system/entity/object_def.gd" id="1_57v2q"]
 [ext_resource type="Texture2D" uid="uid://6jlumb6mlc8w" path="res://resources/textures/icons/crafting_table_icon.png" id="1_vf1yh"]
+[ext_resource type="Script" uid="uid://d3lxlbinjxdm3" path="res://system/crafting/crafting_recipe.gd" id="2_ge13n"]
+[ext_resource type="Resource" uid="uid://delemm6crqa4k" path="res://resources/recipes/cooked_meat_cooking_recipe.tres" id="3_khtxc"]
 [ext_resource type="Texture2D" uid="uid://b77h8gjmdbqyx" path="res://resources/textures/entities/crafting_table_sprite.png" id="3_q2xg3"]
+[ext_resource type="Script" uid="uid://dr6te6x6ypw3y" path="res://system/entity/crafting_source_def.gd" id="4_spyxm"]
 
 [resource]
-script = ExtResource("1_57v2q")
+script = ExtResource("4_spyxm")
+recipe_list = Array[ExtResource("2_ge13n")]([ExtResource("3_khtxc")])
 entity_id = &"crafting_table"
 display_name = &"Crafting table"
 scene_path = "res://entities/objects/furnishings/crafting_table.tscn"

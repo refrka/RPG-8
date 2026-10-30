@@ -149,3 +149,4 @@ func add_effect_animation(entity: EntityNode, effect_animation: Animation) -> Ef
 	effect_animation_node.anim_player.play(effect_animation.resource_name)
 
 	return effect_animation_node
+

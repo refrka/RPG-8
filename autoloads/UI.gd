@@ -111,6 +111,8 @@ func get_overlay(overlay_script: Script) -> Overlay:
 
 
 
+
+
 func is_overlay_active(overlay_script: Script) -> bool:
 
 	var overlay = get_overlay(overlay_script)

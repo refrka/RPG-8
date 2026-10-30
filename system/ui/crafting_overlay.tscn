@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://diteetokye274"]
 
 [ext_resource type="Script" uid="uid://c7xany5o6xqf0" path="res://system/ui/crafting_overlay.gd" id="1_hmln7"]
-[ext_resource type="PackedScene" uid="uid://dr85dig657mrn" path="res://system/ui/crafting/crafting_overlay_recipe_row.tscn" id="2_vj04r"]
 [ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/inventory/item_slot.tscn" id="3_0dau4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dau4"]
@@ -33,7 +32,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 corner_detail = 5
 
-[node name="CraftingOverlay" type="Control" unique_id=308790442 node_paths=PackedStringArray("recipe_list")]
+[node name="CraftingOverlay" type="Control" unique_id=308790442 node_paths=PackedStringArray("crafting_source_title_label", "recipe_list_vbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +41,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hmln7")
-recipe_list = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+crafting_source_title_label = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label")
+recipe_list_vbox = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=91851467]
 layout_mode = 1
@@ -105,9 +105,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="CraftingOverlayRecipeRow" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1263616794 instance=ExtResource("2_vj04r")]
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1472891899]
 layout_mode = 2

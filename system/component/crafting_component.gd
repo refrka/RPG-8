@@ -10,6 +10,8 @@ func _start() -> bool:
 
 	crafting_overlay.overlay_deactivated.connect(_on_overlay_deactivated, CONNECT_ONE_SHOT)
 
+	crafting_overlay.load_crafting_source(entity)
+
 	return false
 
 

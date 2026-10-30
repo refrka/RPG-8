@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dr85dig657mrn"]
 
 [ext_resource type="PackedScene" uid="uid://byceeb36ikncd" path="res://system/ui/inventory/item_slot.tscn" id="1_2rjso"]
+[ext_resource type="Script" uid="uid://c0iu0uocqn18j" path="res://system/ui/crafting/crafting_overlay_recipe_row.gd" id="1_yt35g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aajxx"]
 bg_color = Color(0.1334365, 0.1334365, 0.13343644, 1)
 
 [node name="CraftingOverlayRecipeRow" type="MarginContainer" unique_id=1263616794]
+script = ExtResource("1_yt35g")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1073491309]
 layout_mode = 2
